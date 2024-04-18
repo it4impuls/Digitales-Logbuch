@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+      "label": "migrate",
+      "type": "shell",
+      "args": ["${workspaceFolder}/digi_log/manage.py","migrate"],
+      "command": "python3",
+      "problemMatcher": [],
+    }
+	]
+}
