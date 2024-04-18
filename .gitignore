@@ -115,7 +115,8 @@ cover/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-digi_log/digilog_backend/migrations
+digi_log_be/digilog_backend/migrations
+_digi_log_fe/
 
 # Flask stuff:
 instance/
