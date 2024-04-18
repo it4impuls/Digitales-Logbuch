@@ -14,7 +14,9 @@
             "django": true,
             "autoStartBrowser": false,
             "program": "${workspaceFolder}/digi_log/manage.py",
-            "preLaunchTask": "migrate"
+            "preLaunchTask": "migrate",
+            
+            
         }
     ]
 }

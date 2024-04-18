@@ -6,8 +6,8 @@ class Person(models.Model):
     last_name = models.CharField(max_length=30)
     occupation = models.CharField(max_length=30)
 
-class Event(models.model):
+class Event(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField(blank=True)
-    host = models.OneToOneField(Person, on_delete=models.CASCADE)
-    atendees = models.ManyToOneRel(Person, on_delete=models.CASCADE)
+    host = models.ForeignKey(Person, on_delete=models.CASCADE)
+    atendees = models.ManyToManyField(Person, related_name="attends", blank=True)

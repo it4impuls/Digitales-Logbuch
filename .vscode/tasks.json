@@ -1,12 +1,40 @@
 {
 	"version": "2.0.0",
 	"tasks": [
-		{
-      "label": "migrate",
+    {
+      "label": "makemigrations",
       "type": "shell",
-      "args": ["${workspaceFolder}/digi_log/manage.py","migrate"],
+      "args": ["${workspaceFolder}/digi_log/manage.py", "makemigrations"],
       "command": "python3",
       "problemMatcher": [],
+    },
+    {
+      "label": "migrate",
+      "type": "shell",
+      "args": ["${workspaceFolder}/digi_log/manage.py", "migrate"],
+      "command": "python3",
+      "problemMatcher": [],
+      "dependsOn": "makemigrations"
+    },
+    {
+      "label": "create Superuser",
+      "type": "shell",
+      "args": [
+        "${workspaceFolder}/digi_log/manage.py",
+        "createsuperuser",
+        "--noinput",
+        "--skip-checks"
+      ],
+      "command": "python3",
+      "problemMatcher": [],
+      "options": {
+        "env": {
+          "DJANGO_SUPERUSER_EMAIL": "admin@example.com",
+          "DJANGO_SUPERUSER_USERNAME": "admin",
+          "DJANGO_SUPERUSER_PASSWORD": "admin"
+        }
+      },
+      "dependsOn": "migrate"
     }
-	]
+  ]
 }
