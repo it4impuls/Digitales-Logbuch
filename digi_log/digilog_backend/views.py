@@ -1,8 +1,22 @@
-from django.shortcuts import render
-
-# Create your views here.
-from django.http import HttpResponse
+from rest_framework import viewsets, serializers
+from .models import Event, Person
 
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+class PersonSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Person
+        fields = '__all__'
+
+class PersonViewSet(viewsets.ModelViewSet):
+    queryset = Person.objects.all()
+    serializer_class = PersonSerializer
+
+
+class EventSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Event
+        fields = '__all__'
+
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
