@@ -1,30 +1,78 @@
 <p>event-browser works!</p>
 
 
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+</mat-form-field>
+
 <table mat-table #table [dataSource]="dataSource" matSort cdkDropList [trackBy]="trackById">
     
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> 
-        
+        Name
       </th>
       <td mat-cell *matCellDef="let element" > 
-        <div class="bttn RoomSelButton" (click)="onSelectClick(element)">
+        <div class="bttn " (click)="onSelectClick(element)">
           {{element.name}}
         </div>
       </td>
     </ng-container>
+    
+    <ng-container matColumnDef="host">
+      <th mat-header-cell *matHeaderCellDef> 
+        Anbieter
+      </th>
+      <td mat-cell *matCellDef="let element" > 
+        <div class="bttn " (click)="onSelectClick(element)">
+          {{element.host.first_name}} {{element.host.last_name}}
+        </div>
+      </td>
+    </ng-container>
 
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> 
+        ID
+      </th>
+      <td mat-cell *matCellDef="let element" > 
+        <div class="bttn " (click)="onSelectClick(element)">
+          {{element.id}}
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> 
+        Beschreibung
+      </th>
+      <td mat-cell *matCellDef="let element" > 
+        <div class="bttn " (click)="onSelectClick(element)">
+          {{element.description}}
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="atendees">
+      <th mat-header-cell *matHeaderCellDef> 
+        Teilnehmer
+      </th>
+      <td mat-cell *matCellDef="let element" > 
+        <div class="bttn " (click)="onSelectClick(element)">
+          {{element.atendees.length}}
+        </div>
+      </td>
+    </ng-container>
     
     <!-- <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row> -->
     <!-- <mat-header-cell>
-        <div class="bttn RoomSelButton">
+        <div class="bttn ">
           Neuer {{type}}    
         </div>
       </mat-header-cell> -->
     <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns">
-    <!--  -->
+
     </tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>

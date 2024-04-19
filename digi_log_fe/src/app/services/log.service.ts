@@ -8,7 +8,7 @@ export class LogService {
 
   constructor() { }
 
-  log(message: string){
+  log(message: any){
     if (!environment.production) { 
       console.log(message)
     }

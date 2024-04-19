@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,22 +52,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
-# If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
-CORS_ALLOW_ALL_ORIGINS = bool(DEBUG)
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_ALLOWED_ORIGIN = CSRF_TRUSTED_ORIGINS = [
-    "".join(("http://",
-        origin, ":",
-        os.environ.get("BACKEND_PORT", default="4200")))
-    for origin in os.environ.get("DJANGO_ALLOWED_HOSTS", default="localhost").split(" ")
-    # r"^http:\/\/0.0.0.0:*([0-9]+)?$",
-    ]
-
-CORS_ALLOWED_ORIGIN_REGEXES = [r"^http:\/\/0.0.0.0:*([0-9]+)?$"]
-
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'digi_log.urls'
 

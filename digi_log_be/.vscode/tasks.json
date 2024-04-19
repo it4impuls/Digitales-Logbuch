@@ -4,14 +4,14 @@
     {
       "label": "makemigrations",
       "type": "shell",
-      "args": ["${workspaceFolder}/digi_log/manage.py", "makemigrations"],
+      "args": ["${workspaceFolder}/manage.py", "makemigrations"],
       "command": "python3",
       "problemMatcher": [],
     },
     {
       "label": "migrate",
       "type": "shell",
-      "args": ["${workspaceFolder}/digi_log/manage.py", "migrate"],
+      "args": ["${workspaceFolder}/manage.py", "migrate"],
       "command": "python3",
       "problemMatcher": [],
       "dependsOn": "makemigrations"
@@ -20,7 +20,7 @@
       "label": "create Superuser",
       "type": "shell",
       "args": [
-        "${workspaceFolder}/digi_log/manage.py",
+        "${workspaceFolder}/manage.py",
         "createsuperuser",
         "--noinput",
         "--skip-checks"

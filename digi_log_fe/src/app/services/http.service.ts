@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { firstValueFrom, Observable, of } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { environment } from "../../environments/environment";
+import { Course } from "../interfaces";
 // import {  } from "app/interfaces";
 
 @Injectable({
@@ -12,7 +13,7 @@ import { environment } from "../../environments/environment";
 export class HttpService {
   constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) {}
 
-  baseURL = `${environment.BACKEND_IP}/${environment.BACKEND_PORT}/api/`
+  baseURL = `http://${environment.BACKEND_IP}:${environment.BACKEND_PORT}/api/`
 
 
   getPosts(url: string): Observable<any> {
@@ -51,8 +52,8 @@ export class HttpService {
     );
   }
 
-  getEvents(): Promise<Event[]>{
-    return firstValueFrom(this.getPosts(this.baseURL+"events"))
+  async getEvents(): Promise<Course[]>{
+    return firstValueFrom(this.getPosts(this.baseURL + "events"))
   }
 
 

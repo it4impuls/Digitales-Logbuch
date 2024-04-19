@@ -6,11 +6,12 @@ export interface Person {
 }
 
 
-export interface Event {
+export interface Course {
   id: number;
   name: string;
   host: Person;
   atendees: Person[];
+  description:string;
 }
 
 
@@ -24,11 +25,12 @@ export class Person implements Person {
 }
 
 
-export class Event implements Event {
+export class Course implements Course {
   constructor(
     public id: number = 0, 
-    public name = "New Event", 
-    public host=new Person()
+    public name = "New Course", 
+    public host=new Person(),
+    public description = "",
   ) {}
 
 }
