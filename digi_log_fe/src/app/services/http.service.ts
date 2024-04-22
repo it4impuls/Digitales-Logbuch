@@ -4,7 +4,7 @@ import { firstValueFrom, Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { environment } from "../../environments/environment";
-import { Course } from "../interfaces";
+import { Course, ICourse } from "../interfaces";
 // import {  } from "app/interfaces";
 
 @Injectable({
@@ -53,12 +53,12 @@ export class HttpService {
 
   async getEvents(): Promise<Course[]> {
     return (
-      await firstValueFrom(this.getPosts<Course[]>(this.baseURL + "courses"))
+      await firstValueFrom(this.getPosts<ICourse[]>(this.baseURL + "courses"))
     ).map((course) => Course.fromObj(course));
   }
 
   async getEvent(id: number): Promise<Course> {
-    return Course.fromObj(await firstValueFrom(this.getPosts<Course>(this.baseURL + "courses/" + id)));
+    return Course.fromObj(await firstValueFrom(this.getPosts<ICourse>(this.baseURL + "courses/" + id)));
   }
 
   

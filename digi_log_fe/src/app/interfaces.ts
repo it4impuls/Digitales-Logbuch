@@ -1,5 +1,32 @@
 
 
+export interface ICourse {
+  id: number;
+  name: string;
+  host: Person;
+  atendees: Person[];
+  description: string;
+  appointments: IAppointment[];
+} 
+
+export interface IAppointment {
+  id: number;
+  course: ICourse;
+  date: string;
+  status:string;
+  starttime:string;
+  duration:string;
+}
+
+export interface Appointment{
+  id: number;
+  course: ICourse | Course;
+  date: string;
+  status:string;
+  starttime: string;
+  endtime:string;
+  duration: string;
+}
 
 export interface Course {
   id: number;
@@ -7,14 +34,7 @@ export interface Course {
   host: Person;
   atendees: Person[];
   description: string;
-  appointments: string[];
-}
-
-export interface Appointment {
-  id: number;
-  course: Course;
-  dates: Date[];
-  status: string;
+  appointments: Appointment[];
 }
 
 export interface Person {
@@ -51,18 +71,19 @@ export class Course implements Course {
     public name = "New Course",
     public host = new Person(),
     public description = "",
-    public appointments = [] as string[],
-    public atendees = [] as Person[]
+    public appointments = [] as Appointment[],
+    public atendees = [] as Person[],
+
   ) {}
 
-  static fromObj(obj: Course): Course {
+  static fromObj(obj: ICourse): Course {
     return new Course(
       obj.id,
       obj.name,
       obj.host,
       obj.description,
-      obj.appointments,
-      obj.atendees.map(p => Person.fromObj(p))
+      obj.appointments.map((p) => Appointment.fromObj(p)),
+      obj.atendees.map((p) => Person.fromObj(p)),
     );
   }
 }
@@ -72,12 +93,43 @@ export class Appointment implements Appointment {
   // constructor(obj: Course);
   constructor(
     public id: number = 0,
-    public course: Course = new Course(),
-    public dates: Date[] = [] as Date[],
-    public status = ""
+    public course: ICourse | Course = new Course(),
+    public date: string = "",
+    public status = "",
+    public starttime: string = "",
+    public endtime:string = "",
+    public duration: string = ""
   ) {}
 
-  static fromObj(obj: Appointment): Appointment {
-    return new Appointment(obj.id, obj.course, obj.dates, obj.status);
+  static fromObj(obj: IAppointment): Appointment {
+    let startDateTime = new Date(obj.date)
+    let duration = obj.duration.split(":")
+    console.log(obj)
+    console.log(duration)
+    // console.log(
+    //   startDateTime.getHours() + Number(duration[0]).toString()+
+    //   startDateTime.getMinutes() + Number(duration[1]).toString()+
+    //   startDateTime.getSeconds() + Number(duration[2]).toString()
+    // );
+    let endTime = new Date(obj.date);
+    
+    endTime.setHours(
+      endTime.getHours() + Number(duration[0]),
+      endTime.getMinutes() + Number(duration[1]),
+      endTime.getSeconds() + Number(duration[2])
+    );
+
+    console.log(startDateTime)
+    console.log(endTime);
+    
+    return new Appointment(
+      obj.id,
+      obj.course,
+      startDateTime.toLocaleDateString(),
+      obj.status,
+      startDateTime.toLocaleTimeString(),
+      endTime.toLocaleString(),
+      obj.duration
+    );
   }
 }

@@ -1,10 +1,29 @@
-<p>event-editor works!</p>
-
-<Form (ngSubmit)="onSubmit()" [formGroup]="courseForm">
-    <mat-form-field>
-        <input matInput formControlName="time" [ngxTimepicker]="picker" placeholder="start date" [format]="24" readonly>
-        <ngx-material-timepicker #picker></ngx-material-timepicker>
+<Form (ngSubmit)="onSubmit()" [formGroup]="courseForm" class="form">
+    <mat-form-field  class="input">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name"  placeholder="Lorem Ipsum" type="text">
     </mat-form-field>
+    <br>
+    <mat-form-field  class="description input">
+        <mat-label>Beschreibung</mat-label>
+        <textarea matInput formControlName="description"  placeholder="Lorem Ipsum" cdkTextareaAutosize></textarea>
+    </mat-form-field>
+    <br>
+    <div class="timeInput">
+        <mat-form-field  class="input time">
+            <mat-label>Startzeit</mat-label>
+            <input matInput formControlName="starttime" [ngxTimepicker]="startpicker" placeholder="start date" [format]="24" readonly>
+            <ngx-material-timepicker #startpicker></ngx-material-timepicker>
+        </mat-form-field>
+
+        <div style="align-self: center; height: 100%;"> bis </div>
+
+        <mat-form-field  class="input time">
+            <mat-label>Endzeit</mat-label>
+            <input matInput formControlName="endtime" [ngxTimepicker]="endpicker" placeholder="start date" [format]="24" readonly>
+            <ngx-material-timepicker #endpicker></ngx-material-timepicker>
+        </mat-form-field>
+    </div>
 </Form>
 
 <!-- <input [ngxTimepicker]="picker">

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Course, Person } from '../../interfaces';
+import { Appointment, Course, Person } from '../../interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { MatFormField, MatFormFieldControl } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { Time } from '@angular/common';
+import { LogService } from '../../services/log.service';
 
 @Component({
   selector: "app-event-editor",
@@ -13,11 +14,25 @@ import { Time } from '@angular/common';
   styleUrl: "./event-editor.component.less",
 })
 export class EventEditorComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private http: HttpService, private formbuilder: FormBuilder) {}
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpService,
+    private formbuilder: FormBuilder,
+    private log: LogService,
+  ) {}
 
   course?: Course;
   // time:string = "10:00"
-  courseForm = this.formbuilder.group({id:0, name:"neuer Kurs", description:"",host:new Person(), atendees:[] as Person[],time:"10:00"})
+  courseForm = this.formbuilder.group({
+    id: 0,
+    name: "neuer Kurs",
+    description: "",
+    host: new Person(),
+    atendees: [] as Person[],
+    starttime: "10:00",
+    endtime: "10:00",
+    dates: [] as Appointment[]
+  });
   ngOnInit(): void {
     this.init();
   }
@@ -28,17 +43,19 @@ export class EventEditorComponent implements OnInit {
       let id = Number(this.route.snapshot.paramMap.get("id"));
       let fc = this.courseForm.controls;
       this.course = await this.http.getEvent(id);
-      if (this.course){
-        this.formbuilder.group({
+      if (this.course) {
+        this.courseForm = this.formbuilder.group({
           id: this.course.id,
           name: this.course.name,
           description: this.course.description,
           host: this.course.host,
           atendees: this.course.atendees,
-          dates: new Date().toTimeString(),
+          starttime: new Date().toLocaleTimeString(),
+          endtime: new Date().toTimeString(),
+          dates: this.course.appointments
         });
+        this.log.log(this.course)
       }
-      console.log(this.course);
     }
   }
 
