@@ -13,11 +13,10 @@ import { Course } from "../interfaces";
 export class HttpService {
   constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) {}
 
-  baseURL = `http://${environment.BACKEND_IP}:${environment.BACKEND_PORT}/api/`
+  baseURL = `http://${environment.BACKEND_IP}:${environment.BACKEND_PORT}/api/`;
 
-
-  getPosts(url: string): Observable<any> {
-    return this.httpClient.get<any>(url).pipe(
+  getPosts<T>(url: string): Observable<T> {
+    return this.httpClient.get<T>(url).pipe(
       catchError((err) => {
         this.openSnackbar(err.message);
         return of(err);
@@ -52,10 +51,17 @@ export class HttpService {
     );
   }
 
-  async getEvents(): Promise<Course[]>{
-    return firstValueFrom(this.getPosts(this.baseURL + "events"))
+  async getEvents(): Promise<Course[]> {
+    return (
+      await firstValueFrom(this.getPosts<Course[]>(this.baseURL + "courses"))
+    ).map((course) => Course.fromObj(course));
   }
 
+  async getEvent(id: number): Promise<Course> {
+    return Course.fromObj(await firstValueFrom(this.getPosts<Course>(this.baseURL + "courses/" + id)));
+  }
+
+  
 
   private openSnackbar(msg: string, dismiss: string = "OK") {
     console.log(msg);

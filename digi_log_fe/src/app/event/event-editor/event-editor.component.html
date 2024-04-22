@@ -1,1 +1,11 @@
 <p>event-editor works!</p>
+
+<Form (ngSubmit)="onSubmit()" [formGroup]="courseForm">
+    <mat-form-field>
+        <input matInput formControlName="time" [ngxTimepicker]="picker" placeholder="start date" [format]="24" readonly>
+        <ngx-material-timepicker #picker></ngx-material-timepicker>
+    </mat-form-field>
+</Form>
+
+<!-- <input [ngxTimepicker]="picker">
+<ngx-material-timepicker #picker></ngx-material-timepicker> -->

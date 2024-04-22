@@ -12,9 +12,15 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 
 import { EventBrowserComponent } from './event/event-browser/event-browser.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatNativeDateModule } from '@angular/material/core';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { EventEditorComponent } from './event/event-editor/event-editor.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
-  declarations: [AppComponent, EventBrowserComponent],
+  declarations: [AppComponent, EventBrowserComponent, EventEditorComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,9 +28,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule,
+    ReactiveFormsModule,
+    MatButtonModule
   ],
-  providers: [provideAnimationsAsync("noop")],
+  providers: [provideAnimationsAsync("noop"), provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

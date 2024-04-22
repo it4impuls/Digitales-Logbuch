@@ -16,8 +16,8 @@
             "autoStartBrowser": false,
             "program": "${workspaceFolder}/manage.py",
             "preLaunchTask": "migrate",
-            "envFile": "${workspaceFolder}/.env"
-            
+            "envFile": "${workspaceFolder}/.env",
+            "justMyCode": false
         }
     ]
 }

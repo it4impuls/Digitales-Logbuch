@@ -1,6 +1,3 @@
-<p>event-browser works!</p>
-
-
 <mat-form-field>
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
@@ -8,7 +5,7 @@
 
 <table mat-table #table [dataSource]="dataSource" matSort cdkDropList [trackBy]="trackById">
     
-
+  
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> 
         Name
@@ -74,5 +71,5 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns">
 
     </tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+      <tr mat-row (click)="onSelectClick(row)" class="CourseBttn" *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
