@@ -45,6 +45,12 @@ export interface Person {
 }
 
 
+export enum CookieType {
+  refreshToken = "refresh",
+  accessToken = "access",
+} 
+
+
 export class Person implements Person {
   constructor(
     public id: number = 0,
@@ -104,13 +110,6 @@ export class Appointment implements Appointment {
   static fromObj(obj: IAppointment): Appointment {
     let startDateTime = new Date(obj.date)
     let duration = obj.duration.split(":")
-    console.log(obj)
-    console.log(duration)
-    // console.log(
-    //   startDateTime.getHours() + Number(duration[0]).toString()+
-    //   startDateTime.getMinutes() + Number(duration[1]).toString()+
-    //   startDateTime.getSeconds() + Number(duration[2]).toString()
-    // );
     let endTime = new Date(obj.date);
     
     endTime.setHours(
@@ -118,17 +117,13 @@ export class Appointment implements Appointment {
       endTime.getMinutes() + Number(duration[1]),
       endTime.getSeconds() + Number(duration[2])
     );
-
-    console.log(startDateTime)
-    console.log(endTime);
-    
     return new Appointment(
       obj.id,
       obj.course,
       startDateTime.toLocaleDateString(),
       obj.status,
-      startDateTime.toLocaleTimeString(),
-      endTime.toLocaleString(),
+      startDateTime.toLocaleTimeString([], { timeStyle: "short" }),
+      endTime.toLocaleTimeString([], { timeStyle: "short" }),
       obj.duration
     );
   }

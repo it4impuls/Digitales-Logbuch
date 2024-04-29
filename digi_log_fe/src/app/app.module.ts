@@ -11,16 +11,18 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatToolbarModule } from "@angular/material/toolbar";
 
 import { EventBrowserComponent } from './event/event-browser/event-browser.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { EventEditorComponent } from './event/event-editor/event-editor.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 
 @NgModule({
-  declarations: [AppComponent, EventBrowserComponent, EventEditorComponent],
+  declarations: [AppComponent, EventBrowserComponent, EventEditorComponent, LoginComponent, SignupComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,7 +34,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatNativeDateModule,
     NgxMaterialTimepickerModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientXsrfModule
   ],
   providers: [provideAnimationsAsync("noop"), provideAnimationsAsync()],
   bootstrap: [AppComponent],

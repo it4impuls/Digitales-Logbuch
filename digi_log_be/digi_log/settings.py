@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os, ldap
+from django_auth_ldap.config import LDAPSearch, LDAPSearchUnion
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = "/api/login/"
 
 # Application definition
 
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework_simplejwt.token_blacklist',
     'rest_framework',
     'corsheaders'
 ]
@@ -55,14 +58,20 @@ MIDDLEWARE = [
     
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOWED_ORIGINS= CSRF_TRUSTED_ORIGINS = [
+    "https://localhost:4200",
+    "http://localhost:4200",
+    "http://*"
+]
 
 ROOT_URLCONF = 'digi_log.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -88,6 +97,15 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -107,7 +125,32 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SIMPLE_JWT = {
+    # Cookie name. Enables cookies if value is set.
+    'AUTH_COOKIE': 'access',
+    # A string like "example.com", or None for standard domain cookie.
+    'AUTH_COOKIE_DOMAIN': None,
+    # Whether the auth cookies should be secure (https:// only).
+    'AUTH_COOKIE_SECURE': False,
+    # Http only cookie flag.It's not fetch by javascript.
+    'AUTH_COOKIE_HTTP_ONLY': True,
+    'AUTH_COOKIE_PATH': '/',        # The path of the auth cookie.
+    # Whether to set the flag restricting cookie leaks on cross-site requests.
+    'AUTH_COOKIE_SAMESITE': 'Lax',
+    # This can be 'Lax', 'Strict', or None to disable the flag.
+}
 
+# AUTHENTICATION_BACKENDS = ["django_auth_ldap.backend.LDAPBackend"]
+
+# AUTH_LDAP_SERVER_URI = "ldap://BGD-AD01.tn.impuls-reha.de"
+
+
+# AUTH_LDAP_USER_SEARCH = LDAPSearchUnion(
+#     LDAPSearch("ou=Benutzer,dc=tn,dc=impuls-reha,dc=de",
+#                ldap.SCOPE_SUBTREE, "(uid=%(user)s)"),
+#     LDAPSearch("ou=Benutzer,dc=impuls-reha,dc=de",
+#                ldap.SCOPE_SUBTREE, "(uid=%(user)s)"),
+# )
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 

@@ -1,7 +1,8 @@
 from django.contrib import admin
+from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken, OutstandingToken 
+from .models import Course
 
-from .models import Person, Course, Appointment
-
-admin.site.register(Person)
 admin.site.register(Course)
-admin.site.register(Appointment)
+
+# admin.site.register(BlacklistedToken)
+# admin.site.register(OutstandingToken)

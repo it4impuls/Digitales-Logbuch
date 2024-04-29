@@ -1,10 +1,20 @@
 
 <mat-toolbar class="tool_bar" color="primary">
-    <span>Kursbuch</span>
+    <span routerLink="/">Kursbuch</span>
     <div class="spacer"></div>
     <nav>
         <a routerLink="/" >Home</a>
     </nav>
+    @if (authService.TOKEN) {
+        <a (click)="logout()" > Logout </a>
+        <a (click)="test()" > Test </a>
+    }
+    @else {
+        <a routerLink="/login" > Login </a>
+        <a routerLink="/signup" > Sign up </a>
+    }
+    
+    
 </mat-toolbar>
 
 <!-- Main Content -->

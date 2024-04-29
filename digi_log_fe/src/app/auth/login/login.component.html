@@ -1,0 +1,12 @@
+<Form (ngSubmit)="login()" [formGroup]="loginForm" class="form">
+    <mat-form-field  class="input">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username"  placeholder="Lorem Ipsum" type="text">
+    </mat-form-field>
+    <mat-form-field  class="description input">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password"  placeholder="Lorem Ipsum" type="password">
+    </mat-form-field>
+    <div>{{error}}</div>
+    <button class="button"  type="submit" mat-button> Login </button>
+</Form>

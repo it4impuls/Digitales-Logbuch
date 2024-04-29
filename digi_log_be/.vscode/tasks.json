@@ -33,8 +33,7 @@
           "DJANGO_SUPERUSER_USERNAME": "admin",
           "DJANGO_SUPERUSER_PASSWORD": "admin"
         }
-      },
-      "dependsOn": "migrate"
+      }
     }
   ]
 }

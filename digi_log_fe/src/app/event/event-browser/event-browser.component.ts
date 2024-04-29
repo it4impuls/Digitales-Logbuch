@@ -30,7 +30,6 @@ export class EventBrowserComponent implements OnInit {
     this.events = await this.http.getEvents();
     this.dataSource = new MatTableDataSource<Course>(this.events);
     this.log.log(this.events as Course[]);
-    this.log.log(this.events[0].id);
   }
 
   onSelectClick(event: Course) {
