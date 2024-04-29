@@ -10,8 +10,8 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent },
   { path: "events", component: EventBrowserComponent },
-  { path: "events/new", redirectTo: "/events/0", pathMatch: "full" },
-  { path: "events/:id", component: EventEditorComponent },
+  { path: "event/new", redirectTo: "/event/0", pathMatch: "full" },
+  { path: "event/:id", component: EventEditorComponent },
 ];
 
 @NgModule({

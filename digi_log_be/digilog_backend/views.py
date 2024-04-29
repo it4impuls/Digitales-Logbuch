@@ -26,7 +26,7 @@ class AuthViewset(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_permissions(self):
-        if self.request.method == 'GET':
+        if self.request.method in ('GET', "POST", "OPTIONS"):
             return []
         return super().get_permissions()
 
@@ -44,10 +44,19 @@ class UserViewSet(AuthViewset):
 
 
 class CourseSerializer(serializers.ModelSerializer):
-    host = UserSerializer()
+    class InfoSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Course.CourseInfo
+            fields = "__all__"
+
+    info = InfoSerializer()
+    host = UserSerializer(read_only=True)
+    
     class Meta:
         model = Course
         fields = '__all__'
+
+    
 
     def create(self, validated_data):
         host_obj = validated_data.pop('host')
@@ -55,6 +64,8 @@ class CourseSerializer(serializers.ModelSerializer):
             **host_obj, defaults={})
         course = super().create({"host":host, **validated_data})
         return course
+    
+    
         
 
 class CourseViewSet(AuthViewset):

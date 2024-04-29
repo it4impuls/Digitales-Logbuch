@@ -29,9 +29,6 @@ export class EventEditorComponent implements OnInit {
     description: "",
     host: new Person(),
     atendees: [] as Person[],
-    starttime: "10:00",
-    endtime: "10:00",
-    dates: [] as Appointment[]
   });
   ngOnInit(): void {
     this.init();
@@ -44,7 +41,6 @@ export class EventEditorComponent implements OnInit {
       let fc = this.courseForm.controls;
       
       this.course = await this.http.getEvent(id);
-      let ap = this.course.appointments;
       if (this.course) {
         this.courseForm = this.formbuilder.group({
           id: this.course.id,
@@ -52,20 +48,8 @@ export class EventEditorComponent implements OnInit {
           description: this.course.description,
           host: this.course.host,
           atendees: this.course.atendees,
-          starttime:
-            ap.length >= 1
-              ? this.course.appointments[0].starttime
-              : new Date().toLocaleTimeString(),
-          endtime:
-            ap.length >= 1
-              ? this.course.appointments[0].endtime
-              : new Date().toLocaleTimeString(),
-          dates: this.course.appointments,
+          
         });
-        this.log.log(this.course)
-        
-        this.log.log(this.courseForm.controls);
-
       }
     }
   }

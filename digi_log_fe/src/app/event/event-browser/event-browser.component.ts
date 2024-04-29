@@ -47,4 +47,8 @@ export class EventBrowserComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  // newCourse() {
+  //   this.router.navigate(["event/new", { pathMatch: "full" }]);
+  // }
 }
