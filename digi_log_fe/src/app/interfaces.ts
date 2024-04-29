@@ -41,7 +41,14 @@ export interface Person {
   id: number;
   firstname: string;
   lastname: string;
-  occupation: string;
+}
+
+export interface RPerson {
+  username: string;
+  password: string;
+  first_name: string;
+  last_name: string;
+  email:string;
 }
 
 
@@ -70,6 +77,25 @@ export class Person implements Person {
   }
 }
 
+export class RPerson implements RPerson {
+  constructor(
+    public first_name = "John",
+    public last_name = "Doe",
+    public username = "",
+    public password = "",
+    public email = ""
+  ) {}
+
+  static fromObj(obj: RPerson): RPerson {
+    return new RPerson(
+      obj.first_name,
+      obj.last_name,
+      obj.username.toLowerCase(),
+      obj.password,
+      obj.email.toLowerCase()
+    );
+  }
+}
 
 export class Course implements Course {
   // constructor(obj: Course);

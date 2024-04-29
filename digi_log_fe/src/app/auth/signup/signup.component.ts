@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { AuthService } from '../../services/auth.service';
 import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RPerson } from '../../interfaces';
+import { firstValueFrom } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 export const confirmPasswordValidator: ValidatorFn = (
   control: AbstractControl
@@ -17,12 +21,13 @@ export const confirmPasswordValidator: ValidatorFn = (
   templateUrl: "./signup.component.html",
   styleUrl: "./signup.component.less",
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit {
   constructor(
     private http: HttpService,
     private auth: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   // checkPasswords: ValidatorFn = (
@@ -36,6 +41,9 @@ export class SignupComponent {
   signupForm = this.formBuilder.group(
     {
       username: ["", [Validators.required]],
+      email: ["", [Validators.required]],
+      first_name: ["", [Validators.required]],
+      last_name: ["", [Validators.required]],
       password: ["", [Validators.required]],
       confirmPassword: ["", [Validators.required]],
     },
@@ -43,37 +51,41 @@ export class SignupComponent {
   );
   error = "";
 
-  async login() {
-    // this.signupForm.
-    HttpService;
-    let res = this.http.login(
-      this.signupForm.controls.username.value ?? "",
-      this.signupForm.controls.password.value ?? ""
-    );
-
-    res.subscribe({
-      next: (data) => {
-        console.log(data);
-        this.auth.TOKEN = data["access"];
-        // this.router.
-      },
-      error: (e) => {
-        console.error(e);
-        switch (e.status) {
-          case 400:
-            this.error = "Bad request";
-            break;
-          case 401:
-            this.error = "Falscher Benutzername/Kennwort";
-            break;
-          default:
-            this.error = e.message;
-        }
-      },
-    });
-  }
+  ngOnInit(): void {}
 
   signup() {
-    console.log(this.signupForm.errors)
+    console.log("signup called");
+    let form = this.signupForm.value;
+    if (form.password == form.confirmPassword) {
+      this.http.signup(RPerson.fromObj(form as RPerson)).subscribe({
+        next: (user) => {
+          console.log(user);
+          this.error = "";
+          this.snackBar.open("Konto erfolgreich erstellt", "ok");
+          this.router.navigate(["login/"]);
+        },
+        error: (err) => {
+          this.error = Object.values(err.error).join(", ");
+          console.log(err);
+        },
+      });
+    }
+  }
+
+  onchange() {
+    if (this.signupForm.errors) {
+      if (this.signupForm.errors["PasswordNoMatch"]) {
+        this.error = "Passwörter stimmen nicht überein";
+      } else {
+        this.error =
+          Object.keys(this.signupForm.errors).length < 5
+            ? Object.keys(this.signupForm.errors ?? {}).join(", ")
+            : "";
+        console.log(Object.keys(this.signupForm.errors));
+      }
+      console.log("updated: " + this.error);
+    } else {
+      this.error = "";
+    }
   }
 }

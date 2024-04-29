@@ -4,14 +4,27 @@
         <mat-label>Username</mat-label>
         <input matInput formControlName="username"  placeholder="Lorem Ipsum" type="text">
     </mat-form-field>
-    <mat-form-field  class="passwd input">
-        <mat-label>Password</mat-label>
-        <input matInput formControlName="password"  placeholder="Lorem Ipsum" type="password">
+    <mat-form-field  class="input">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email"  placeholder="Lorem Ipsum" type="text">
+    </mat-form-field>
+    <mat-form-field  class="input">
+        <mat-label>Vorname</mat-label>
+        <input matInput formControlName="first_name"  placeholder="Lorem Ipsum" type="text">
+    </mat-form-field>
+    <mat-form-field  class="input">
+        <mat-label>Nachname</mat-label>
+        <input matInput formControlName="last_name"  placeholder="Lorem Ipsum" type="text">
     </mat-form-field>
     <mat-form-field  class="passwd input">
         <mat-label>Password</mat-label>
-        <input matInput formControlName="confirmPassword"  placeholder="Lorem Ipsum" type="password">
+        <input matInput formControlName="password"  placeholder="Lorem Ipsum" type="password"  (change)="onchange()">
     </mat-form-field>
-    <div>{{signupForm.errors}}</div>
-    <button class="button"  type="submit" mat-button> Sign up </button>
+    <mat-form-field  class="passwd input">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="confirmPassword"  placeholder="Lorem Ipsum" type="password" (change)="onchange()">
+    </mat-form-field>
+    <mat-error>{{error}}</mat-error>
+    
+    <button class="button"  type="submit" mat-button [disabled]="!signupForm.valid"> Sign up </button>
 </Form>

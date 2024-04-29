@@ -4,7 +4,7 @@ import { firstValueFrom, Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { environment } from "../../environments/environment";
-import { CookieType, Course, ICourse } from "../interfaces";
+import { CookieType, Course, ICourse, Person, RPerson } from "../interfaces";
 // import { AuthService } from "./auth.service";
 // import {  } from "app/interfaces";
 
@@ -121,6 +121,11 @@ export class HttpService {
           return of(err);
         })
       )
+  }
+
+  signup(user: RPerson){
+    console.log("sending signup")
+    return this.httpClient.post(this.baseURL + "users/", user );
   }
 
   private openSnackbar(msg: string, dismiss: string = "OK") {
