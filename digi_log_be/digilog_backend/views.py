@@ -119,9 +119,9 @@ class myTokenObtainPairView(TokenObtainPairView):
         if access is not None:
             response = JsonResponse(
                 {"access": access, "refresh": refresh, "uname": uname}, status=200)
-            response.set_cookie('token', access, httponly=True)
-            response.set_cookie('refresh', refresh, httponly=True)
-            response.set_cookie('uname', uname, httponly=True)
+            # response.set_cookie('token', access, httponly=True)
+            # response.set_cookie('refresh', refresh, httponly=True)
+            # response.set_cookie('uname', uname, httponly=True)
             return response
 
         return HttpResponse({"Error": "Something went wrong"}, status = 400)
@@ -139,7 +139,7 @@ def test(request):
 
 class myTokenVerifyView(TokenVerifyView):
     serializer_class = TokenVerifySerializer
-    
+
     def post(self, request: Request, *args, **kwargs) -> Response:
         serializer = self.get_serializer(data={"token":request.COOKIES.get("access") or request.data.get("access")})
         try:

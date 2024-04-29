@@ -13,6 +13,33 @@ export class AuthService {
 
   TOKEN = "";
 
+  async refreshTokens(){
+    let rToken = this.cookieService.getValue(CookieType.refreshToken) ?? ""
+    if (rToken){
+      let response = await firstValueFrom(this.http.refreshToken(rToken));
+      if (response["access"]) {
+        this.cookieService.addToCookie(
+          CookieType.accessToken,
+          response["access"]
+        );
+        this.TOKEN=response["access"];
+      } else {
+      }
+    } 
+  }
+
+  async logout(){
+    let rToken = this.cookieService.getValue(CookieType.refreshToken) ?? "";
+    this.http.logout(rToken).subscribe({
+      next:(response)=>{
+        this.cookieService.clearAll();
+        this.TOKEN = ""
+      }, 
+    
+      error:(error)=>{}});
+
+  }
+
   // async getToken():Promise<string> {
   //   let token = ""
   //   if (this.TOKEN) {

@@ -4,6 +4,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { LogService } from '../../services/log.service';
 import { Course } from '../../interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: "app-event-browser",
@@ -15,7 +16,8 @@ export class EventBrowserComponent implements OnInit {
     private http: HttpService,
     private log: LogService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public auth: AuthService
   ) {}
 
   events: Course[] = [];

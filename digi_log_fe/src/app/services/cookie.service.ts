@@ -66,5 +66,9 @@ export class CookieService {
     const domainName = (window as any).location.hostname;
     return "path=" + domainName;
   }
+
+  clearAll(){
+    this.parameterMap={}
+  }
 }
 

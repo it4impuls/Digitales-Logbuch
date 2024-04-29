@@ -37,7 +37,7 @@ export class LoginComponent {
         this._location.back();
         this.cookieService.addToCookie(CookieType.accessToken,data["access"]);
         this.cookieService.addToCookie(CookieType.refreshToken, data["refresh"]);
-        console.log(document.cookie)
+        this.cookieService.addToCookie(CookieType.username, data["uname"]);
       }, 
       error: (e) => {
         console.error(e)
@@ -54,9 +54,5 @@ export class LoginComponent {
       }
     })
     
-  }
-
-  logout() {
-    this.http.logout();
   }
 }

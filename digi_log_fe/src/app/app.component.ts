@@ -15,15 +15,20 @@ export class AppComponent implements OnInit{
   title = "digi_log_fe";
   constructor(private cookieService:CookieService, public authService:AuthService, private http:HttpService) {}
 
+  uname = ""
 
   ngOnInit(): void {
-    
+    this.authService.refreshTokens()
+    this.uname = this.cookieService.getValue(CookieType.username)??""
   }
   
   logout(){
-    this.http.logout()
+    this.authService.logout()
   }
   test(){
-    this.http.postTest();
+    this.http.postTest().then(ret => console.log(ret));
+  }
+  refresh(){
+    this.authService
   }
 }

@@ -48,6 +48,7 @@ export interface Person {
 export enum CookieType {
   refreshToken = "refresh",
   accessToken = "access",
+  username = "username"
 } 
 
 

@@ -3,15 +3,15 @@
     <span routerLink="/">Kursbuch</span>
     <div class="spacer"></div>
     <nav>
-        <a routerLink="/" >Home</a>
+        <a routerLink="/" class="button">Home</a>
     </nav>
     @if (authService.TOKEN) {
-        <a (click)="logout()" > Logout </a>
-        <a (click)="test()" > Test </a>
+        <a (click)="logout()" class="button"> Logout {{uname}} </a>
+        <a (click)="test()" class="button"> Test {{uname}} </a>
     }
     @else {
-        <a routerLink="/login" > Login </a>
-        <a routerLink="/signup" > Sign up </a>
+        <a routerLink="/login" class="button"> Login </a>
+        <a routerLink="/signup" class="button"> Sign up </a>
     }
     
     

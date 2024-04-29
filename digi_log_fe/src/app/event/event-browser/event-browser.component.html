@@ -3,9 +3,14 @@
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
 </mat-form-field>
 
-<table mat-table #table [dataSource]="dataSource" matSort cdkDropList [trackBy]="trackById">
-    
+@if (auth.TOKEN) {
+  <div class="container">
+    <button mat-button class="newEvent"> Neuer Kurs </button>
+  </div>
   
+}
+
+<table mat-table #table [dataSource]="dataSource" matSort cdkDropList [trackBy]="trackById">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> 
         Name

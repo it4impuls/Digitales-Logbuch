@@ -4,7 +4,7 @@ import { firstValueFrom, Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { environment } from "../../environments/environment";
-import { Course, ICourse } from "../interfaces";
+import { CookieType, Course, ICourse } from "../interfaces";
 // import { AuthService } from "./auth.service";
 // import {  } from "app/interfaces";
 
@@ -114,15 +114,13 @@ export class HttpService {
     );
   }
 
-  async logout() {
-    return await firstValueFrom(
-      this.httpClient.post(this.baseURL + "logout/", {}).pipe(
+  logout(rToken:string) {
+    return this.httpClient.post(this.baseURL + "logout/", {[CookieType.refreshToken]:rToken}).pipe(
         catchError((err) => {
           this.openSnackbar(err.message);
           return of(err);
         })
       )
-    );
   }
 
   private openSnackbar(msg: string, dismiss: string = "OK") {
