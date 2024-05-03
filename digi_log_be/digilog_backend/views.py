@@ -2,7 +2,7 @@ from rest_framework import viewsets, serializers, exceptions
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.validators import UniqueValidator
+from serializers import UserSerializer, CourseSerializer, myTokenObtainPairSerializer, TokenVerifySerializer
 from .models import Course, User
 from django.http import HttpResponse, JsonResponse
 from django_auth_ldap.backend import LDAPBackend
@@ -14,7 +14,7 @@ import json
 from .authenticator import CustomAuthentication
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenVerifyView
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, TokenVerifySerializer
+from rest_framework_simplejwt.serializers import TokenVerifySerializer
 from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
 from rest_framework.views import exception_handler
 from rest_framework import  status
@@ -31,72 +31,14 @@ class AuthViewset(viewsets.ModelViewSet):
             return []
         return super().get_permissions()
 
-
-class UserSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(
-        required=True,
-        validators=[UniqueValidator(queryset=User.objects.all())]
-    )
-    password = serializers.CharField(write_only=True, required=True)
-    class Meta:
-        model = User
-        fields = ('username', 'password',
-                  'email', 'first_name', 'last_name')
-        extra_kwargs = {
-            'first_name': {'required': True},
-            'last_name': {'required': True}
-        }
-        
-    def create(self, validated_data):
-        user = User.objects.create(
-            username=validated_data['username'],
-            email=validated_data['email'],
-            first_name=validated_data['first_name'],
-            last_name=validated_data['last_name']
-        )
-
-        user.set_password(validated_data['password'])
-        user.save()
-
-        return user
-
-
 class UserViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
     queryset = User.objects.filter(is_active=True).order_by('id')
     serializer_class = UserSerializer
 
-
-class CourseSerializer(serializers.ModelSerializer):
-    class InfoSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = Course.CourseInfo
-            fields = "__all__"
-
-    info = InfoSerializer()
-    host = UserSerializer(read_only=True)
-    
-    class Meta:
-        model = Course
-        fields = '__all__'
-
-    
-
-    def create(self, validated_data):
-        host_obj = validated_data.pop('host')
-        host, created = User.objects.get_or_create(
-            **host_obj, defaults={})
-        course = super().create({"host":host, **validated_data})
-        return course
-    
-    
-        
-
 class CourseViewSet(AuthViewset):
     queryset = Course.objects.all().order_by('id')
     serializer_class = CourseSerializer
-
-
 
 @csrf_exempt
 def login_user(request):
@@ -114,28 +56,11 @@ def login_user(request):
             login(request, user)
             print("Valid account")
             return HttpResponse(status=200, content=user)
-            
         else:
             print("Invalid account")
             return HttpResponse(status=400, content="Authentication failed")
-        
     else:
         return render(request, 'digi_log/login.html')
-
-
-class myTokenObtainPairSerializer(TokenObtainPairSerializer):
-    def validate(self, attrs):
-        data = super().validate(attrs)
-        refresh = self.get_token(self.user)
-        data["refresh"] = str(refresh)   # comment out if you don't want this
-        data["access"] = str(refresh.access_token)
-        data["uname"] = self.user.get_username()
-
-        """ Add extra responses here should you wish
-        data["userid"] = self.user.id
-        data["my_favourite_bird"] = "Jack Snipe"
-        """
-        return data
 
 class myTokenObtainPairView(TokenObtainPairView):
     serializer_class = myTokenObtainPairSerializer
@@ -160,17 +85,6 @@ class myTokenObtainPairView(TokenObtainPairView):
             return response
 
         return HttpResponse({"Error": "Something went wrong"}, status = 400)
-
-
-@csrf_exempt
-def test(request):
-    try:
-        CustomAuthentication().authenticate(request)
-        return HttpResponse("OK", status = 200)
-    except TokenError as e:
-        r= exception_handler(exceptions.PermissionDenied(e.args[0]), {})
-        return r
-
 
 class myTokenVerifyView(TokenVerifyView):
     serializer_class = TokenVerifySerializer

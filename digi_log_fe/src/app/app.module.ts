@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
+// Angular Material
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatToolbarModule } from "@angular/material/toolbar";
-
-import { EventBrowserComponent } from './event/event-browser/event-browser.component';
-import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
-import { MatNativeDateModule } from '@angular/material/core';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { EventEditorComponent } from './event/event-editor/event-editor.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+
+// Components
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { EventEditorComponent } from './event/event-editor/event-editor.component';
+import { EventBrowserComponent } from './event/event-browser/event-browser.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 
