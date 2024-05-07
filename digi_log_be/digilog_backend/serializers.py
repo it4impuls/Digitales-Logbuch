@@ -73,4 +73,8 @@ class CourseSerializer(serializers.ModelSerializer):
         
         course = super().create({"host": host, **validated_data})
         return course
+    
+    def update(self, instance, validated_data):
+        
+        return super().update(instance, validated_data)
 

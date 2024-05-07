@@ -7,9 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: "app-event-browser",
-  templateUrl: "./event-browser.component.html",
-  styleUrl: "./event-browser.component.less",
+  selector: 'app-event-browser',
+  templateUrl: './event-browser.component.html',
+  styleUrl: './event-browser.component.less',
 })
 export class EventBrowserComponent implements OnInit {
   constructor(
@@ -22,7 +22,7 @@ export class EventBrowserComponent implements OnInit {
 
   events: Course[] = [];
   dataSource: MatTableDataSource<Course> = new MatTableDataSource();
-  displayedColumns = ["name", "host", "description", "atendees"];
+  displayedColumns = ['name', 'host', 'description', 'atendees'];
 
   ngOnInit() {
     this.init();
@@ -35,7 +35,7 @@ export class EventBrowserComponent implements OnInit {
   }
 
   onSelectClick(event: Course) {
-    this.log.log("Clicked: " + event.id);
+    this.log.log('Clicked: ' + event.id);
     this.router.navigate([event.id], { relativeTo: this.route });
   }
 
@@ -46,6 +46,11 @@ export class EventBrowserComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  attending(element:Course) {
+    console.log(element)
+    return element.attendees.filter((a) => a.attends).length;
   }
 
   // newCourse() {

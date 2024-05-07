@@ -81,6 +81,8 @@ export class EventEditorComponent implements OnInit {
     let a = this.course.attendees
     let _course = this.courseForm.value;
     let attendees = [] as Attendee[]
+
+    // mapping is not enough since it is theoretically possible for a key not having an attendee
     Object.keys(_course.attendees ? _course.attendees : {}).forEach(
       (key) => {
         let found = a.find((at) => at.id.toString() == key)
