@@ -19,7 +19,7 @@ export class CookieService {
       const paramList = document.cookie.split(";");
       paramList.forEach((parameter) => {
         const values = parameter.trim().split("=");
-        console.log(paramList);
+        // console.log(paramList);
         this.addToCookieWithName(values[0].trim(), values[1].trim()); // there is no reverse conversion for enum
       });
     }

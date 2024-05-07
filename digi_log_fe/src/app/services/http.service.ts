@@ -73,11 +73,11 @@ export class HttpService {
   }
 
   async getEvent(id: number): Promise<Course> {
-    return Course.fromObj(
-      await firstValueFrom(
-        this.getPosts<ICourse>(this.baseURL + "courses/" + id)
-      )
+    let c = await firstValueFrom(
+      this.getPosts<ICourse>(this.baseURL + 'courses/' + id)
     );
+    console.log(c)
+    return Course.fromObj(c);
   }
 
   login(uname: string, passwd: string): Observable<LoginResponse> {

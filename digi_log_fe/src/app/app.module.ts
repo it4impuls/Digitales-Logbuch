@@ -11,6 +11,8 @@ import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
@@ -24,7 +26,13 @@ import { SignupComponent } from './auth/signup/signup.component';
 
 
 @NgModule({
-  declarations: [AppComponent, EventBrowserComponent, EventEditorComponent, LoginComponent, SignupComponent],
+  declarations: [
+    AppComponent,
+    EventBrowserComponent,
+    EventEditorComponent,
+    LoginComponent,
+    SignupComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -34,12 +42,14 @@ import { SignupComponent } from './auth/signup/signup.component';
     MatFormFieldModule,
     MatToolbarModule,
     MatNativeDateModule,
+    MatListModule,
+    MatCheckboxModule,
     NgxMaterialTimepickerModule,
     ReactiveFormsModule,
     MatButtonModule,
-    HttpClientXsrfModule
+    HttpClientXsrfModule,
   ],
-  providers: [provideAnimationsAsync("noop"), provideAnimationsAsync()],
+  providers: [provideAnimationsAsync('noop'), provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

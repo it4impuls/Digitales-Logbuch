@@ -1,23 +1,25 @@
-from rest_framework import viewsets, serializers, exceptions
+import json
+from operator import contains
+import typing
+
+from django.http import HttpResponse, JsonResponse
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+
+from .authenticator import CustomAuthentication
+from .serializers import UserSerializer, CourseSerializer, myTokenObtainPairSerializer, TokenVerifySerializer
+from .models import Course, User
+
+from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.request import Request
 from rest_framework.response import Response
-from serializers import UserSerializer, CourseSerializer, myTokenObtainPairSerializer, TokenVerifySerializer
-from .models import Course, User
-from django.http import HttpResponse, JsonResponse
-from django_auth_ldap.backend import LDAPBackend
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
-import json
-from .authenticator import CustomAuthentication
-from rest_framework_simplejwt.authentication import JWTAuthentication
+
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenVerifyView
 from rest_framework_simplejwt.serializers import TokenVerifySerializer
 from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
-from rest_framework.views import exception_handler
-from rest_framework import  status
+from rest_framework.status import HTTP_200_OK
 
 # from django.views.decorators.vary import 
 
@@ -27,7 +29,7 @@ class AuthViewset(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_permissions(self):
-        if self.request.method in ('GET', "POST", "OPTIONS"):
+        if self.request.method in ('GET', "OPTIONS", "POST"):
             return []
         return super().get_permissions()
 
@@ -36,9 +38,18 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.filter(is_active=True).order_by('id')
     serializer_class = UserSerializer
 
+    def get_permissions(self):
+        if self.request.method in ('GET', "POST", "OPTIONS"):
+            return []
+        return super().get_permissions()
+
 class CourseViewSet(AuthViewset):
     queryset = Course.objects.all().order_by('id')
     serializer_class = CourseSerializer
+
+    def create(self, request, *args, **kwargs):
+        # request["host"] = self.perform_authentication()
+        return super().create(request, *args, **kwargs)
 
 @csrf_exempt
 def login_user(request):
@@ -90,9 +101,10 @@ class myTokenVerifyView(TokenVerifyView):
     serializer_class = TokenVerifySerializer
 
     def post(self, request: Request, *args, **kwargs) -> Response:
-        serializer = self.get_serializer(data={"token":request.COOKIES.get("access") or request.data.get("access")})
         try:
+            serializer = self.get_serializer(
+                data={"token": request.COOKIES.get("access") or request.data.get("access")})
             serializer.is_valid(raise_exception=True)
         except TokenError as e:
             raise InvalidToken(e.args[0])
-        return Response(serializer.validated_data, status=status.HTTP_200_OK)
+        return Response(serializer.validated_data, status=HTTP_200_OK)

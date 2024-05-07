@@ -9,32 +9,30 @@ from django.shortcuts import HttpResponse
 class User(U):
     ...
 
+
+
 class Course(models.Model):
-    class CourseInfo(models.Model):
-        class Level(models.TextChoices):
-            BEGINNER = "I", _("I Anfänger")
-            INTERMEDIATE = "II", _("II Fortgeschritten")
-            ADVANCES = "III", _("I Profi")
+    class Level(models.TextChoices):
+        BEGINNER = "I", _("I Anfänger")
+        INTERMEDIATE = "II", _("II Fortgeschritten")
+        ADVANCES = "III", _("III Profi")
 
+    
 
-        qualification = models.CharField(max_length=20)
-        title = models.CharField(max_length=20)
-        level = models.CharField(choices=Level, max_length=3)
-        requirements = models.CharField(max_length=20)
-        description_short = models.CharField(max_length=20)
-        content_list = models.TextField()
-        methods = models.CharField(max_length=20)
-        material = models.CharField(max_length=20)
-        dates = models.CharField(max_length=20)
-        duration = models.DurationField(default="2 Hours")
-
-
-        ...
-    name = models.CharField(max_length=30)
-    info = models.ForeignKey(CourseInfo, on_delete=models.CASCADE)
     # description = models.TextField(blank=True)
     host = models.ForeignKey(User, on_delete=models.CASCADE)
-    atendees = models.ManyToManyField(User, related_name="attends", blank=True)
+    qualification = models.CharField(max_length=20, blank=True)
+    title = models.CharField(max_length=20)
+    level = models.CharField(choices=Level, max_length=3)
+    requirements = models.CharField(max_length=20, blank=True)
+    description_short = models.CharField(max_length=20, blank=True)
+    content_list = models.TextField()
+    methods = models.CharField(max_length=20, blank=True)
+    material = models.CharField(max_length=20, blank=True)
+    dates = models.CharField(max_length=20, blank=True)
+    duration = models.DurationField(default="2:00:00")
 
-
-
+class Attendee(models.Model):
+    attends = models.BooleanField()
+    attendee = models.ForeignKey(User, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)

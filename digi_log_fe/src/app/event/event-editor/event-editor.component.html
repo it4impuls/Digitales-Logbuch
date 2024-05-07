@@ -1,31 +1,56 @@
 <Form (ngSubmit)="onSubmit()" [formGroup]="courseForm" class="form">
-    <mat-form-field  class="input">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name"  placeholder="Lorem Ipsum" type="text">
-    </mat-form-field>
-    <br>
-    <mat-form-field  class="description input">
-        <mat-label>Beschreibung</mat-label>
-        <textarea matInput formControlName="description"  placeholder="Lorem Ipsum" cdkTextareaAutosize></textarea>
-    </mat-form-field>
-    <br>
-    @if(course.appointments.length>=1){    
-        <div class="timeInput">
-            <mat-form-field  class="input time">
-                <mat-label>Startzeit</mat-label>
-                <input matInput formControlName="starttime" [ngxTimepicker]="startpicker" placeholder="start date" [format]="24" readonly>
-                <ngx-material-timepicker #startpicker></ngx-material-timepicker>
-            </mat-form-field>
+    <div class="detail list">
+        <mat-form-field  class="input">
+            <mat-label>Qualifizierungsbereich</mat-label>
+            <input matInput formControlName="qualification"  placeholder="Lorem Ipsum" type="text">
+        </mat-form-field>
+        <mat-form-field  class="description input">
+            <mat-label>Titel des Kurses</mat-label>
+            <input matInput formControlName="title"  placeholder="Lorem Ipsum" type="text">
+        </mat-form-field>
+        <mat-form-field  class="description input">
+            <mat-label>Level</mat-label>
+            <select matNativeControl required>
+                <option value="I">I Anfänger</option>
+                <option value="II">II Fortgeschritten</option>
+                <option value="III">III Profi</option>
+            </select>
+        </mat-form-field>
+        <mat-form-field  class="description input">
+            <mat-label>Kurzbeschreibung/Untertitel des Moduls</mat-label>
+            <input matInput formControlName="description_short"  placeholder="Lorem Ipsum" type="text">
+        </mat-form-field>
+        <mat-form-field  class="description input">
+            <mat-label>Inhalte des Kurses</mat-label>
+            <textarea matInput formControlName="content_list"  placeholder="Lorem Ipsum" cdkTextareaAutosize>test</textarea>
+        </mat-form-field>
+        <mat-form-field  class="description input">
+            <mat-label>Methoden des Kurses</mat-label>
+            <input matInput formControlName="methods"  placeholder="Lorem Ipsum" type="text">
+        </mat-form-field>
+        <mat-form-field  class="description input">
+            <mat-label>Material/Unterlagen</mat-label>
+            <input matInput formControlName="material"  placeholder="Lorem Ipsum" type="text">
+        </mat-form-field>
+        <mat-form-field  class="description input">
+            <mat-label>Wie oft wird der Kurs angeboten</mat-label>
+            <input matInput formControlName="dates"  placeholder="Lorem Ipsum" type="text">
+        </mat-form-field>
+        <mat-form-field  class="description input">
+            <mat-label>Kursdauer</mat-label>
+            <input matInput formControlName="duration"  placeholder="Lorem Ipsum" type="text">
+        </mat-form-field>
+        <button mat-button type="submit"> Speichern </button>
+    </div>
 
-            <div style="align-self: center; height: 100%;"> bis </div>
-
-            <mat-form-field  class="input time">
-                <mat-label>Endzeit</mat-label>
-                <input matInput formControlName="endtime" [ngxTimepicker]="endpicker" placeholder="start date" [format]="24" readonly>
-                <ngx-material-timepicker #endpicker></ngx-material-timepicker>
-            </mat-form-field>
-        </div>
-    }
+    <div class="attendees list">
+        <div>Anmeldungen:</div>
+        <section #attending [formGroup]="courseForm.controls.attendees">
+        @for (attendee of course.attendees; track attendee) {
+            <mat-checkbox [checked]="attendee.attends" [formControlName]="attendee.id"> {{attendee.attendee.last_name}}, {{attendee.attendee.first_name}} </mat-checkbox>
+        }
+        </section>
+    </div>
 </Form>
 
 <!-- <input [ngxTimepicker]="picker">

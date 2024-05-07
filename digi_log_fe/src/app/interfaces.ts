@@ -1,47 +1,38 @@
-
-
-export interface ICourse {
+export interface Person {
   id: number;
-  name: string;
-  host: Person;
-  atendees: Person[];
-  description: string;
-  appointments: IAppointment[];
-} 
-
-export interface IAppointment {
-  id: number;
-  course: ICourse;
-  date: string;
-  status:string;
-  starttime:string;
-  duration:string;
+  first_name: string;
+  last_name: string;
 }
 
-export interface Appointment{
+export interface Attendee{
   id: number;
-  course: ICourse | Course;
-  date: string;
-  status:string;
-  starttime: string;
-  endtime:string;
-  duration: string;
+  attendee: Person;
+  attends: boolean;
+
 }
 
 export interface Course {
   id: number;
-  name: string;
   host: Person;
-  atendees: Person[];
-  description: string;
-  appointments: Appointment[];
+  attendees: Attendee[];
+  qualification: string;
+  title: string;
+  level: 'I' | 'II' | 'III';
+  requirements: string;
+  description_short: string;
+  content_list: string;
+  methods: string;
+  material: string;
+  dates: string;
+  duration: string;
 }
 
-export interface Person {
-  id: number;
-  firstname: string;
-  lastname: string;
+export interface ICourse extends Omit<Course, 'info'> {}
+
+export interface PostCourse extends Omit<Course, 'host'> {
 }
+
+
 
 export interface RPerson {
   username: string;
@@ -58,20 +49,26 @@ export enum CookieType {
   username = "username"
 } 
 
+export class Attendee implements Attendee {
+  constructor(public id=0,public attendee = new Person(), public attends = false) {}
+  static fromObj(obj: Attendee): Attendee {
+    return new Attendee(obj.id, obj.attendee, obj.attends);
+  }
+}
 
 export class Person implements Person {
   constructor(
     public id: number = 0,
-    public firstname = "John",
-    public lastname = "Doe",
+    public first_name = "John",
+    public last_name = "Doe",
     public occupation = ""
   ) {}
 
   static fromObj(obj: Person): Person {
     return new Person(
       obj.id,
-      obj.firstname,
-      obj.lastname,
+      obj.first_name,
+      obj.last_name,
       obj.occupation
     );
   }
@@ -101,56 +98,68 @@ export class Course implements Course {
   // constructor(obj: Course);
   constructor(
     public id: number = 0,
-    public name = "New Course",
     public host = new Person(),
-    public description = "",
-    public appointments = [] as Appointment[],
-    public atendees = [] as Person[],
-
+    public attendees = [] as Attendee[],
+    public qualification: string = '',
+    public title: string = '',
+    public level: 'I' | 'II' | 'III' = 'I',
+    public requirements: string = '',
+    public description_short: string = '',
+    public content_list: string = '',
+    public methods: string = '',
+    public material: string = '',
+    public dates: string = '',
+    public duration: string = ''
   ) {}
 
   static fromObj(obj: ICourse): Course {
     return new Course(
       obj.id,
-      obj.name,
       obj.host,
-      obj.description,
-      obj.appointments.map((p) => Appointment.fromObj(p)),
-      obj.atendees.map((p) => Person.fromObj(p)),
+      obj.attendees.map((p) => Attendee.fromObj(p)),
+      obj.qualification,
+      obj.title,
+      obj.level,
+      obj.requirements,
+      obj.description_short,
+      obj.content_list,
+      obj.methods,
+      obj.material,
+      obj.dates,
+      obj.duration
     );
   }
 }
 
-
-export class Appointment implements Appointment {
+export class PostCourse implements PostCourse {
   // constructor(obj: Course);
   constructor(
     public id: number = 0,
-    public course: ICourse | Course = new Course(),
-    public date: string = "",
-    public status = "",
-    public starttime: string = "",
-    public endtime:string = "",
-    public duration: string = ""
+    public attendees = [] as Attendee[],
+    public qualification: string = '',
+    public title: string = '',
+    public level: 'I' | 'II' | 'III' = 'I',
+    public requirements: string = '',
+    public description_short: string = '',
+    public content_list: string = '',
+    public methods: string = '',
+    public material: string = '',
+    public dates: string = '',
+    public duration: string = ''
   ) {}
-
-  static fromObj(obj: IAppointment): Appointment {
-    let startDateTime = new Date(obj.date)
-    let duration = obj.duration.split(":")
-    let endTime = new Date(obj.date);
-    
-    endTime.setHours(
-      endTime.getHours() + Number(duration[0]),
-      endTime.getMinutes() + Number(duration[1]),
-      endTime.getSeconds() + Number(duration[2])
-    );
-    return new Appointment(
+  static fromObj(obj: PostCourse): PostCourse {
+    return new PostCourse(
       obj.id,
-      obj.course,
-      startDateTime.toLocaleDateString(),
-      obj.status,
-      startDateTime.toLocaleTimeString([], { timeStyle: "short" }),
-      endTime.toLocaleTimeString([], { timeStyle: "short" }),
+      obj.attendees.map((p) => Attendee.fromObj(p)),
+      obj.qualification,
+      obj.title,
+      obj.level,
+      obj.requirements,
+      obj.description_short,
+      obj.content_list,
+      obj.methods,
+      obj.material,
+      obj.dates,
       obj.duration
     );
   }

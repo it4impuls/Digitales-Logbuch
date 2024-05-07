@@ -1,11 +1,16 @@
 from rest_framework import viewsets, serializers, exceptions
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, TokenVerifySerializer
 from rest_framework.validators import UniqueValidator
-from models import User, Course
+from .models import User, Course, Attendee
+
+
+
 
 class myTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
+        
         data = super().validate(attrs)
+        assert self.user != None
         refresh = self.get_token(self.user)
         data["refresh"] = str(refresh)   # comment out if you don't want this
         data["access"] = str(refresh.access_token)
@@ -16,6 +21,7 @@ class myTokenObtainPairSerializer(TokenObtainPairSerializer):
         data["my_favourite_bird"] = "Jack Snipe"
         """
         return data
+
 
 class UserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
@@ -45,15 +51,16 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
-
+    
+class AttendeeSerializer(serializers.ModelSerializer):
+    attendee = UserSerializer()
+    class Meta:
+        model = Attendee
+        fields = ["id","attendee", "attends"]
+    
 class CourseSerializer(serializers.ModelSerializer):
-    class InfoSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = Course.CourseInfo
-            fields = "__all__"
-
-    info = InfoSerializer()
     host = UserSerializer(read_only=True)
+    attendees = AttendeeSerializer(many=True, source="attendee_set")
 
     class Meta:
         model = Course
@@ -63,6 +70,7 @@ class CourseSerializer(serializers.ModelSerializer):
         host_obj = validated_data.pop('host')
         host, created = User.objects.get_or_create(
             **host_obj, defaults={})
+        
         course = super().create({"host": host, **validated_data})
         return course
 
