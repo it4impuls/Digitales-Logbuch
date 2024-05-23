@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICourse, Course, Person, PostCourse, Attendee } from '../../interfaces';
+import { ICourse, Course, Person, PostCourse, Attendee, CookieType } from '../../interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
@@ -7,6 +7,7 @@ import { MatFormField, MatFormFieldControl } from '@angular/material/form-field'
 import { MatInput } from '@angular/material/input';
 import { Time } from '@angular/common';
 import { LogService } from '../../services/log.service';
+import { CookieService } from '../../services/cookie.service';
 
 @Component({
   selector: 'app-event-editor',
@@ -18,9 +19,11 @@ export class EventEditorComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpService,
     private formbuilder: FormBuilder,
-    private log: LogService
+    private log: LogService,
+    private cookieService:CookieService,
+    private httpService: HttpService
   ) {}
-
+  edit=false;
   course: Course = new Course();
   // time:string = "10:00"
   courseForm = this.formbuilder.group({
@@ -51,11 +54,8 @@ export class EventEditorComponent implements OnInit {
       } else {
         this.course = new Course();
       }
-      this.log.log(this.course);
       if (this.course) {
         let attendees_list = Object.fromEntries(this.course.attendees.map(attendee =>[attendee.id as number, attendee.attends]));
-        console.log(attendees_list);
-        console.log(this.course.attendees);
         this.courseForm = this.formbuilder.group({
           id: this.course.id,
           attendees: this.formbuilder.group(attendees_list),
@@ -73,11 +73,12 @@ export class EventEditorComponent implements OnInit {
           dates: this.course.dates,
           duration: this.course.duration,
         });
+        this.edit = this.cookieService.getValue(CookieType.username) == this.course.host.username;
       }
     }
   }
 
-  onSubmit() {
+  async onSubmit() {
     let a = this.course.attendees
     let _course = this.courseForm.value;
     let attendees = [] as Attendee[]
@@ -107,12 +108,12 @@ export class EventEditorComponent implements OnInit {
     });
     let pCourse = PostCourse.fromObj(course as PostCourse);
     
-    this.log.log("course");
-    this.log.log(course);
-    this.log.log("_course");
-    this.log.log(_course)
-    this.log.log('pCourse');
-    this.log.log(pCourse);
-
+    // this.log.log("course");
+    // this.log.log(course);
+    // this.log.log("_course");
+    // this.log.log(_course)
+    // this.log.log('pCourse');
+    // this.log.log(pCourse);
+    console.log(await this.httpService.updateCourse(pCourse))
   }
 }

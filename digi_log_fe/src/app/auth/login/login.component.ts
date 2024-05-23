@@ -35,8 +35,12 @@ export class LoginComponent {
         console.log(data);
         this.auth.TOKEN = data["access"];
         this._location.back();
-        this.cookieService.addToCookie(CookieType.accessToken,data["access"]);
-        this.cookieService.addToCookie(CookieType.refreshToken, data["refresh"]);
+        this.cookieService.addToCookie(CookieType.accessToken, data["access"], ["httponly"]);
+        this.cookieService.addToCookie(
+          CookieType.refreshToken,
+          data['refresh'],
+          ['httponly']
+        );
         this.cookieService.addToCookie(CookieType.username, data["uname"]);
       }, 
       error: (e) => {

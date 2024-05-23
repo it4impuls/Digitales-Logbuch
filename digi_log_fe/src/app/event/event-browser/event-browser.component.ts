@@ -36,7 +36,7 @@ export class EventBrowserComponent implements OnInit {
 
   onSelectClick(event: Course) {
     this.log.log('Clicked: ' + event.id);
-    this.router.navigate([event.id], { relativeTo: this.route });
+    this.router.navigate(["event",event.id]);
   }
 
   trackById(index: any, tracked: any) {

@@ -16,15 +16,20 @@ export class AuthService {
   async refreshTokens(){
     let rToken = this.cookieService.getValue(CookieType.refreshToken) ?? ""
     if (rToken){
-      let response = await firstValueFrom(this.http.refreshToken(rToken));
-      if (response["access"]) {
-        this.cookieService.addToCookie(
+      this.http.refreshToken(rToken).subscribe({next: (response)=>{
+        this.cookieService.addToCookieWithName(
           CookieType.accessToken,
-          response["access"]
-        );
+          response["access"]);
         this.TOKEN=response["access"];
-      } else {
-      }
+        },
+        error: (err) => {
+          console.log(err)
+          // this.cookieService.clearAll()
+        }
+    })
+
+
+       
     } 
   }
 

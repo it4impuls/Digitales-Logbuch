@@ -2,6 +2,7 @@ export interface Person {
   id: number;
   first_name: string;
   last_name: string;
+  username:string;
 }
 
 export interface Attendee{
@@ -61,7 +62,8 @@ export class Person implements Person {
     public id: number = 0,
     public first_name = "John",
     public last_name = "Doe",
-    public occupation = ""
+    public occupation = "",
+    public username = "",
   ) {}
 
   static fromObj(obj: Person): Person {
@@ -69,7 +71,8 @@ export class Person implements Person {
       obj.id,
       obj.first_name,
       obj.last_name,
-      obj.occupation
+      obj.occupation,
+      obj.username
     );
   }
 }

@@ -4,7 +4,7 @@ import { firstValueFrom, Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { environment } from "../../environments/environment";
-import { CookieType, Course, ICourse, Person, RPerson } from "../interfaces";
+import { CookieType, Course, ICourse, Person, PostCourse, RPerson } from "../interfaces";
 // import { AuthService } from "./auth.service";
 // import {  } from "app/interfaces";
 
@@ -48,8 +48,8 @@ export class HttpService {
     );
   }
 
-  postPosts(url: string, body: Object): Observable<any> {
-    return this.httpClient.post<any>(url, body).pipe(
+  postPosts<T>(url: string, body: Object): Observable<T> {
+    return this.httpClient.post<any>(url, body, { withCredentials: true }).pipe(
       catchError((err) => {
         this.openSnackbar(err.message);
         return of(err);
@@ -91,8 +91,7 @@ export class HttpService {
   refreshToken(refreshToken: string): Observable<RefreshTokenResponse> {
     return this.httpClient.post<LoginResponse>(
       this.baseURL + "token/refresh/",
-      { refresh: refreshToken },
-      {}
+      { refresh: refreshToken }
     );
   }
 
@@ -126,6 +125,14 @@ export class HttpService {
   signup(user: RPerson){
     console.log("sending signup")
     return this.httpClient.post(this.baseURL + "users/", user );
+  }
+
+  async updateCourse(course: PostCourse){
+    let c = await firstValueFrom(
+      this.postPosts<ICourse>(this.baseURL + 'courses/' + course.id + "/", course)
+    );
+    console.log(c);
+    return Course.fromObj(c);
   }
 
   private openSnackbar(msg: string, dismiss: string = "OK") {
