@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os, ldap
-from django_auth_ldap.config import LDAPSearch, LDAPSearchUnion
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -138,6 +138,8 @@ SIMPLE_JWT = {
     # Whether to set the flag restricting cookie leaks on cross-site requests.
     'AUTH_COOKIE_SAMESITE': 'Lax',
     # This can be 'Lax', 'Strict', or None to disable the flag.
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=20),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=14),
 }
 
 # AUTHENTICATION_BACKENDS = ["django_auth_ldap.backend.LDAPBackend"]

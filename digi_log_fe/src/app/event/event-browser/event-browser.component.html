@@ -3,7 +3,7 @@
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
 </mat-form-field>
 
-@if (auth.TOKEN) {
+@if (auth.loggedInAs) {
   <div class="container">
     <button mat-button class="newEvent" routerLink="/event/new"> Neuer Kurs </button>
   </div>

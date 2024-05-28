@@ -6,44 +6,53 @@ import { catchError, firstValueFrom, of } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AuthService {
-  constructor(private cookieService:CookieService, private http:HttpService, private router: Router) {}
+  constructor(
+    private cookieService: CookieService,
+    private http: HttpService,
+    private router: Router
+  ) {}
 
-  TOKEN = "";
+  loggedInAs:string|null = ""
 
-  async refreshTokens(){
-    let rToken = this.cookieService.getValue(CookieType.refreshToken) ?? ""
-    if (rToken){
-      this.http.refreshToken(rToken).subscribe({next: (response)=>{
+  async refreshTokens() {
+    console.log('Refreshing');
+    // let rToken = this.cookieService.getValue(CookieType.refreshToken) ?? '';
+    // if (rToken) {
+    this.http.refreshToken().subscribe({
+      next: (response) => {
         this.cookieService.addToCookieWithName(
           CookieType.accessToken,
-          response["access"]);
-        this.TOKEN=response["access"];
-        },
-        error: (err) => {
-          console.log(err)
-          // this.cookieService.clearAll()
-        }
-    })
-
-
-       
-    } 
+          response['access']
+        );
+        this.updateLoggedInAs();
+      },
+      error: (err) => {
+        console.log(err);
+        // this.cookieService.clearAll()
+      },
+    });
   }
 
-  async logout(){
-    let rToken = this.cookieService.getValue(CookieType.refreshToken) ?? "";
-    this.http.logout(rToken).subscribe({
-      next:(response)=>{
-        this.cookieService.clearAll();
-        this.TOKEN = ""
-      }, 
+  updateLoggedInAs(uname:string|null = null) {
     
-      error:(error)=>{}});
-
+    this.loggedInAs = uname?? this.cookieService.getValue(CookieType.username);
+    console.log("updated logged in:" + this.loggedInAs)
   }
+
+  async logout() {
+    let rToken = this.cookieService.getValue(CookieType.refreshToken) ?? '';
+    this.http.logout(rToken).subscribe({
+      next: (response) => {
+        this.cookieService.removeFromCookie(CookieType.username);
+        this.updateLoggedInAs();
+      },
+      error: (error) => {this.http.openSnackbar("Something went wrong, Couldn't log out")},
+    });
+  }
+  
 
   // async getToken():Promise<string> {
   //   let token = ""
@@ -71,7 +80,6 @@ export class AuthService {
   //   }
   //   return this.TOKEN
   // }
-
 
   // updateAccessToken(token:string) {
 

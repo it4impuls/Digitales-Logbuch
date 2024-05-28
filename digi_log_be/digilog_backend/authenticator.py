@@ -27,6 +27,7 @@ class CustomAuthentication(JWTAuthentication):
         else:
             raw_token = self.get_raw_token(header)
         if raw_token is None:
+            # raise exceptions.APIException("No Token found")
             return None
         
         validated_token = self.get_validated_token(raw_token)

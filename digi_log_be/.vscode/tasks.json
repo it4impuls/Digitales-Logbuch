@@ -7,6 +7,17 @@
       "args": ["${workspaceFolder}/manage.py", "makemigrations"],
       "command": "python3",
       "problemMatcher": [],
+      "options": {
+        "env": {
+          "DJANGO_SUPERUSER_EMAIL": "admin@example.com",
+          "DJANGO_SUPERUSER_USERNAME": "admin",
+          "DJANGO_SUPERUSER_PASSWORD": "admin",
+          "MEALPLAN_DB_USER": "hwi_db_user",
+          "MEALPLAN_DB_PASSWORD": "test",
+          "MEALPLAN_DB_HOST": "localhost",
+          "MEALPLAN_DB_ENGINE": "django.db.backends.sqlite3"
+        }
+      }
     },
     {
       "label": "migrate",
@@ -14,7 +25,18 @@
       "args": ["${workspaceFolder}/manage.py", "migrate"],
       "command": "python3",
       "problemMatcher": [],
-      "dependsOn": "makemigrations"
+      "dependsOn": "makemigrations",
+      "options": {
+        "env": {
+          "DJANGO_SUPERUSER_EMAIL": "admin@example.com",
+          "DJANGO_SUPERUSER_USERNAME": "admin",
+          "DJANGO_SUPERUSER_PASSWORD": "admin",
+          "MEALPLAN_DB_USER": "hwi_db_user",
+          "MEALPLAN_DB_PASSWORD": "test",
+          "MEALPLAN_DB_HOST": "localhost",
+          "MEALPLAN_DB_ENGINE": "django.db.backends.sqlite3"
+        }
+      }
     },
     {
       "label": "create Superuser",
@@ -31,7 +53,11 @@
         "env": {
           "DJANGO_SUPERUSER_EMAIL": "admin@example.com",
           "DJANGO_SUPERUSER_USERNAME": "admin",
-          "DJANGO_SUPERUSER_PASSWORD": "admin"
+          "DJANGO_SUPERUSER_PASSWORD": "admin",
+          "MEALPLAN_DB_USER":"hwi_db_user",
+          "MEALPLAN_DB_PASSWORD":"test",
+          "MEALPLAN_DB_HOST":"localhost",
+          "MEALPLAN_DB_ENGINE":"django.db.backends.sqlite3",
         }
       }
     }

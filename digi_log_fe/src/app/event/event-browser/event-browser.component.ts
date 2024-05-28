@@ -49,7 +49,7 @@ export class EventBrowserComponent implements OnInit {
   }
 
   attending(element:Course) {
-    console.log(element)
+    // console.log(element)
     return element.attendees.filter((a) => a.attends).length;
   }
 

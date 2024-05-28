@@ -1,6 +1,10 @@
+from typing import Any, Dict
 from rest_framework import viewsets, serializers, exceptions
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, TokenVerifySerializer
-from rest_framework.validators import UniqueValidator
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer,\
+    TokenVerifySerializer, \
+    TokenRefreshSerializer, \
+    TokenBlacklistSerializer
+from rest_framework.validators import UniqueValidator, UniqueTogetherValidator
 from .models import User, Course, Attendee
 
 
@@ -21,13 +25,19 @@ class myTokenObtainPairSerializer(TokenObtainPairSerializer):
         data["my_favourite_bird"] = "Jack Snipe"
         """
         return data
-
+    
+class myTokenRefreshSerializer(TokenRefreshSerializer):
+    def validate(self, attrs: Dict[str, Any]) -> Dict[str, str]:
+        attrs["access"] = super().validate(attrs)["access"]
+        attrs["uname"] = User.objects.get(id=self.token_class(attrs["refresh"]).get("user_id")).username
+        return attrs
 
 class UserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
         required=True,
         validators=[UniqueValidator(queryset=User.objects.all())]
     )
+    username = serializers.CharField(required = True, validators = [UniqueValidator(queryset=User.objects.all())])
     password = serializers.CharField(write_only=True, required=True)
 
     class Meta:
@@ -52,11 +62,25 @@ class UserSerializer(serializers.ModelSerializer):
 
         return user
     
-class AttendeeSerializer(serializers.ModelSerializer):
-    attendee = UserSerializer()
+class ShortAttendeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attendee
-        fields = ["id","attendee", "attends"]
+        fields = "__all__"
+        validators=[
+            UniqueTogetherValidator(
+                queryset=Attendee.objects.all(), 
+                fields=["attendee", "course"])]
+    
+class AttendeeSerializer(serializers.ModelSerializer):
+    attendee = UserSerializer(read_only=False)
+    id = serializers.IntegerField(required=False)
+    class Meta:
+        model = Attendee
+        fields = ['id', 'attendee', 'attends', 'course']
+
+    def create(self, validated_data):
+        return super().create(validated_data)
+
     
 class CourseSerializer(serializers.ModelSerializer):
     host = UserSerializer(read_only=True)
@@ -75,6 +99,24 @@ class CourseSerializer(serializers.ModelSerializer):
         return course
     
     def update(self, instance, validated_data):
+        attendees = validated_data.pop('attendee_set',[])
         
+        for a in attendees:
+            try:
+                attendee = Attendee.objects.get(id=a.pop("id"), course=self.instance)
+                attendee.attends = a.get("attends", attendee.attends)
+                attendee.save()
+            except Attendee.DoesNotExist:
+                Attendee.objects.create(course=self.instance, **a)
+
+            
         return super().update(instance, validated_data)
 
+    def validate(self, attrs):
+        return super().validate(attrs)
+    
+# class MyTokenBlacklistSerializer(TokenBlacklistSerializer):
+#     def validate(self, attrs: Dict[str, Any]) -> Dict[str, str]:
+#         attrs["access"] = super().validate(attrs)["access"]
+#         attrs["uname"] = User.objects.get(id=self.token_class(attrs["refresh"]).get("user_id")).username
+#         return attrs

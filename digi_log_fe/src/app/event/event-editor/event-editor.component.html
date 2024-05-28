@@ -2,15 +2,15 @@
     <div class="detail list">
         <mat-form-field  class="input">
             <mat-label>Qualifizierungsbereich</mat-label>
-            <input matInput formControlName="qualification"  placeholder="Lorem Ipsum" type="text" [readonly]="!edit">
+            <input matInput formControlName="qualification"  placeholder="Lorem Ipsum" type="text" [readonly]="uname!=auth.loggedInAs">
         </mat-form-field>
         <mat-form-field  class="description input">
             <mat-label>Titel des Kurses</mat-label>
-            <input matInput formControlName="title"  placeholder="Lorem Ipsum" type="text" [readonly]="!edit">
+            <input matInput formControlName="title"  placeholder="Lorem Ipsum" type="text" [readonly]="uname!=auth.loggedInAs">
         </mat-form-field>
         <mat-form-field  class="description input">
             <mat-label>Level</mat-label>
-            <select matNativeControl required [readonly]="!edit">
+            <select matNativeControl required [readonly]="uname!=auth.loggedInAs">
                 <option value="I">I Anfänger</option>
                 <option value="II">II Fortgeschritten</option>
                 <option value="III">III Profi</option>
@@ -18,37 +18,39 @@
         </mat-form-field>
         <mat-form-field  class="description input">
             <mat-label>Kurzbeschreibung/Untertitel des Moduls</mat-label>
-            <input matInput formControlName="description_short"  placeholder="Lorem Ipsum" type="text" [readonly]="!edit">
+            <input matInput formControlName="description_short"  placeholder="Lorem Ipsum" type="text" [readonly]="uname!=auth.loggedInAs">
         </mat-form-field>
         <mat-form-field  class="description input">
             <mat-label>Inhalte des Kurses</mat-label>
-            <textarea matInput formControlName="content_list"  placeholder="Lorem Ipsum" cdkTextareaAutosize [readonly]="!edit">test</textarea>
+            <textarea matInput formControlName="content_list"  placeholder="Lorem Ipsum" cdkTextareaAutosize [readonly]="uname!=auth.loggedInAs">test</textarea>
         </mat-form-field>
         <mat-form-field  class="description input">
             <mat-label>Methoden des Kurses</mat-label>
-            <input matInput formControlName="methods"  placeholder="Lorem Ipsum" type="text" [readonly]="!edit">
+            <input matInput formControlName="methods"  placeholder="Lorem Ipsum" type="text" [readonly]="uname!=auth.loggedInAs">
         </mat-form-field>
         <mat-form-field  class="description input">
             <mat-label>Material/Unterlagen</mat-label>
-            <input matInput formControlName="material"  placeholder="Lorem Ipsum" type="text" [readonly]="!edit">
+            <input matInput formControlName="material"  placeholder="Lorem Ipsum" type="text" [readonly]="uname!=auth.loggedInAs">
         </mat-form-field>
         <mat-form-field  class="description input">
             <mat-label>Wie oft wird der Kurs angeboten</mat-label>
-            <input matInput formControlName="dates"  placeholder="Lorem Ipsum" type="text" [readonly]="!edit">
+            <input matInput formControlName="dates"  placeholder="Lorem Ipsum" type="text" [readonly]="uname!=auth.loggedInAs">
         </mat-form-field>
         <mat-form-field  class="description input">
             <mat-label>Kursdauer</mat-label>
-            <input matInput formControlName="duration"  placeholder="Lorem Ipsum" type="text" [readonly]="!edit">
+            <input matInput formControlName="duration"  placeholder="Lorem Ipsum" type="text" [readonly]="uname!=auth.loggedInAs">
         </mat-form-field>
-        @if (edit) {
+        @if (uname==auth.loggedInAs) {
             <button mat-button type="submit"> Speichern </button>
+        } @else if(auth.loggedInAs) {
+            <button mat-button type="button" (click)="signup()"> Anmelden </button>
         }
         
     </div>
 
     <div class="attendees list">
         <div>Anmeldungen:</div>
-        <section #attending [formGroup]="courseForm.controls.attendees">
+        <section class="attending" [formGroup]="courseForm.controls.attendees">
         @for (attendee of course.attendees; track attendee) {
             <mat-checkbox [checked]="attendee.attends" [formControlName]="attendee.id"> {{attendee.attendee.last_name}}, {{attendee.attendee.first_name}} </mat-checkbox>
         }

@@ -70,7 +70,7 @@ export class CookieService {
   }
 
   clearAll(){
-    this.parameterMap={}
+    document.cookie = "";
   }
 }
 

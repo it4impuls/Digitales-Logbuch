@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { firstValueFrom, Observable, of } from "rxjs";
+import { firstValueFrom, Observable, of, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { environment } from "../../environments/environment";
-import { CookieType, Course, ICourse, Person, PostCourse, RPerson } from "../interfaces";
+import { Attendee, CookieType, Course, ICourse, Person, PostCourse, RPerson } from "../interfaces";
 // import { AuthService } from "./auth.service";
 // import {  } from "app/interfaces";
 
@@ -19,14 +19,14 @@ interface RefreshTokenResponse {
 }
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class HttpService {
   constructor(
     private httpClient: HttpClient,
-    private snackBar: MatSnackBar,
-    // private authService: AuthService
-  ) {}
+    private snackBar: MatSnackBar
+  ) // private authService: AuthService
+  {}
 
   baseURL = `http://${environment.BACKEND_IP}:${environment.BACKEND_PORT}/api/`;
 
@@ -39,25 +39,31 @@ export class HttpService {
     );
   }
 
-  patchPosts(url: string, body: Object): Observable<any> {
-    return this.httpClient.patch<any>(url, body).pipe(
-      catchError((err) => {
-        this.openSnackbar(err.message);
-        return of(err);
-      })
-    );
+  patchPosts<T>(url: string, body: Object): Observable<T> {
+    return this.httpClient
+      .patch<any>(url, body, { withCredentials: true })
+      .pipe(
+        catchError((err) => {
+          this.openSnackbar(err.message);
+          return of(err);
+        })
+      );
   }
 
   postPosts<T>(url: string, body: Object): Observable<T> {
-    return this.httpClient.post<any>(url, body, { withCredentials: true }).pipe(
-      catchError((err) => {
-        this.openSnackbar(err.message);
-        return of(err);
-      })
-    );
+    let req = this.httpClient
+      .post<any>(url, body, { withCredentials: true })
+      .pipe(
+        catchError((err) => {
+          this.openSnackbar(err.message);
+          return throwError(() => new Error(err));
+        })
+      );
+    console.log(req);
+    return req;
   }
 
-  deletePosts(url: string, token=""): Observable<any> {
+  deletePosts(url: string, token = ''): Observable<any> {
     return this.httpClient.delete<any>(url).pipe(
       catchError((err) => {
         this.openSnackbar(err.message);
@@ -68,7 +74,7 @@ export class HttpService {
 
   async getEvents(): Promise<Course[]> {
     return (
-      await firstValueFrom(this.getPosts<ICourse[]>(this.baseURL + "courses"))
+      await firstValueFrom(this.getPosts<ICourse[]>(this.baseURL + 'courses'))
     ).map((course) => Course.fromObj(course));
   }
 
@@ -76,69 +82,90 @@ export class HttpService {
     let c = await firstValueFrom(
       this.getPosts<ICourse>(this.baseURL + 'courses/' + id)
     );
-    console.log(c)
+    console.log(c);
     return Course.fromObj(c);
   }
 
   login(uname: string, passwd: string): Observable<LoginResponse> {
     return this.httpClient.post<LoginResponse>(
-      this.baseURL + "token/",
+      this.baseURL + 'token/',
       { username: uname, password: passwd },
-      {}
+      { withCredentials: true }
+    ).pipe(
+      catchError((e)=>{
+        console.error(e);
+        switch (e.status) {
+          case 400:
+            this.openSnackbar('Bad request');
+            break;
+          case 401:
+            this.openSnackbar('Falscher Benutzername/Kennwort');
+            break;
+          default:
+            this.openSnackbar(e.message);
+        }
+        return of({} as LoginResponse)
+      })
     );
   }
 
-  refreshToken(refreshToken: string): Observable<RefreshTokenResponse> {
+  refreshToken(): Observable<RefreshTokenResponse> {
+    console.log("refreshing")
     return this.httpClient.post<LoginResponse>(
-      this.baseURL + "token/refresh/",
-      { refresh: refreshToken }
+      this.baseURL + 'token/refresh/',
+      { refresh: "" },
+      { withCredentials: true }
     );
   }
 
   validateToken(token: string): Observable<Object> {
     return this.httpClient.post<LoginResponse>(
-      this.baseURL + "token/validate/",
+      this.baseURL + 'token/validate/',
       { token: token },
       {}
     );
   }
 
-  postTest(){
+  postTest() {
     return firstValueFrom(
       this.httpClient.post(
-        this.baseURL + "authTest/",
+        this.baseURL + 'authTest/',
         {},
         { withCredentials: true }
       )
     );
   }
 
-  logout(rToken:string) {
-    return this.httpClient.post(this.baseURL + "logout/", {[CookieType.refreshToken]:rToken}).pipe(
-        catchError((err) => {
-          this.openSnackbar(err.message);
-          return of(err);
-        })
+  logout(rToken: string) {
+    return this.httpClient
+      .post(this.baseURL + 'logout/', {}, { withCredentials: true })
+  }
+
+  signup(user: RPerson) {
+    console.log('sending signup');
+    return this.httpClient.post(this.baseURL + 'users/', user);
+  }
+
+  async updateCourse(course: PostCourse) {
+    return firstValueFrom(
+      this.patchPosts<ICourse>(
+        this.baseURL + 'courses/' + course.id + '/',
+        course
       )
-  }
-
-  signup(user: RPerson){
-    console.log("sending signup")
-    return this.httpClient.post(this.baseURL + "users/", user );
-  }
-
-  async updateCourse(course: PostCourse){
-    let c = await firstValueFrom(
-      this.postPosts<ICourse>(this.baseURL + 'courses/' + course.id + "/", course)
     );
-    console.log(c);
-    return Course.fromObj(c);
   }
 
-  private openSnackbar(msg: string, dismiss: string = "OK") {
+  courseSignup(courseID: number){
+    return this.postPosts<Attendee>(this.baseURL + 'attendees/', {
+      'course': courseID,
+    });
+  }
+
+  openSnackbar(msg: string, dismiss: string = 'OK') {
     console.log(msg);
     if (msg) {
       let snackBarRef = this.snackBar.open(msg, dismiss);
+      
     }
   }
 

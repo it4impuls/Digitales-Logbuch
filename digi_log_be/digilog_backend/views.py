@@ -4,25 +4,27 @@ import typing
 
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from .authenticator import CustomAuthentication
-from .serializers import UserSerializer, CourseSerializer, myTokenObtainPairSerializer, TokenVerifySerializer
-from .models import Course, User
+from .serializers import AttendeeSerializer, ShortAttendeeSerializer, UserSerializer, CourseSerializer, myTokenObtainPairSerializer, myTokenRefreshSerializer, TokenVerifySerializer
+from .models import Course, User, Attendee
 
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.request import Request
 from rest_framework.response import Response
 
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenVerifyView
-from rest_framework_simplejwt.serializers import TokenVerifySerializer
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenVerifyView, TokenRefreshView, TokenBlacklistView
+from rest_framework_simplejwt.serializers import TokenVerifySerializer, TokenBlacklistSerializer
 from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
 from rest_framework.status import HTTP_200_OK
 
 # from django.views.decorators.vary import 
-
+class DummyRequest:
+    def __init__(self, data):
+        self.data = data
 
 class AuthViewset(viewsets.ModelViewSet):
     authentication_classes = [CustomAuthentication]
@@ -47,10 +49,35 @@ class CourseViewSet(AuthViewset):
     queryset = Course.objects.all().order_by('id')
     serializer_class = CourseSerializer
 
-    def create(self, request, *args, **kwargs):
-        # request["host"] = self.perform_authentication()
-        return super().create(request, *args, **kwargs)
+    def get_permissions(self):
+        if self.request.method in {'GET', "POST", "OPTIONS"}:
+            return []
+        return super().get_permissions()
+    
+class AttendeeViewSet(AuthViewset):
+    queryset = Attendee.objects.all()
+    serializer_class = AttendeeSerializer
 
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
+    def create(self, request, *args, **kwargs):
+        try:
+            user = User.objects.get(username=request.COOKIES.get("uname", None))
+        except User.DoesNotExist:
+            return Response("User not found", status=404)
+        
+        req = DummyRequest({"course":request.data.get("course", None), "attendee": user.id, "attends":"False"})
+        ret = super().create(req, *args, **kwargs)
+        ret.data = self.serializer_class(Attendee.objects.get(id=ret.data["id"]))
+        return ret
+
+    def get_serializer_class(self):
+        if self.action == "list":
+            return AttendeeSerializer
+        elif self.action == "create":
+            return ShortAttendeeSerializer
+        return super().get_serializer_class()
 @csrf_exempt
 def login_user(request):
 
@@ -90,12 +117,38 @@ class myTokenObtainPairView(TokenObtainPairView):
         if access is not None:
             response = JsonResponse(
                 {"access": access, "refresh": refresh, "uname": uname}, status=200)
-            response.set_cookie('token', access, httponly=True)
+            response.set_cookie('access', access, httponly=True)
             response.set_cookie('refresh', refresh, httponly=True)
-            response.set_cookie('uname', uname, httponly=True)
+            response.set_cookie('uname', uname)
             return response
 
         return HttpResponse({"Error": "Something went wrong"}, status = 400)
+
+class myTokenRefreshView(TokenRefreshView):
+    serializer_class = myTokenRefreshSerializer
+    def post(self, request, *args, **kwargs):
+        # super().post()
+        # you need to instantiate the serializer with the request data
+        refresh_token = request.COOKIES.get("refresh", None)
+        if refresh_token is None:
+            return HttpResponse({"Error": "No refresh Token found"}, status=400)
+        serializer = self.get_serializer(data={"refresh":refresh_token})
+        # you must call .is_valid() before accessing validated_data
+        serializer.is_valid(raise_exception=True)
+        # get access and refresh tokens to do what you like with
+        access = serializer.validated_data.get("access", None)
+        refresh = serializer.validated_data.get("refresh", None)
+        uname = serializer.validated_data.get("uname", None)
+
+        # build your response and set cookie
+        if access is None:
+            return HttpResponse({"Error": "Something went wrong"}, status=400)
+        response = JsonResponse({"access": access, "refresh": refresh, "uname": uname}, status=200)
+        response.set_cookie("access", access, httponly=True)
+        response.set_cookie("refresh", refresh, httponly=True)
+        response.set_cookie("uname", uname)
+        return response
+    
 
 class myTokenVerifyView(TokenVerifyView):
     serializer_class = TokenVerifySerializer
@@ -108,3 +161,9 @@ class myTokenVerifyView(TokenVerifyView):
         except TokenError as e:
             raise InvalidToken(e.args[0])
         return Response(serializer.validated_data, status=HTTP_200_OK)
+
+class myTokenBlacklistView(TokenBlacklistView):
+    serializer_class = TokenBlacklistSerializer
+    def post(self, request: Request, *args, **kwargs) -> Response:
+        return super().post(DummyRequest(request.COOKIES), *args, **kwargs)
+        

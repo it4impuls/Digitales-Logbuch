@@ -5,9 +5,9 @@
     <nav>
         <a routerLink="/" class="button">Home</a>
     </nav>
-    @if (authService.TOKEN) {
-        <a (click)="logout()" class="button"> Logout {{uname}} </a>
-        <a (click)="test()" class="button"> Test {{uname}} </a>
+    @if (authService.loggedInAs) {
+        <a (click)="logout()" class="button"> Logout {{authService.loggedInAs}} </a>
+        <a (click)="test()" class="button"> Test {{authService.loggedInAs}} </a>
     }
     @else {
         <a routerLink="/login" class="button"> Login </a>

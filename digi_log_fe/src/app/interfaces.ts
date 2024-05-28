@@ -12,13 +12,17 @@ export interface Attendee{
 
 }
 
+export enum Level{
+  I='I',II= 'II',III= 'III'
+}
+
 export interface Course {
   id: number;
   host: Person;
   attendees: Attendee[];
   qualification: string;
   title: string;
-  level: 'I' | 'II' | 'III';
+  level: Level;
   requirements: string;
   description_short: string;
   content_list: string;
@@ -47,7 +51,7 @@ export interface RPerson {
 export enum CookieType {
   refreshToken = "refresh",
   accessToken = "access",
-  username = "username"
+  username = "uname"
 } 
 
 export class Attendee implements Attendee {
@@ -105,7 +109,7 @@ export class Course implements Course {
     public attendees = [] as Attendee[],
     public qualification: string = '',
     public title: string = '',
-    public level: 'I' | 'II' | 'III' = 'I',
+    public level: Level = Level.I,
     public requirements: string = '',
     public description_short: string = '',
     public content_list: string = '',
@@ -116,6 +120,7 @@ export class Course implements Course {
   ) {}
 
   static fromObj(obj: ICourse): Course {
+    console.log(obj);
     return new Course(
       obj.id,
       obj.host,
@@ -141,7 +146,7 @@ export class PostCourse implements PostCourse {
     public attendees = [] as Attendee[],
     public qualification: string = '',
     public title: string = '',
-    public level: 'I' | 'II' | 'III' = 'I',
+    public level: Level = Level.I,
     public requirements: string = '',
     public description_short: string = '',
     public content_list: string = '',

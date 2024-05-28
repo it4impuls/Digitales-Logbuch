@@ -28,33 +28,20 @@ export class LoginComponent {
   error = ""
   
   async login() {HttpService;
-    let res = this.http.login(this.loginForm.controls.username.value??"", this.loginForm.controls.password.value??"")
+    let lForm = this.loginForm.controls
+    let res = this.http.login(
+      lForm.username.value ?? '',
+      lForm.password.value ?? ''
+    );
 
     res.subscribe({
       next: (data) => {
         console.log(data);
-        this.auth.TOKEN = data["access"];
+        this.auth.updateLoggedInAs(data.uname);
         this._location.back();
-        this.cookieService.addToCookie(CookieType.accessToken, data["access"], ["httponly"]);
-        this.cookieService.addToCookie(
-          CookieType.refreshToken,
-          data['refresh'],
-          ['httponly']
-        );
-        this.cookieService.addToCookie(CookieType.username, data["uname"]);
       }, 
       error: (e) => {
-        console.error(e)
-        switch(e.status){
-          case 400:
-            this.error = "Bad request"
-            break;
-          case 401:
-            this.error = "Falscher Benutzername/Kennwort"
-            break;
-          default:
-            this.error = e.message;
-        }
+        
       }
     })
     
