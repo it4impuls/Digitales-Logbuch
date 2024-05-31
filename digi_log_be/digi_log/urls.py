@@ -22,4 +22,6 @@ urlpatterns = [
     path("api/", include("digilog_backend.urls")),
     path('admin/', admin.site.urls, name="admin"),
     
+    
 ]
+

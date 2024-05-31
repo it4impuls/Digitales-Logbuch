@@ -80,6 +80,9 @@ class AttendeeSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return super().create(validated_data)
+    
+    def update(self, instance, validated_data):
+        return super().update(instance, validated_data)
 
     
 class CourseSerializer(serializers.ModelSerializer):
@@ -91,11 +94,11 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        host_obj = validated_data.pop('host')
-        host, created = User.objects.get_or_create(
-            **host_obj, defaults={})
-        
-        course = super().create({"host": host, **validated_data})
+        user = self.initial_data.get('host', None)
+        if not user:
+            raise exceptions.ValidationError("Host not specified")
+        attendees = validated_data.pop('attendee_set', [])
+        course = self.Meta.model.objects.create(host= user, **validated_data)
         return course
     
     def update(self, instance, validated_data):

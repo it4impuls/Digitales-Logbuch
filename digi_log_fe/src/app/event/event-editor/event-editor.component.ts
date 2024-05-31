@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ICourse, Course, Level, Person, PostCourse, Attendee, CookieType } from '../../interfaces';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { MatFormField, MatFormFieldControl } from '@angular/material/form-field';
@@ -42,6 +42,7 @@ interface EventFormControls {
 export class EventEditorComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private http: HttpService,
     private formbuilder: FormBuilder,
     private log: LogService,
@@ -50,6 +51,7 @@ export class EventEditorComponent implements OnInit {
     public auth: AuthService
   ) {}
   edit = false;
+  userInList = false;
   course: Course = new Course();
   // time:string = "10:00"
   courseForm = this.formbuilder.group({
@@ -67,7 +69,7 @@ export class EventEditorComponent implements OnInit {
     duration: '',
   });
   uname = '';
-  attendees:string[] = [];
+  attendees: string[] = [];
 
   ngOnInit(): void {
     this.init();
@@ -81,18 +83,21 @@ export class EventEditorComponent implements OnInit {
       if (id != 0) {
         this.course = await this.http.getEvent(id);
       } else {
+        let user = await this.http.getUser();
         this.course = new Course();
+        this.course.host = user;
       }
-      this.init_course()
-      
+      this.init_course();
     }
   }
 
-  init_course(){
+  init_course() {
     if (this.course) {
       this.attendees = this.course.attendees.map(
         (attendee) => attendee.attendee.username
       );
+      this.attendees.forEach((x) => console.log(x === this.auth.loggedInAs));
+      this.userInList = this.attendees.includes(this.auth.loggedInAs ?? "");
       let attendees_list = Object.fromEntries(
         this.course.attendees.map((attendee) => [
           attendee.id as number,
@@ -106,12 +111,15 @@ export class EventEditorComponent implements OnInit {
         level: [this.course.level as Level, [Validators.required]],
         title: [this.course.title, [Validators.required]],
         requirements: this.course.requirements,
-        description_short: this.course.description_short,
+        description_short: [
+          this.course.description_short,
+          [Validators.required],
+        ],
         content_list: [this.course.content_list, [Validators.required]],
         methods: this.course.methods,
         material: this.course.material,
-        dates: this.course.dates,
-        duration: this.course.duration,
+        dates: [this.course.dates, [Validators.required]],
+        duration: [this.course.duration, [Validators.required]],
       });
       this.uname = this.course.host.username;
       console.log(this.courseForm);
@@ -166,15 +174,52 @@ export class EventEditorComponent implements OnInit {
       duration: _course.duration as string,
     });
     let pCourse = PostCourse.fromObj(course as PostCourse);
-    console.log(await this.httpService.updateCourse(pCourse));
+    if (pCourse.id === 0) {
+      let course = await this.httpService.createCourse(pCourse);
+      this.router.navigate(["/event/" + course.id]);
+      this.course = course
+      this.init_course();
+
+      this.http.openSnackbar('Erfolgreich gespeichert');
+    } else {
+      let course = await this.httpService.updateCourse(pCourse);
+      if (course){
+        this.http.openSnackbar("Erfolgreich gespeichert")
+      }
+    }
   }
 
   async signup() {
-    let l = await firstValueFrom(this.httpService.courseSignup(this.getCourse().id))
-    if(l){
+    let l = await firstValueFrom(
+      this.httpService.courseSignup(this.getCourse().id)
+    );
+    if (l && Object.keys(l).length > 0) {
+      this.http.openSnackbar("Erfolgreich Angemeldet")
       this.course.attendees.push(l);
-      console.log(l)
-      this.init_course()
-    };
+      this.init_course();
+    }
+  }
+
+  async unAttend(){
+    const attendee = this.course.attendees.find(a => a.attendee.username === this.auth.loggedInAs)
+    if (attendee) {
+      this.httpService.courseUnattend(attendee.id).subscribe({
+        next: (data) => {
+          this.http.openSnackbar('Erfolgreich abgemeldet');
+          const index = this.course.attendees.indexOf(attendee, 0);
+          if (index > -1) {
+            this.course.attendees.splice(index, 1);
+            this.init_course();
+          } else {
+            console.log('User nicht gefunden, Seite neu laden um änderung zu sehen');
+          }
+        },
+        error: (e) => {
+          this.http.openSnackbar('Etwas schlug fehl!');
+        },
+      });
+    } else {
+      this.http.openSnackbar('Benutzer nicht in liste gefunden');
+    }
   }
 }

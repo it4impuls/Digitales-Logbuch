@@ -32,11 +32,11 @@ export class HttpService {
 
   getPosts<T>(url: string, headers = new HttpHeaders()): Observable<T> {
     return this.httpClient.get<T>(url, { headers: headers }).pipe(
-      catchError((err) => {
-        this.openSnackbar(err.message);
-        return of(err);
-      })
-    );
+        catchError((err) => {
+          this.openSnackbar(err.message);
+          return throwError(() => new Error(err));
+        })
+      );
   }
 
   patchPosts<T>(url: string, body: Object): Observable<T> {
@@ -45,7 +45,7 @@ export class HttpService {
       .pipe(
         catchError((err) => {
           this.openSnackbar(err.message);
-          return of(err);
+          return throwError(() => new Error(err));
         })
       );
   }
@@ -59,17 +59,11 @@ export class HttpService {
           return throwError(() => new Error(err));
         })
       );
-    console.log(req);
     return req;
   }
 
-  deletePosts(url: string, token = ''): Observable<any> {
-    return this.httpClient.delete<any>(url).pipe(
-      catchError((err) => {
-        this.openSnackbar(err.message);
-        return of(err);
-      })
-    );
+  deletePosts<T>(url: string): Observable<T> {
+    return this.httpClient.delete<T>(url, { withCredentials: true })
   }
 
   async getEvents(): Promise<Course[]> {
@@ -104,7 +98,7 @@ export class HttpService {
           default:
             this.openSnackbar(e.message);
         }
-        return of({} as LoginResponse)
+        return throwError(() => new Error(e));
       })
     );
   }
@@ -126,11 +120,10 @@ export class HttpService {
     );
   }
 
-  postTest() {
+  getUser() {
     return firstValueFrom(
-      this.httpClient.post(
-        this.baseURL + 'authTest/',
-        {},
+      this.httpClient.get<Person>(
+        this.baseURL + 'getUser/',
         { withCredentials: true }
       )
     );
@@ -144,6 +137,15 @@ export class HttpService {
   signup(user: RPerson) {
     console.log('sending signup');
     return this.httpClient.post(this.baseURL + 'users/', user);
+  }
+
+  async createCourse(course: PostCourse) {
+    return firstValueFrom(
+      this.postPosts<ICourse>(
+        this.baseURL + 'courses/',
+        course
+      )
+    );
   }
 
   async updateCourse(course: PostCourse) {
@@ -161,6 +163,10 @@ export class HttpService {
     });
   }
 
+  courseUnattend(attID: number):Observable<any>{
+    return this.deletePosts(this.baseURL + 'attendees/' + attID)
+  }
+
   openSnackbar(msg: string, dismiss: string = 'OK') {
     console.log(msg);
     if (msg) {
@@ -169,11 +175,4 @@ export class HttpService {
     }
   }
 
-  // private getheaders(token =""): HttpHeaders {
-  //   let headers = new HttpHeaders();
-  //   if (token) {
-  //     headers.append("Authorization", "Bearer " + token);
-  //   }
-  //   return headers;
-  // }
 }

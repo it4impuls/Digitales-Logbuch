@@ -1,11 +1,10 @@
 import json
-from operator import contains
-import typing
 
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST, require_GET
 
 from .authenticator import CustomAuthentication
 from .serializers import AttendeeSerializer, ShortAttendeeSerializer, UserSerializer, CourseSerializer, myTokenObtainPairSerializer, myTokenRefreshSerializer, TokenVerifySerializer
@@ -15,11 +14,14 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK
+from rest_framework.decorators import permission_classes, authentication_classes
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenVerifyView, TokenRefreshView, TokenBlacklistView
 from rest_framework_simplejwt.serializers import TokenVerifySerializer, TokenBlacklistSerializer
 from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
-from rest_framework.status import HTTP_200_OK
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
 
 # from django.views.decorators.vary import 
 class DummyRequest:
@@ -53,6 +55,13 @@ class CourseViewSet(AuthViewset):
         if self.request.method in {'GET', "POST", "OPTIONS"}:
             return []
         return super().get_permissions()
+
+    def create(self, request, *args, **kwargs):
+        request.data["host"], token = CustomAuthentication().authenticate(request)
+        return super().create(request, *args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        return super().update(request, *args, **kwargs)
     
 class AttendeeViewSet(AuthViewset):
     queryset = Attendee.objects.all()
@@ -69,7 +78,10 @@ class AttendeeViewSet(AuthViewset):
         
         req = DummyRequest({"course":request.data.get("course", None), "attendee": user.id, "attends":"False"})
         ret = super().create(req, *args, **kwargs)
-        ret.data = self.serializer_class(Attendee.objects.get(id=ret.data["id"]))
+        ser = self.serializer_class(Attendee.objects.get(id=ret.data["id"]))
+        # ser.is_valid(raise_exception=True)
+        ret.data = ser.data
+        print(ret.data)
         return ret
 
     def get_serializer_class(self):
@@ -78,6 +90,10 @@ class AttendeeViewSet(AuthViewset):
         elif self.action == "create":
             return ShortAttendeeSerializer
         return super().get_serializer_class()
+    
+    def destroy(self, request, *args, **kwargs):
+        ...
+        return super().destroy(request, *args, **kwargs)
 @csrf_exempt
 def login_user(request):
 
@@ -99,6 +115,7 @@ def login_user(request):
             return HttpResponse(status=400, content="Authentication failed")
     else:
         return render(request, 'digi_log/login.html')
+
 
 class myTokenObtainPairView(TokenObtainPairView):
     serializer_class = myTokenObtainPairSerializer
@@ -166,4 +183,12 @@ class myTokenBlacklistView(TokenBlacklistView):
     serializer_class = TokenBlacklistSerializer
     def post(self, request: Request, *args, **kwargs) -> Response:
         return super().post(DummyRequest(request.COOKIES), *args, **kwargs)
+    
+@require_GET
+@permission_classes([IsAuthenticated])
+def getUser(request:HttpRequest):
+    user, token = CustomAuthentication().authenticate(request)
+    if user:
+        return redirect("/api/users/"+str(user.id))
+    else: return user
         

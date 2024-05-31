@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-=u-15y)c1y&z22*o^9n*hl&f#^7%0bqt($@_l89826#7i)^3!a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1"]
 
 LOGIN_URL = "/api/login/"
 
@@ -63,7 +63,8 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS= CSRF_TRUSTED_ORIGINS = [
     "https://localhost:4200",
     "http://localhost:4200",
-    "http://*"
+    "http://0.0.0.0:4200",
+    "http://172.0.0.1:4200"
 ]
 
 ROOT_URLCONF = 'digi_log.urls'
@@ -86,6 +87,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'digi_log.wsgi.application'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

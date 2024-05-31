@@ -24,4 +24,5 @@ urlpatterns = [
     path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('token/user/', TokenVerifyView.as_view(), name='token_user'),
     path('authTest/', views.myTokenVerifyView.as_view(), name='token_test'),
+    path("getUser/", views.getUser, name="getuser")
 ]
