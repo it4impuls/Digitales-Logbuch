@@ -10,6 +10,7 @@ import { LogService } from '../../services/log.service';
 import { CookieService } from '../../services/cookie.service';
 import { AuthService } from '../../services/auth.service';
 import { firstValueFrom } from 'rxjs';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 interface attendeesGroup {
   [x: string]: FormControl<boolean | null>;
@@ -97,7 +98,7 @@ export class EventEditorComponent implements OnInit {
         (attendee) => attendee.attendee.username
       );
       this.attendees.forEach((x) => console.log(x === this.auth.loggedInAs));
-      this.userInList = this.attendees.includes(this.auth.loggedInAs ?? "");
+      this.userInList = this.attendees.includes(this.auth.loggedInAs ?? '');
       let attendees_list = Object.fromEntries(
         this.course.attendees.map((attendee) => [
           attendee.id as number,
@@ -129,8 +130,7 @@ export class EventEditorComponent implements OnInit {
   getCourse(): PostCourse {
     let _course = this.courseForm.getRawValue();
     return PostCourse.fromObj({
-      id: _course.id as number,
-      attendees: [] as Attendee[], //Object.keys(_course.attendees).map(key:number=> this.course.attendees[key]),
+      id: _course.id as number, //Object.keys(_course.attendees).map(key:number=> this.course.attendees[key]),
       qualification: _course.qualification as string,
       title: _course.title as string,
       level: _course.level as Level,
@@ -151,17 +151,8 @@ export class EventEditorComponent implements OnInit {
     let at = _course.attendees;
     // mapping is not enough since it is theoretically possible for a key not having an attendee
 
-    Object.keys(at).forEach((key) => {
-      let value = at[key];
-      let found = a.find((_at) => _at.id.toString() == key);
-      if (found) {
-        found.attends = value as boolean;
-        attendees.push(found);
-      }
-    });
     let course: PostCourse = PostCourse.fromObj({
-      id: _course.id as number,
-      attendees: attendees ?? ([] as Attendee[]), //Object.keys(_course.attendees).map(key:number=> this.course.attendees[key]),
+      id: _course.id as number, //Object.keys(_course.attendees).map(key:number=> this.course.attendees[key]),
       qualification: _course.qualification as string,
       title: _course.title as string,
       level: _course.level as Level,
@@ -176,15 +167,15 @@ export class EventEditorComponent implements OnInit {
     let pCourse = PostCourse.fromObj(course as PostCourse);
     if (pCourse.id === 0) {
       let course = await this.httpService.createCourse(pCourse);
-      this.router.navigate(["/event/" + course.id]);
-      this.course = course
+      this.router.navigate(['/event/' + course.id]);
+      this.course = course;
       this.init_course();
 
       this.http.openSnackbar('Erfolgreich gespeichert');
     } else {
       let course = await this.httpService.updateCourse(pCourse);
-      if (course){
-        this.http.openSnackbar("Erfolgreich gespeichert")
+      if (course) {
+        this.http.openSnackbar('Erfolgreich gespeichert');
       }
     }
   }
@@ -194,14 +185,16 @@ export class EventEditorComponent implements OnInit {
       this.httpService.courseSignup(this.getCourse().id)
     );
     if (l && Object.keys(l).length > 0) {
-      this.http.openSnackbar("Erfolgreich Angemeldet")
+      this.http.openSnackbar('Erfolgreich Angemeldet');
       this.course.attendees.push(l);
       this.init_course();
     }
   }
 
-  async unAttend(){
-    const attendee = this.course.attendees.find(a => a.attendee.username === this.auth.loggedInAs)
+  async unAttend() {
+    const attendee = this.course.attendees.find(
+      (a) => a.attendee.username === this.auth.loggedInAs
+    );
     if (attendee) {
       this.httpService.courseUnattend(attendee.id).subscribe({
         next: (data) => {
@@ -211,7 +204,9 @@ export class EventEditorComponent implements OnInit {
             this.course.attendees.splice(index, 1);
             this.init_course();
           } else {
-            console.log('User nicht gefunden, Seite neu laden um änderung zu sehen');
+            console.log(
+              'User nicht gefunden, Seite neu laden um änderung zu sehen'
+            );
           }
         },
         error: (e) => {
@@ -222,4 +217,21 @@ export class EventEditorComponent implements OnInit {
       this.http.openSnackbar('Benutzer nicht in liste gefunden');
     }
   }
+
+  async onCheck(event:MatCheckboxChange, attendee:Attendee) {
+    let a = await this.http.updateAttending(attendee.id, event.checked)
+  }
+
+  async remCourse(){
+    if( confirm("Wollen Sie wirklich diesen Kurs entfernen?")){
+      this.http.delEvent(this.course.id).subscribe({
+        next: (response) => {
+          this.http.openSnackbar("Erfolgreich entfernt")
+          this.router.navigate(["/"])
+        },
+        error: (error) => {this.http.openSnackbar(error.message);}
+      })
+    }
+  }
+
 }

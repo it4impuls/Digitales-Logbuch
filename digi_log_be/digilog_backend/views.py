@@ -19,7 +19,7 @@ from rest_framework.decorators import permission_classes, authentication_classes
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenVerifyView, TokenRefreshView, TokenBlacklistView
 from rest_framework_simplejwt.serializers import TokenVerifySerializer, TokenBlacklistSerializer
-from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
+from rest_framework_simplejwt.exceptions import TokenError, InvalidToken, AuthenticationFailed
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
@@ -58,11 +58,11 @@ class CourseViewSet(AuthViewset):
 
     def create(self, request, *args, **kwargs):
         request.data["host"], token = CustomAuthentication().authenticate(request)
+        if not request.data["host"]:
+            raise AuthenticationFailed()
         return super().create(request, *args, **kwargs)
 
-    def update(self, request, *args, **kwargs):
-        return super().update(request, *args, **kwargs)
-    
+
 class AttendeeViewSet(AuthViewset):
     queryset = Attendee.objects.all()
     serializer_class = AttendeeSerializer
@@ -71,17 +71,16 @@ class AttendeeViewSet(AuthViewset):
         return super().list(request, *args, **kwargs)
 
     def create(self, request, *args, **kwargs):
-        try:
-            user = User.objects.get(username=request.COOKIES.get("uname", None))
-        except User.DoesNotExist:
-            return Response("User not found", status=404)
+        user, token =CustomAuthentication().authenticate(request)
+            # user = User.objects.get(username=request.COOKIES.get("uname", None))
+        if not user:
+            raise AuthenticationFailed()
         
         req = DummyRequest({"course":request.data.get("course", None), "attendee": user.id, "attends":"False"})
         ret = super().create(req, *args, **kwargs)
         ser = self.serializer_class(Attendee.objects.get(id=ret.data["id"]))
         # ser.is_valid(raise_exception=True)
         ret.data = ser.data
-        print(ret.data)
         return ret
 
     def get_serializer_class(self):
@@ -90,10 +89,7 @@ class AttendeeViewSet(AuthViewset):
         elif self.action == "create":
             return ShortAttendeeSerializer
         return super().get_serializer_class()
-    
-    def destroy(self, request, *args, **kwargs):
-        ...
-        return super().destroy(request, *args, **kwargs)
+   
 @csrf_exempt
 def login_user(request):
 

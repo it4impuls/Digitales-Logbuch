@@ -72,7 +72,7 @@ class ShortAttendeeSerializer(serializers.ModelSerializer):
                 fields=["attendee", "course"])]
     
 class AttendeeSerializer(serializers.ModelSerializer):
-    attendee = UserSerializer(read_only=False)
+    attendee = UserSerializer(read_only=False, required=False)
     id = serializers.IntegerField(required=False)
     class Meta:
         model = Attendee
@@ -83,11 +83,17 @@ class AttendeeSerializer(serializers.ModelSerializer):
     
     def update(self, instance, validated_data):
         return super().update(instance, validated_data)
+    
+    def is_valid(self, *, raise_exception=False):
+        return super().is_valid(raise_exception=raise_exception)
+    
+    def validate(self, attrs):
+        return super().validate(attrs)
 
     
 class CourseSerializer(serializers.ModelSerializer):
     host = UserSerializer(read_only=True)
-    attendees = AttendeeSerializer(many=True, source="attendee_set")
+    attendees = AttendeeSerializer(many=True, source="attendee_set", read_only=True)
 
     class Meta:
         model = Course

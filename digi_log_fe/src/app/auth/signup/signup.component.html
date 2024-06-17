@@ -2,29 +2,35 @@
 <Form (ngSubmit)="signup()" [formGroup]="signupForm" class="form">
     <mat-form-field  class="input">
         <mat-label>Username</mat-label>
-        <input matInput formControlName="username"  placeholder="Lorem Ipsum" type="text">
+        <input matInput formControlName="username"  placeholder="mmustermann" type="text" (change)="onchange()">
+        <mat-error>{{signupForm.controls.username.errors}}</mat-error>
     </mat-form-field>
     <mat-form-field  class="input">
         <mat-label>Email</mat-label>
-        <input matInput formControlName="email"  placeholder="Lorem Ipsum" type="text">
+        <input matInput formControlName="email"  placeholder="m.mustermann@impulsreha.de" type="text" (change)="onchange()">
+        <mat-error>{{signupForm.controls.email.errors}}</mat-error>
     </mat-form-field>
     <mat-form-field  class="input">
         <mat-label>Vorname</mat-label>
-        <input matInput formControlName="first_name"  placeholder="Lorem Ipsum" type="text">
+        <input matInput formControlName="first_name"  placeholder="Max" type="text" (change)="onchange()">
+        <mat-error>{{signupForm.controls.first_name.errors}}</mat-error>
     </mat-form-field>
     <mat-form-field  class="input">
         <mat-label>Nachname</mat-label>
-        <input matInput formControlName="last_name"  placeholder="Lorem Ipsum" type="text">
+        <input matInput formControlName="last_name"  placeholder="Mustermann" type="text" (change)="onchange()">
+        <mat-error>{{signupForm.controls.last_name.errors}}</mat-error>
     </mat-form-field>
     <mat-form-field  class="passwd input">
-        <mat-label>Password</mat-label>
-        <input matInput formControlName="password"  placeholder="Lorem Ipsum" type="password"  (change)="onchange()">
+        <mat-label>Passwort</mat-label>
+        <input matInput formControlName="password" type="password"  (change)="onchange()">
+        <mat-error>{{signupForm.controls.password.errors}}</mat-error>
     </mat-form-field>
     <mat-form-field  class="passwd input">
-        <mat-label>Password</mat-label>
-        <input matInput formControlName="confirmPassword"  placeholder="Lorem Ipsum" type="password" (change)="onchange()">
+        <mat-label>Passwort wiederholen</mat-label>
+        <input matInput formControlName="confirmPassword"  type="password" (change)="onchange()">
+        <mat-error>{{signupForm.controls.password.errors}}</mat-error>
     </mat-form-field>
-    <mat-error>{{error}}</mat-error>
+    <mat-error>{{errors.all}}</mat-error>
     
     <button class="button"  type="submit" mat-button [disabled]="!signupForm.valid"> Sign up </button>
 </Form>

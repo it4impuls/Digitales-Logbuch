@@ -1,0 +1,328 @@
+[
+    {
+        "Qualifizierungsbereich": "EDV",
+        "Titel des Kurses": "Excel \u2013 einfache Formeln und Namen",
+        "Level": "I Anf\u00e4nger",
+        "Kurzbeschreibung/Untertitel des Moduls": "Einfache Formeln \u2013 Logik erkennen und umsetzen",
+        "Inhalte des Kurses": "\u2022 Einfache Formeln aufbauen, Formeln kopieren, Formeln anzeigen\n\u2022 Formeln \u00fcber mehrere Arbeitsbl\u00e4tter und Dateien\n\u2022 Fehler in Formeln finden, Spur zum Vorg\u00e4nger/Nachfolger\n\u2022 bedingte Formatierung\n\u2022 Namen einrichten und verwalten, in Formeln einsetzen\n\u2022 arbeiten mit Fenstern in komplexen Tabellen, Zeilen und Spalten\nfixieren\n\u2022 Zeilen, Spalten, Tabellenbl\u00e4tter ein und ausblenden, hinzuf\u00fcgen,\nkopieren\n\u2022 Kommentare einf\u00fcgen, ausblenden, bearbeiten",
+        "Methoden des Kurses": "Theorie, Praktische \u00dcbungen und Fallbeispiele",
+        "Material/Unterlagen": "Handouts zu den einzelnen Themenbereichen",
+        "Wie oft wird der Kurs angeboten": "ca. alle 6 Wochen",
+        "Kursdauer": "ca. 4 Std."
+    },
+    {
+        "Qualifizierungsbereich": "EDV",
+        "Titel des Kurses": "Excel \u2013 Diagramme",
+        "Level": "II Fortgeschritten",
+        "Kurzbeschreibung/Untertitel des Moduls": "Auswahl und Aufbau geeigneter Diagrammtypen",
+        "Inhalte des Kurses": "\u2022 Welche Daten eignen sich zur grafischen Darstellung\n\u2022 Einsatzgebiete, Sinn und Zweck grafischer Darstellungen\n\u2022 Welcher Diagrammtyp eignet sich f\u00fcr welche Aussage\n\u2022 Datenaufbereitung und Erstellung von unterschiedlichen\nDiagrammen\n\u2022 Bearbeitung von Diagrammen, Beschriftung, Achsenformatierung,\n\u00c4nderung des Diagrammtyps\n\u2022 Trends aufzeigen mit Sparklines\n\u2022 Druck von Diagrammen",
+        "Methoden des Kurses": "Theorie, Praktische \u00dcbungen und Fallbeispiele",
+        "Material/Unterlagen": "Handouts zu den einzelnen Themenbereichen",
+        "Wie oft wird der Kurs angeboten": "ca. alle 6 Wochen",
+        "Kursdauer": "ca. 2 Std."
+    },
+    {
+        "Qualifizierungsbereich": "EDV",
+        "Titel des Kurses": "Excel \u2013 Listen",
+        "Level": "II Fortgeschritten",
+        "Kurzbeschreibung/Untertitel des Moduls": "Arbeit mit unterschiedlichen Listetypen",
+        "Inhalte des Kurses": "\u2022 Welche Daten geh\u00f6ren in Listen\n\u2022 Aufbau von komplexen Listen gem\u00e4\u00df Verwendungszweck\n\u2022 Externe Daten importieren\n\u2022 Daten als Tabelle formatieren\n\u2022 Doppelte Datens\u00e4tze entfernen\n\u2022 Ergebniszeile\n\u2022 Daten sortieren und filtern\n\u2022 Layoutvariante",
+        "Methoden des Kurses": "Theorie, Praktische \u00dcbungen und Fallbeispiele",
+        "Material/Unterlagen": "Handouts zu den einzelnen Themenbereichen",
+        "Wie oft wird der Kurs angeboten": "ca. alle 6 Wochen",
+        "Kursdauer": "ca. 2 Std."
+    },
+    {
+        "Qualifizierungsbereich": "EDV",
+        "Titel des Kurses": "Excel \u2013 besondere Formate, Schutz und G\u00fcltigkeit",
+        "Level": "II Fortgeschritten",
+        "Kurzbeschreibung/Untertitel des Moduls": "Benutzerdefinierte Zellformatierung",
+        "Inhalte des Kurses": "\u2022 Arbeit mit Datum und Zeit,\nFormatierung, Funktionen f\u00fcr Datum und Uhrzeit\n\u2022 benutzerdefinierte Zellformatierung\n\u2022 Schutz von Zellen, Bl\u00e4ttern, Arbeitsmappen\n\u2022 Formularerstellung/Benutzer d\u00fcrfen nur ausgew\u00e4hlte Bereiche\nbearbeiten\n\u2022 G\u00fcltigkeitspr\u00fcfung, Eingabebeschr\u00e4nkung, Fehlermeldung",
+        "Methoden des Kurses": "Theorie, Praktische \u00dcbungen und Fallbeispiele",
+        "Material/Unterlagen": "Handouts zu den einzelnen Themenbereichen",
+        "Wie oft wird der Kurs angeboten": "ca. alle 6 Wochen",
+        "Kursdauer": "ca. 2 Std."
+    },
+    {
+        "Qualifizierungsbereich": "EDV",
+        "Titel des Kurses": "Excel \u2013 Komplexe Formeln und Funktionen",
+        "Level": "III Profi",
+        "Kurzbeschreibung/Untertitel des Moduls": "Komplexe Formeln erstellen und verstehen",
+        "Inhalte des Kurses": "\u2022 Komplexe Formeln erstellen\n\u2022 Funktionen, Funktionsbibliothek\n\u2022 Aufbau und Einsatzgebiete der WENN-Funktion\n\u2022 Formel\u00fcberwachung, Spur zum Vorg\u00e4nger/Nachfolger\n\u2022 Gliederung, Gruppierung, Teilergebnis",
+        "Methoden des Kurses": "Theorie, Praktische \u00dcbungen und Fallbeispiele",
+        "Material/Unterlagen": "Handouts zu den einzelnen Themenbereichen",
+        "Wie oft wird der Kurs angeboten": "ca. alle 6 Wochen",
+        "Kursdauer": "ca. 3 Std."
+    },
+    {
+        "Qualifizierungsbereich": "EDV",
+        "Titel des Kurses": "Excel \u2013 Pivot Tabellen und SVERWEIS",
+        "Level": "IV Vollprofi",
+        "Kurzbeschreibung/Untertitel des Moduls": "Arbeiten mit Pivot Tabellen",
+        "Inhalte des Kurses": "\u2022 Erstellung und Arbeit mit Pivot-Tabellen,\nAnalysen durchf\u00fchren\n\u2022 Erstellung von Pivot-Charts\n\u2022 Datenschnitt\n\u2022 Verschachtelte Wenn Funktionen\n\u2022 SVERWEIS\n\u2022 WVERWEIS",
+        "Methoden des Kurses": "Theorie, Praktische \u00dcbungen und Fallbeispiele",
+        "Material/Unterlagen": "Handouts zu den einzelnen Themenbereichen",
+        "Wie oft wird der Kurs angeboten": "ca. alle 6 Wochen",
+        "Kursdauer": "ca. 3 Std."
+    },
+    {
+        "Qualifizierungsbereich": "EDV",
+        "Titel des Kurses": "Word \u2013 Tabellen und Vorlagen",
+        "Level": "I Anf\u00e4nger",
+        "Kurzbeschreibung/Untertitel des Moduls": "Arbeit mit unterschiedlichen Tabellen",
+        "Inhalte des Kurses": "\u2022 Tabellen einf\u00fcgen und bearbeiten\n\u2022 Nutzung der Tabellentools Entwurf und Layout\n\u2022 Zeilen/Spalten einf\u00fcgen und l\u00f6schen, Rahmen ausblenden\n\u2022 Einzelne Linien gezielt setzen\n\u2022 Verwendung von Tabellen im Lebenslauf\n\u2022 Mit Exceltabellen in Word arbeiten",
+        "Methoden des Kurses": "Theorie, Praktische \u00dcbungen und Fallbeispiele",
+        "Material/Unterlagen": "Handouts zu den einzelnen Themenbereichen",
+        "Wie oft wird der Kurs angeboten": "ca. alle 4 Wochen",
+        "Kursdauer": "ca. 3 Std."
+    },
+    {
+        "Qualifizierungsbereich": "EDV",
+        "Titel des Kurses": "Teil 1: Word \u2013 DIN Brief und einfache Serienbriefe",
+        "Level": "II Fortgeschritten",
+        "Kurzbeschreibung/Untertitel des Moduls": "Grundlagen der DIN-Briefgestaltung",
+        "Inhalte des Kurses": "\u2022 Verpflichtende Angaben auf Gesch\u00e4ftsbriefen und\nim Mailverkehr\n\u2022 Gesch\u00e4ftsbrief, Aufbau 1. Und 2. Seite gem\u00e4\u00df DIN\n\u2022 Stilelemente\n\u2022 Seriendruck, was ist ein Serienbrief und wann nutze ich ihn\n\u2022 Erstellung von einfachen Serienbriefen\n\u2022 Hauptdokument, Datenquelle, Seriendruckfelder\n\u2022 Verwendung des Seriendruckassistenten\n\u2022 Erstellen einer Adressquelle in Word (Access)\n\u2022 Briefumschl\u00e4ge und Etiketten drucken\n\u2022 Portooptimierung",
+        "Methoden des Kurses": "Theorie, Praktische \u00dcbungen und Fallbeispiele",
+        "Material/Unterlagen": "Handouts zu den einzelnen Themenbereichen",
+        "Wie oft wird der Kurs angeboten": "ca. alle 6 Wochen",
+        "Kursdauer": "ca. 4 Std."
+    },
+    {
+        "Qualifizierungsbereich": "EDV",
+        "Titel des Kurses": "Teil 2: Word \u2013 komplexer Seriendruck",
+        "Level": "III Profi\nVoraussetzung Teil 1: Word \u2013 DIN Brief und einfache Serienbriefe",
+        "Kurzbeschreibung/Untertitel des Moduls": "Arbeit mit verschiedenen Listentypen",
+        "Inhalte des Kurses": "\u2022 Verwendung externer Datenquellen (Excel, Outlook)\n\u2022 Erstellung komplexer Serienbriefe\n\u2022 Verwendung einzelner Datenfelder\n\u2022 Datenfelder externer Listen zuordnen\n\u2022 Arbeiten mit Bedingungsfeldern\n\u2022 Serien-E-Mail",
+        "Methoden des Kurses": "Theorie, Praktische \u00dcbungen und Fallbeispiele",
+        "Material/Unterlagen": "Handouts zu den einzelnen Themenbereichen",
+        "Wie oft wird der Kurs angeboten": "ca. alle 6 Wochen",
+        "Kursdauer": "ca. 4 Std."
+    },
+    {
+        "Qualifizierungsbereich": "EDV",
+        "Titel des Kurses": "Word \u2013 Felder, Formulare und \u00dcberarbeitung",
+        "Level": "III Profi",
+        "Kurzbeschreibung/Untertitel des Moduls": "Felder und Feldfunktionen",
+        "Inhalte des Kurses": "\u2022 Felder und Feldfunktionen\n\u2022 Inhaltsverzeichnis generieren\n\u2022 Formulare, Bearbeitungsbereiche einschr\u00e4nken,\nDokumente sch\u00fctzen,\n\u2022 \u00dcberarbeitungen kennzeichnen, \u00c4nderungen verfolgen,\nannehmen/ablehnen, Kommentare",
+        "Methoden des Kurses": "Theorie, Praktische \u00dcbungen und Fallbeispiele",
+        "Material/Unterlagen": "Handouts zu den einzelnen Themenbereichen",
+        "Wie oft wird der Kurs angeboten": "ca. alle 6 Wochen",
+        "Kursdauer": "ca. 2 Std."
+    },
+    {
+        "Qualifizierungsbereich": "EDV",
+        "Titel des Kurses": "Power Point \u2013 Pr\u00e4sentationen",
+        "Level": "I Anf\u00e4nger",
+        "Kurzbeschreibung/Untertitel des Moduls": "Pr\u00e4sentationen erstellen und halten",
+        "Inhalte des Kurses": "\u2022 Pr\u00e4sentationstypen f\u00fcr Ausdruck, Mailversand und Referat\nAufbau und Format gem\u00e4\u00df Verwendungszweck\n\u2022 benutzerdefinierte Bildschirmanimation\nAnimationseffekte zuweisen\nZeitl. Ablauf und Anzeigedauer einstellen\n\u2022 Seiten\u00fcberg\u00e4nge\n\u2022 Tabellen und Diagramme einf\u00fcgen, SmartArt Grafiken\n\u2022 Folien pr\u00e4sentieren mit Beamer",
+        "Methoden des Kurses": "Theorie, Praktische \u00dcbungen und Fallbeispiele",
+        "Material/Unterlagen": "Handouts zu den einzelnen Themenbereichen",
+        "Wie oft wird der Kurs angeboten": "ca. alle 6 Wochen",
+        "Kursdauer": "ca. 4 Std."
+    },
+    {
+        "Qualifizierungsbereich": "EDV",
+        "Titel des Kurses": "Power Point \u2013 Entwurfsvorlagen und Folienmaster",
+        "Level": "II Fortgeschritten",
+        "Kurzbeschreibung/Untertitel des Moduls": "Professionelle Layouts erstellen",
+        "Inhalte des Kurses": "\u2022 Entwurfsvorlagen\n\u2022 Folienmaster\n\u2022 Handzettelmaster\n\u2022 Notizenseite und Notizenmaster\n\u2022 Interaktive Schaltfl\u00e4chen\n\u2022 Audio- und Videoclips einf\u00fcgen\n\u2022 Pr\u00e4sentationen zusammenf\u00fchren und vergleichen\n\u2022 Kommentieren",
+        "Methoden des Kurses": "Theorie, Praktische \u00dcbungen und Fallbeispiele",
+        "Material/Unterlagen": "Handouts zu den einzelnen Themenbereichen",
+        "Wie oft wird der Kurs angeboten": "ca. alle 6 Wochen",
+        "Kursdauer": "ca. 4 Std."
+    },
+    {
+        "Qualifizierungsbereich": "EDV",
+        "Titel des Kurses": "Outlook \u2013 effektive Arbeitsorganisation",
+        "Level": "I Anf\u00e4nger",
+        "Kurzbeschreibung/Untertitel des Moduls": "Einmalige und wiederkehrende T\u00e4tigkeiten planen und organisieren",
+        "Inhalte des Kurses": "\u2022 E-Mail \u2013 kategorisieren und nachverfolgen\n\u2022 Versandoptionen, pers\u00f6nliche Signatur, Briefpapier\n\u2022 Ein-und Anf\u00fcgeoptionen, Lesebest\u00e4tigung, Abstimmungsschaltfl\u00e4chen,\nPostfach organisieren\n\u2022 Ordner anlegen und Regeln erstellen\n\u2022 Termine und Besprechungen organisieren\n\u2022 Besprechungen erstellen, Verf\u00fcgbarkeit pr\u00fcfen,\nannehmen/ablehnen/andere Zeit vorschlagen, Erinnerung\n\u2022 Wiederkehrende Ereignisse, Informationen einstellen\n\u2022 Kontakte \u2013 Kontaktgruppe erstellen und Mitglieder zuweisen\n\u2022 Aufgaben planen und vergeben\n\u2022 Aufgaben erstellen, zuweisen, Statusabfrage, Erledigungsvermerk, Erinnerung,\nDokumente Verkn\u00fcpfen\n\u2022 Drucken\n\u2022 Druckoptionen f\u00fcr E-Mails, Aufgaben und Kalender",
+        "Methoden des Kurses": "Theorie, Praktische \u00dcbungen und Fallbeispiele",
+        "Material/Unterlagen": "Handouts zu den einzelnen Themenbereichen",
+        "Wie oft wird der Kurs angeboten": "ca. alle 4 Wochen",
+        "Kursdauer": "ca. 3 Std.\n15"
+    },
+    {
+        "Qualifizierungsbereich": "Fachspezifische Kompetenz",
+        "Titel des Kurses": "Englisch",
+        "Kurzbeschreibung/Untertitel des Moduls": "Als globale Kommunikationssprache gewinnt Englisch auch im beruflichen\nKontext immer mehr an Bedeutung. Dabei kommt es in der Regel nicht darauf\nan, die Sprache perfekt zu beherrschen, zumal man es oftmals auch nicht mit\nMuttersprachlern zu tun hat. Vielmehr geht es darum, sich gut verst\u00e4ndlich ma-\nchen zu k\u00f6nnen und grunds\u00e4tzlich die Scheu vor dem Sprechen zu \u00fcberwinden.\nIn diesem Sinne m\u00f6chte der Kurs in entspannter Atmosph\u00e4re ein Angebot ma-\nchen, Schwellen\u00e4ngste zu \u00fcberwinden und miteinander ins englische Gespr\u00e4ch\nzu kommen. Themen und Inhalte der Unterrichtsstunden richten sich nach dem\njeweiligen Kenntnisstand und den Bed\u00fcrfnissen der TeilnehmerInnen:\nBitte \u00e4u\u00dfern Sie Ihre W\u00fcnsche!",
+        "Inhalte des Kurses": "\u2022 Talkrunde auf Englisch",
+        "Wie oft wird der Kurs angeboten": "jeden Dienstag 08:30 \u2013 09:30 h,\njeden Freitag 14:30 h \u2013 15:30 h\nTeilnahme mind. 5 Termine",
+        "Kursdauer": "ca. 1 Std, max. 5 Teilnehmer\n16"
+    },
+    {
+        "Qualifizierungsbereich": "Fachspezifische Kompetenz",
+        "Titel des Kurses": "Gehaltsabrechnung",
+        "Kurzbeschreibung/Untertitel des Moduls": "Aufbau einer Gehaltsabrechnung",
+        "Inhalte des Kurses": "\u2022 Vermittlung der lohnsteuer- und sozialversicherungsrechtlichen\nGrundlagen einer Gehaltsabrechnung (was ist steuer- / sozial-\nversicherungspflichtig oder frei;\nBedeutung der Steuerklassen).",
+        "Methoden des Kurses": "Vortrag\nFragen + Antworten",
+        "Material/Unterlagen": "Muster einer Gehaltsabrechnung;\nInformationen \u00fcber Lohnsteuer und\nSozialversicherung z.B. Beitragss\u00e4tze,\nGrenzwerte",
+        "Wie oft wird der Kurs angeboten": "ca. alle 2 Monate",
+        "Kursdauer": "ca. 2 Std.\n17"
+    },
+    {
+        "Qualifizierungsbereich": "Fachspezifische Kompetenz",
+        "Titel des Kurses": "Kassenf\u00fchrung",
+        "Kurzbeschreibung/Untertitel des Moduls": "Barbelege: Ein- und Ausgaben erkennen und zuordnen,\nmit und ohne Umsatzsteuer. Eintragungen in ein Formular Kassen-\nbuch (handschriftlich und mit Excel), Zahlungsarten",
+        "Methoden des Kurses": "Vortrag und \u00dcbungen: selbst\u00e4ndiges Arbeiten\ndurch Umsetzung des vorher Gelernten.",
+        "Material/Unterlagen": "Schriftliche Erl\u00e4uterungen zum F\u00fchren eines Kassenbuches. Kopierte\n(realistische) Barbelege, Kassenbuch Formular",
+        "Wie oft wird der Kurs angeboten": "ca. alle 2 Monate",
+        "Kursdauer": "ca. 1,5 Std."
+    },
+    {
+        "Qualifizierungsbereich": "Fachspezifische Kompetenz",
+        "Titel des Kurses": "Umsatzsteuer und Pflichtanforderungen an eine Rechnung",
+        "Kurzbeschreibung/Untertitel des Moduls": "Kennenlernen der Voraussetzungen f\u00fcr eine korrekte\nRechnung. Erstellung einer Umsatzsteuer-Voranmeldung",
+        "Inhalte des Kurses": "\u2022 Vorschriften f\u00fcr Rechnungen nach dem Umsatzsteuergesetz\n\u2022 Pr\u00fcfungen von Rechnungen nach den gelernten Kriterien\n\u2022 evtl. selbst\u00e4ndiges Erstellen einer Rechnung\n\u2022 Umsatzsteuer, warum und wann wird Umsatzsteuer berechnet,\nwie l\u00e4uft das beim Finanzamt\n\u2022 Welche Unternehmer ist umsatzsteuerpflichtig, Ust-Befreiung,\nErl\u00e4uterungen zu den verschiedenen Steuers\u00e4tzen und Steu-\nerarten (Ust, Mineral\u00f6lsteuer etc.), Umsatzsteuerbefreiung\nwarum und wann m\u00f6glich\n\u2022 Berechnung plus / inkl. Umsatzsteuer. Praktische \u00dcbungen zu\nverschiedenen Umsatzsteuern z.B. Inland, EG, Drittland",
+        "Methoden des Kurses": "Vortrag, selbst\u00e4ndiges Erkennen von fehlerhaften Rechnungen, Feststellen\nvon umsatzspezifischen Merkmalen. \u00dcbung und Umsetzung mit Eingangs-\nund Ausgangsrechnungen in Excel",
+        "Material/Unterlagen": "Rechnungskopien, gesetzliche Kriterien zur\nUmsatzsteuer, \u00dcbungsunterlagen",
+        "Wie oft wird der Kurs angeboten": "ca. alle 2 Monate",
+        "Kursdauer": "ca. 2,0 Std."
+    },
+    {
+        "Qualifizierungsbereich": "Fachspezifische Kompetenz",
+        "Titel des Kurses": "Reisekosten",
+        "Kurzbeschreibung/Untertitel des Moduls": "Erstellung einer Reisekostenabrechnung f\u00fcr das Inland\nmit Pauschalen und nach Belegen",
+        "Inhalte des Kurses": "\u2022 Erl\u00e4uterung warum und wie eine Reisekostenabrechnung er-\nstellt wird.\n\u2022 Wo finde ich die Reisekostens\u00e4tze In- und Ausland.\n\u2022 Wie berechne ich die Pauschalen nach Abwesenheitsstunden.",
+        "Methoden des Kurses": "Vortrag, umsetzen des Gelernten in selbst\u00e4ndigem Erstellen einer\nReisekostenabrechnung",
+        "Material/Unterlagen": "Unterlagen \u00fcber die Pauschalen, Formular Reisekostenabrechnung",
+        "Wie oft wird der Kurs angeboten": "ca. alle 2 Monate",
+        "Kursdauer": "ca. 1,5 Std."
+    },
+    {
+        "Qualifizierungsbereich": "Pers\u00f6nlichkeitsentwicklung",
+        "Titel des Kurses": "Gesundheitskompetenzen",
+        "Kurzbeschreibung/Untertitel des Moduls": "Entwicklung von individuellen Strategien zur Verbesserung von\nGesundheit und Wohlbefinden",
+        "Inhalte des Kurses": "Dieser Kurs er\u00f6ffnet den Teilnehmer / innen die M\u00f6glichkeit, ihr\neigenes Verst\u00e4ndnis von Gesundheit zu erweitern und ihren pers\u00f6n-\nlichen Prozess der Genesung und Erhaltung ihrer Gesundheit weiter\nzu entwickeln.\nEs werden Gesundheitsaspekte in den Mittelpunkt gestellt, die von\nden Teilnehmer / innen aus eigener Erfahrung als wichtig erachtet\nwerden. Wir besch\u00e4ftigen uns mit Themen wie \u201eWas ist Gesund-\nheit?\u201c, \u201eWas h\u00e4lt mich gesund?\u201c, \u201eWas beeinflusst meine Gesund-\nheit?\u201c sowie mit der Entwicklung von individuell passenden Strate-\ngien zu Verbesserung von Gesundheit und Wohlbefinden, auch im\nKontext von Arbeit und Erwerbst\u00e4tigkeit, stehen im Vordergrund\ndieses Trainings.\nMethoden\nErfahrungsaustausch (Peer-Ansatz), Kleingruppen- und Gruppenarbeit\nKreative Methoden",
+        "Material/Unterlagen": "Jeder Teilnehmer erh\u00e4lt schriftliche Unterlagen.",
+        "Wie oft wird der Kurs angeboten": "ca. 3 x im Jahr, 4 Termine in Folge",
+        "Kursdauer": "4 mal ca. 2,5 Std"
+    },
+    {
+        "Qualifizierungsbereich": "Pers\u00f6nlichkeitstraining",
+        "Titel des Kurses": "Konfliktmanagement",
+        "Kurzbeschreibung/Untertitel des Moduls": "Konflikte sind unbeliebt, aber unvermeidlich.\nEs lohnt sich, verschieden Strategien\nim Umgang mit ihnen zu beherrschen!",
+        "Inhalte des Kurses": "\u2022 Bewertung und Ursachen\n\u2022 Definition und Konfliktarten\n\u2022 Vermeidung\n\u2022 Vorbereiten und Austragen\n\u2022 Konstruktives Streiten\n\u2022 Gewaltfreie Kommunikation\n\u2022 Konflikte im Betrieb\n\u2022 Aushalten in Gelassenheit\n\u2022 Mobbing",
+        "Methoden des Kurses": "Pr\u00e4sentation, Gruppengespr\u00e4ch, Kleingruppen,\nRollenspiel, Selbststudium",
+        "Material/Unterlagen": "Diverse Handouts zur Selbstkl\u00e4rung;\nSelbsthilfe, Theorie, Regeln und Handhabung",
+        "Wie oft wird der Kurs angeboten": "ca. alle 3 Monate, 2 Termine",
+        "Kursdauer": "2 mal ca. 3 Std."
+    },
+    {
+        "Qualifizierungsbereich": "Pers\u00f6nlichkeitstraining",
+        "Titel des Kurses": "K\u00f6rperwahrnehmung & Psychosomatik",
+        "Kurzbeschreibung/Untertitel des Moduls": "Lernen einer bewussten und achtsamen Wahrnehmung des eigenen\nK\u00f6rpers\n\u2022 zur Aufdeckung von psychosomatischen Zusammenh\u00e4ngen\n\u2022 als Ausgleich zu Gedankenkreisen, Gr\u00fcbeln und Zw\u00e4ngen\n\u2022 als Unterst\u00fctzung der Entspannung oder Aktivierung des K\u00f6rers\nJe nach Gruppenzusammensetzung und W\u00fcnschen kann der inhalt-\nliche Schwerpunkt auf einen der drei Aspekte gelegt werden.",
+        "Inhalte des Kurses": "\u2022 Einf\u00fchrung in das Feld der Psychosomatik und der ganzheitlichen\n\t\t Betrachtung des Menschen und seiner Gesundheit\n\u2022 Prinzipien der Achtsamkeit (insbesondere der achtsamen Haltung\nz.B. \t\t\t\ndas Prinzip der Nicht-Wertung)\n\u2022 Praktische \u00dcbungen zur Verbesserung der K\u00f6rperwahrnehmung \u2013\n\t\t \u00dcbungen auch f\u00fcr den Alltag\n\u2022 K\u00f6rpererleben in Entspannung, Anspannung, Bewegung\n\u2022 Den eigenen K\u00f6rper besser kennenlernen - Auseinandersetzung mit\n\t\t Gedanken, Gef\u00fchlen und dem Umgang mit dem eigenen K\u00f6rper\n\t\t (z.B. was tut meinem K\u00f6rper gut? Wie sorge ich mich um meinen\n\t\t K\u00f6rper? Wie reagiert mein K\u00f6rper bei Stress/\u00c4ngsten/Krankheit?)",
+        "Methoden des Kurses": "\u2022\t\t Praktische \u00dcbungen ggf. auch in Bewegung (Einzel- und Gruppenarbeit)\n\u2022\t\t Theoretische Auseinandersetzung\n\u2022\t\t Austausch im Plenum, max. 12 TN\nWichtig! Jede Teilnehmerin/ jeder Teilnehmer entscheidet stets individuell\nwelche \u00dcbungen in welchem Umfang sie oder er mitmacht. K\u00f6rperliche Mobi-\nlit\u00e4tseinschr\u00e4nkungen sind kein Hindernis f\u00fcr die Kursteilnahme. Alle \u00dcbungen\nk\u00f6nnen individuell angepasst werden.",
+        "Material/Unterlagen": "Schriftliche Unterlagen werden ausgeteilt. Bitte zus\u00e4tzlich\nSchreibmaterial mitbringen.",
+        "Wie oft wird der Kurs angeboten": "4 mal im Jahr \u00e1 4 Termine",
+        "Kursdauer": "4 Termine \u00e1 2,5 Std.\n23"
+    },
+    {
+        "Qualifizierungsbereich": "Pers\u00f6nlichkeitsentwicklung",
+        "Titel des Kurses": "Leichter lernen \u2013 Wie Lernmethoden dabei helfen k\u00f6nnen!",
+        "Kurzbeschreibung/Untertitel des Moduls": "Lernen geh\u00f6rt zum Leben, im Beruf ist es\nGrundvoraussetzung. Aber wieso f\u00e4llt es manchen\nMenschen das Lernen leicht, anderen dagegen schwer? Im Kurs soll\ndargestellt werden, dass Menschen auf unterschiedliche Weise ler-\nnen k\u00f6nnen. Am Ende des Kurses soll jede/r Teilnehmer/in die f\u00fcr sie/\nihn am besten geeignete Lernmethode gefunden haben.",
+        "Inhalte des Kurses": "\u2022 Einf\u00fchrung, Lernerfahrung der TeilnehmerInnen\n\u2022 Test \u2013 Welcher Lerntyp bin ich?\n\u2022 Mnemotechniken ( Loci-Methode, Assoziationsketten)\n\u2022 Visualisierungstechniken\n\u2022 Die Loci-Methode\n\u2022 Lernkarteien\n\u2022 Mind-Mapping\n\u2022 Lernen in der Gruppe\n\u2022 Ausprobieren und Ein\u00fcben der Lernmethoden\n\u2022 Abschluss",
+        "Methoden des Kurses": "Theoretische Vermittlung ( Flipchart, Arbeitsbl\u00e4tter)\nLerntypentest\nErprobung und Ein\u00fcbung der Techniken",
+        "Material/Unterlagen": "Arbeitsbl\u00e4tter, Testunterlagen, Mitschriften",
+        "Wie oft wird der Kurs angeboten": "ca. alle 2 Monate",
+        "Kursdauer": "ca. 2,5 Std."
+    },
+    {
+        "Qualifizierungsbereich": "Pers\u00f6nlichkeitstraining",
+        "Titel des Kurses": "Psychoedukation\n(f\u00fcr TN mit Depressionen/Burnout-Erfahrungen oder TN mit\nArbeitsst\u00f6rungen haupts\u00e4chlich auf der Beziehungsebene)",
+        "Kurzbeschreibung/Untertitel des Moduls": "Verst\u00e4ndnis entwickeln f\u00fcr die Bedeutung der eigenen Erkrankung als\n\u201eArbeitsst\u00f6rung\u201c und Entwickeln alternativer Methoden und Strategien im\nUmgang mit Aufgabenplanung, -erledigung und Arbeitsorganisation. Selbst-\nlernprogramm f\u00fcr die Vermeidung erneuter \u00dcberforderung.",
+        "Inhalte des Kurses": "\u2022 Einf\u00fchrung in die Theorie der \u201eArbeitsst\u00f6rung\u201c und dem Zusammenhang\nzwischen Arbeit und psychischer Erkrankung\n\u2022 R\u00fcckblick in die Arbeitsbiographie zum besseren Verst\u00e4ndnis des Zusam-\nmenhangs zwischen Erkrankung und Arbeitsst\u00f6rung.\n\u2022 Ausblick auf den Umgang mit schwierigen Situationen im Arbeitsleben.\n\u2022 Erlernen und Erarbeiten kognitiver Strategien f\u00fcr den Umgang mit Auf-\ngaben und der Arbeitsorganisation.\n\u2022 Emotionsregulierung bei auftretenden Schwierigkeiten am Arbeitsplatz.\n\u2022 Sicherung der eigenen positiven Energiebilanz im Arbeitskontext und in\nder Freizeit.",
+        "Methoden des Kurses": "\u2022Theoretischer Trainer-Input\n\u2022Gruppenarbeit und Austausch im Plenum\n\u2022Praktische \u00dcbungen zur Verbesserung der Wahrnehmung und\nder Emotionsregulierung, Entspannungs\u00fcbungen\n\u2022\nMax. 12 TN\nWichtig! Die TN sollten das Basistraining abgeschlossen haben und sich\nim 4. Reha-Monat befinden. Bitte R\u00fccksprache mit den jeweiligen PSFs\nhalten.",
+        "Material/Unterlagen": "Schriftliche Unterlagen werden ausgeteilt. Bitte zus\u00e4tzlich Schreibmate-\nrial mitbringen.",
+        "Wie oft wird der Kurs angeboten": "Je nach TN-Nachfrage und Abstimmung mit den zust\u00e4ndigen PSFs.",
+        "Kursdauer": "5 oder 6 Termine \u00e1 2 Std je nach Zielgruppe."
+    },
+    {
+        "Qualifizierungsbereich": "Pers\u00f6nlichkeitsentwicklung",
+        "Titel des Kurses": "Ressourcenwerkstatt",
+        "Kurzbeschreibung/Untertitel des Moduls": "Bewusstsein st\u00e4rken f\u00fcr pers\u00f6nliche St\u00e4rken, berufliche\t\t\nKompetenzen und individuelle Erfolgsgeschichten.",
+        "Inhalte des Kurses": "Ziel des Kurses ist es, den eigenen \u201eSelbstwert zu polieren\u201c.\nDies erfolgt durch W\u00fcrdigung der eigenen St\u00e4rken und liebens-\nwerten Eigenschaften und durch Wertsch\u00e4tzung gro\u00dfer und\nkleiner eigener Erfolge.",
+        "Methoden des Kurses": "\u2022 M\u00fcndliche und schriftliche Reflektion\n\u2022 Feedback\n\u2022 Kreative Methoden(z.B. Collage)\n\u2022 Arbeitsbl\u00e4tter",
+        "Material/Unterlagen": "\u2022 Arbeitsbl\u00e4tter\n\u2022 Collage",
+        "Wie oft wird der Kurs angeboten": "3 mal im Jahr, jeweils 5 Termine",
+        "Kursdauer": "5 mal ca. 2 Std\n26"
+    },
+    {
+        "Qualifizierungsbereich": "Pers\u00f6nlichkeitsentwicklung",
+        "Titel des Kurses": "Sozialkompetenztraining",
+        "Kurzbeschreibung/Untertitel des Moduls": "Ein\u00fcben von sozial kompetentem Auftreten und der Abgrenzung\nvon sicherem, unsicherem und aggressivem Verhalten",
+        "Inhalte des Kurses": "\u2022 Sicheres, unsicheres und aggressives Verhalten\n\u2022 Recht durchsetzen\n\u2022 Beziehungen (beruflich und privat)\n\u2022 \u00c4u\u00dfern von Gef\u00fchlen",
+        "Methoden des Kurses": "Theorie und praktische \u00dcbungen (z.B. Rollenspiel)\nmax. 10 TN",
+        "Material/Unterlagen": "Jeder Teilnehmer erh\u00e4lt schriftliche Unterlagen",
+        "Wie oft wird der Kurs angeboten": "4 mal im Jahr, 5 Termine in Folge",
+        "Kursdauer": "5 mal ca. 2,5 Std"
+    },
+    {
+        "Qualifizierungsbereich": "Pers\u00f6nlichkeitsentwicklung",
+        "Titel des Kurses": "Stilsicher auftreten",
+        "Kurzbeschreibung/Untertitel des Moduls": "Imageberatung f\u00fcr Bewerbungen\nWas n\u00fctzen die sch\u00f6nsten Bewerbungsunterlagen und besten\nAbsichten, wenn der 1. Eindruck beim pers\u00f6nlichen Vorstellungsge-\nspr\u00e4ch nicht dazu passt?\nDie Kleidung spielt beim 1. Eindruck eine gro\u00dfe Rolle, weil sie das\nErste ist, was gesehen wird.\nWelcher Kleidungsstil passt authentisch zu Ihnen und Ihrem k\u00fcnf-\ntigen Beruf? Finden Sie es in diesem Kurs heraus! Wenn Sie dann\nnoch Kleidung tragen in Farben, die Ihnen gut zu Gesicht stehen,\nl\u00e4uft der gute 1. Eindruck fast von alleine.",
+        "Inhalte des Kurses": "\u2022 Wie m\u00f6chte ich auf potenzielle Arbeitgeber wirken und mit was\nkann ich das in der Kleidung unterstreichen\n\u2022 Farbberatung der Teilnehmer in der Gruppe\n\u2022 Erarbeitung von Stilrichtungen in der Kleidung und Einordnung,\nwas dabei zu welchen Teilnehmer bzw. Beruf passt\n\u2022 Tipps f\u00fcr Kleidung und Accessoires f\u00fcr Bewerbungsfotos\n\u2022 Wenn gew\u00fcnscht: Tipps zur Wahl von Kleidung passend zum\nFigurtyp\n\u2022 Feedback zu den mitgebrachten Outfits",
+        "Methoden des Kurses": "\u201eLearning by Doing\u201c, Interaktive Gruppenarbeit",
+        "Material/Unterlagen": "Alle Teilnehmer werden gebeten, in vorhandener Kleidung zu kommen\noder mitzubringen, die f\u00fcr ein Vorstellungsgespr\u00e4ch geeignet ist, auch\ngern mit Accessoires. Bitte keine neue Kleidung daf\u00fcr kaufen!\nWer bereits ein aktuelles Bewerbungsfoto hat, bringt das bitte mit.\nJeder Teilnehmer enth\u00e4lt ein Handout mit Farbkarte, \u00dcbersicht zu\nStiltypen, Wirkung von Farben in der Kleidung und unabh\u00e4ngige Tipps\nzu Einkaufsadressen",
+        "Wie oft wird der Kurs angeboten": "1 mal pro Monat",
+        "Kursdauer": "09:00-16:00"
+    },
+    {
+        "Qualifizierungsbereich": "Pers\u00f6nlichkeitsentwicklung",
+        "Titel des Kurses": "Wohlbefinden statt Stress",
+        "Kurzbeschreibung/Untertitel des Moduls": "Stress bew\u00e4ltigen, Belastungen abbauen und\nWohlbefinden steigern",
+        "Inhalte des Kurses": "\u00dcberforderung kann psychische Symptome verst\u00e4rken und sich\nung\u00fcnstig auf den Heilungsverlauf von Erkrankungen\nauswirken. Genauso wie Unterforderung. In diesem\nStressbew\u00e4ltigungstraining erkunden Teilnehmer ihr\noptimales individuelles Belastungsniveau und lernen, wie sie\nihr pers\u00f6nliches Gleichgewicht besser gestalten k\u00f6nnen.\nNeben kurzen Theorieeinheiten liegt der Fokus dieses\nTrainings auf dem praktischen Erlernen von\nBasisbew\u00e4ltigungsstrategien. Ziel ist es, kritische\nLebensereignisse und Dauerbelastungen besser zu bew\u00e4ltigen\nund somit R\u00fcckf\u00e4lle und Krisen im Alltag besser vorzubeugen.",
+        "Methoden des Kurses": "\u2022 Austausch in der Gruppe ( max. 10 TN )\n\u2022 Kurze Theorie Einheiten\n\u2022 Einzel- und Gruppen\u00fcbungen\n\u2022 Entspannungstechniken\n\u2022 Selbstreflexion und Feedback\n\u2022 Entspannungstechniken \u00fcben und Selbstbeobachtung au\u00dfer-\nhalb der Trainingszeiten",
+        "Material/Unterlagen": "\u2022 Arbeitsbl\u00e4tter\n\u2022 Entspannungs-CDs",
+        "Wie oft wird der Kurs angeboten": "alle 2 Monate",
+        "Kursdauer": "5 mal ca 2 Std."
+    },
+    {
+        "Qualifizierungsbereich": "Pers\u00f6nlichkeitsentwicklung",
+        "Titel des Kurses": "Wohlf\u00fchlwerkstatt",
+        "Kurzbeschreibung/Untertitel des Moduls": "Erleben von \u201eguten Momenten\u201c im Alltag und F\u00f6rderung von Wohl-\nbefinden",
+        "Inhalte des Kurses": "\u2022 eigene \u201eWohlf\u00fchlmuster\u201c erkennen\u201c\n\u2022 Voraussetzungen f\u00fcr eigene Wohlf\u00fchlmomente schaffen\n\u2022 F\u00e4higkeit steigern, sich \u201egute Momente\u201c im Alltag\t\t\nzu verschaffen",
+        "Methoden des Kurses": "\u2022 M\u00fcndliche und schriftliche Reflektion in der Gruppe\n\u2022 Eigene Verhaltensbeobachtungen\n\u2022 Erprobungen zwischen den Seminarterminen",
+        "Material/Unterlagen": "\u2022 Arbeitsbl\u00e4tter",
+        "Wie oft wird der Kurs angeboten": "3 mal im Jahr, jeweils 5 Termine",
+        "Kursdauer": "5 mal ca. 2 Std\n30"
+    },
+    {
+        "Qualifizierungsbereich": "Pers\u00f6nlichkeitsentwicklung",
+        "Titel des Kurses": "Zielgerichtete Kommunikation",
+        "Kurzbeschreibung/Untertitel des Moduls": "Grundlagen und \u00dcbungen f\u00fcr ein\nempf\u00e4ngerorientiertes Kommunikationsverhalten",
+        "Inhalte des Kurses": "\u2022 Was genau ist Kommunikation\n\u2022 Die Bedeutung von (selektiver) Wahrnehmung f\u00fcr\nKommunikation\n\u2022 Verbale vs. Nonverbale Kommunikation\n\u2022 Die Vier Seiten einer Nachricht (Schulz von Thun)\n\u2022 Ich Botschaften",
+        "Methoden des Kurses": "Theorie und praktische \u00dcbungen\nmin. 4 TN max. 8 TN",
+        "Material/Unterlagen": "Jeder Teilnehmer erh\u00e4lt schriftliche Unterlagen",
+        "Wie oft wird der Kurs angeboten": "ca. alle 3 Monate",
+        "Kursdauer": "09:00-14:00"
+    },
+    {
+        "Qualifizierungsbereich": "Pers\u00f6nlichkeitsentwicklung",
+        "Titel des Kurses": "Das Z\u00fcrcher Ressourcen Modell \u2013\nZiele erfolgreich erreichen mit Herz und Verstand",
+        "Kurzbeschreibung/Untertitel des Moduls": "Mit den Methoden des Z\u00fcrcher Ressourcen Modells (ZRM\u00ae) werden Ihnen\nInstrumente an die Hand gegeben, um herauszufinden, was Sie wirklich wol-\nlen, wie Sie es umsetzen und wie Sie dranbleiben. Zudem besch\u00e4ftigen wir uns\ninnerhalb des ZRM-Trainings auch mit Stressroutinen und ihrer Steuerung.",
+        "Inhalte des Kurses": "Viele Menschen haben Ver\u00e4nderungsw\u00fcnsche. Manche Absichten sind diffus\n\u00e0 la \u201eIch sollte etwas \u00e4ndern\u201c. Andere sind ganz konkret und von vielf\u00e4ltigster\nNatur \u2013 sei es souver\u00e4ner im Beruf aufzutreten, den Berufswechsel geziel-\nter anzugehen, konzentrierter zu arbeiten, gelassener zu sein im Alltag, sich\nbesser abgrenzen zu k\u00f6nnen und \u00f6fter auch mal nein zu sagen, ges\u00fcnder zu\nleben, sich mehr zu bewegen, entscheidungsfreudiger zu sein, mehr Selbst-\nbewusstsein zu zeigen und vieles, vieles mehr!\nObwohl wir sie vom Verstand her wollen und auch wissen, dass sie gut f\u00fcr\nuns sind, k\u00f6nnen wir manche Ziele nicht umsetzen, weil wir vergessen, unser\nUnbewusstes mit ins Boot zu nehmen. Wenn bei Entscheidungen nur der\nVerstand zum Zuge kommt, k\u00f6nnen beispielsweise Di\u00e4ten zum willentlichen\nKraftakt werden. Am Ende kommt man dann doch nicht an der Torte vor-\nbei. Wieso? In der Fachsprache nennt man das einen Ambivalenzkonflikt. Da\nzerren zwei Kr\u00e4fte an uns: die eine (der Verstand) will zu etwas hin, und die\nandere (unser Unbewusstes) geht genau in die andere Richtung \u2013 blo\u00df weg!\nIm Kurs wird gelernt:\n\u2022 das pers\u00f6nliche Handlungsrepertoire zu erweitern.\n\u2022 bei Entscheidungen mehr Autonomie zu erlangen.\n\u2022 auch in schwierigen, stressigen Situationen kompetent zu agieren.\n\u2022 die neu erworbenen Handlungskompetenzen nachhaltig zu ankern.\n\u2022 Klarheit zu gewinnen, was in der aktuellen Lebenssituation besonders wichtig ist.\n\u2022 Ziele formulieren, die das Selbstbewusstsein st\u00e4rken und vor Stress sch\u00fctzen.\n\u2022 eigene St\u00e4rken und M\u00f6glichkeiten als Ressourcen erkennen, lernen diese\nwertzusch\u00e4tzen und zu nutzen.",
+        "Material/Unterlagen": "Bitte bringen Sie Schreibutensilien mit.\nWie wird der Kurs angeboten\nJeweils 3 Termine in Folge"
+    },
+    {
+        "Qualifizierungsbereich": "Pers\u00f6nlichkeitsentwicklung",
+        "Titel des Kurses": "Gesunde Ern\u00e4hrung",
+        "Kurzbeschreibung/Untertitel des Moduls": "Vermittlung von Fachkenntnissen im Bereich Ern\u00e4hrung und Ent-\nwicklung von Kompetenzen bei der Umsetzung einer ausgewoge-\nnen Ern\u00e4hrung im Alltag",
+        "Inhalte des Kurses": "\u2022 Dieser Kurs er\u00f6ffnet den Teilnehmer/ Innen die M\u00f6glichkeit Ihr\neigenes Ern\u00e4hrungswissen zu erweitern und die pers\u00f6nlichen\nErn\u00e4hrungsgewohnheiten zu reflektieren\n\u2022 Es werden den Teilnehmer/ Innen Handlungskompetenzen\naufgezeigt, wie eine gesunde Ern\u00e4hrung in den Alltag integriert\nwerden kann\n\u2022 Grundlagen der Ern\u00e4hrungslehre: Aktuelle Ern\u00e4hrungsemp-\nfehlungen der Deutschen Gesellschaft f\u00fcr Ern\u00e4hrung \u2013 wie\nern\u00e4hre ich mich eigentlich gesund und ausgewogen? Aktuelle\nErn\u00e4hrungssituation in Deutschland; Ern\u00e4hrungspyramide; Wie\nentsteht ein Ern\u00e4hrungsverhalten?\n\u2022 Aktuelle Food Trends: Was bedeutet eigentlich vegan, low carb,\nglutenfrei, Bio und Co.? ;\n\u2022 Warenkunde: Worauf muss ich beim Einkauf achten? Lebens-\nmittelkennzeichnung \u2013 Wie \u201everstecken\u201c sich Inhaltsstoffe auf\ndem Lebensmitteletikett?\n\u2022 Genuss beim Essen: Wie funktioniert das eigentlich? Vorstel-\nlung Sinnes\u00fcbungen; Erstellung eines pers\u00f6nlichen Speiseplans;\nTipps, Anregungen und Rezepte f\u00fcr die Umsetzung einer gesun-\nden Ern\u00e4hrung im Alltag",
+        "Methoden des Kurses": "Power Point Pr\u00e4sentation, Praktische \u00dcbungen, Kleingruppenarbeit",
+        "Material/Unterlagen": "Jeder Teilnehmer erh\u00e4lt schriftliche Unterlagen",
+        "Wie oft wird der Kurs angeboten": "2x im Jahr/ 3 Termine in Folge",
+        "Kursdauer": "3x ca. 2 Stunden"
+    },
+    {
+        "Qualifizierungsbereich": "K\u00f6rperliche und geistige Gesundheitsf\u00f6rderung",
+        "Titel des Kurses": "Yoga \u2013 Kraftquelle f\u00fcr K\u00f6rper und Geist",
+        "Kurzbeschreibung/Untertitel des Moduls": "Durch Yoga K\u00f6per und Geist st\u00e4rken und den Kontakt zu Deiner\neigenen Mitte entdecken.",
+        "Inhalte des Kurses": "Dieser Kurs wendet sich an Personen, die noch keine oder et-\nwas Erfahrungen im Yoga haben, unabh\u00e4ngig der k\u00f6rperlichen\nVerfassung. Dieser Kurs gibt den Teilnehmern die M\u00f6glichkeit,\ndie eigene Wahrnehmung zu f\u00f6rdern.\nEs werden Yoga-Dehn-und -Streck\u00fcbungen vermittelt, wobei\ndie Teilnehmer Ihre eigenen k\u00f6rperlichen Grenzen kennnen-\nlernen und bei regelm\u00e4\u00dfiger Teilnahme eine Verbesserung\nIhrer Beweglichkeit und k\u00f6rperlicher Flexibilit\u00e4t erlangen.\nAm Ende der Stunde gibt es eine kleine Endentspannung, so\ndass die Teilnehmer wieder ausgeglichen f\u00fcr den Rest des\nTages die t\u00e4glichen Anforderungen gewachsen sind.\nZiel des Kurses:\nSchritt f\u00fcr Schritt werden leichte Yoga\u00fcbungen, kombiniert\nmit sanften Atem\u00fcbungen und Entspannungstechniken, ver-\nmittelt. Diese wirkungsvollen Techniken vitalisieren, reinigen\nund kr\u00e4ftigen das gesamte K\u00f6rpersystem und sind darauf\nausgerichtet wieder Energie zu entwickeln.\nAuf k\u00f6rperlicher Ebene wird auch der Stoffwechsel, die Sau-\nerstoffversorgung, die Atmungsqualit\u00e4t, die Muskulaturdurch-\nblutung und das Immunsystem verbessert.\nAuf seelischer Ebene die Entspannungsf\u00e4higkeit gest\u00e4rkt und\nStre\u00dfanf\u00e4lligkeiten reduziert.\nAls Pr\u00e4vention dienen diese \u00dcbungen zur Behandlung von\nR\u00fcckenproblemen und anderen Beschwerden im Bewegungs-\napperat.",
+        "Methoden des Kurses": "Yoga \u00dcbungen aus dem klassischen Hatha -und Kundalini Yoga. Die\n\u00dcbungen werden haupts\u00e4chlich auf der Matte in bequemer Kleidung\ngemacht.\nmax. 10 TN",
+        "Material/Unterlagen": "Wir arbeiten mit Yogamattenoder auf dem Stuhl",
+        "Wie oft wird der Kurs angeboten": "Jeweils 1-mal w\u00f6chentlich",
+        "Kursdauer": "e 45 Minuten\n34"
+    }
+]

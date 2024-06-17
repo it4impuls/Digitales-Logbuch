@@ -34,7 +34,7 @@ export interface Course {
 
 export interface ICourse extends Omit<Course, 'info'> {}
 
-export interface PostCourse extends Omit<Course, 'host'> {
+export interface PostCourse extends Omit<Course, 'host' | 'attendees'> {
 }
 
 
@@ -143,7 +143,6 @@ export class PostCourse implements PostCourse {
   // constructor(obj: Course);
   constructor(
     public id: number = 0,
-    public attendees = [] as Attendee[],
     public qualification: string = '',
     public title: string = '',
     public level: Level = Level.I,
@@ -158,7 +157,6 @@ export class PostCourse implements PostCourse {
   static fromObj(obj: PostCourse): PostCourse {
     return new PostCourse(
       obj.id,
-      obj.attendees.map((p) => Attendee.fromObj(p)),
       obj.qualification,
       obj.title,
       obj.level,

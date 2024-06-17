@@ -1,18 +1,16 @@
 
 <mat-toolbar class="tool_bar" color="primary">
-    <span routerLink="/">Kursbuch</span>
+    <span class="home button" routerLink="/">Kursbuch</span>
     <div class="spacer"></div>
-    <nav>
-        <a routerLink="/" class="button">Home</a>
+    <nav>    
+        @if (authService.loggedInAs) {
+            <a (click)="logout()" class="button"> Logout {{authService.loggedInAs}} </a>
+        }
+        @else {
+            <a routerLink="/login" class="button"> Login </a>
+            <a routerLink="/signup" class="button"> Sign up </a>
+        }
     </nav>
-    @if (authService.loggedInAs) {
-        <a (click)="logout()" class="button"> Logout {{authService.loggedInAs}} </a>
-        <a (click)="test()" class="button"> Test {{authService.loggedInAs}} </a>
-    }
-    @else {
-        <a routerLink="/login" class="button"> Login </a>
-        <a routerLink="/signup" class="button"> Sign up </a>
-    }
     
     
 </mat-toolbar>

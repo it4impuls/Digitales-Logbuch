@@ -23,14 +23,14 @@ export class AuthService {
     // if (rToken) {
     this.http.refreshToken().subscribe({
       next: (response) => {
-        this.cookieService.addToCookieWithName(
-          CookieType.accessToken,
-          response['access']
-        );
+        // this.cookieService.addToCookieWithName(
+        //   CookieType.accessToken,
+        //   response['access']
+        // );
         this.updateLoggedInAs();
       },
       error: (err) => {
-        console.log(err);
+        // console.log(err);
         // this.cookieService.clearAll()
       },
     });

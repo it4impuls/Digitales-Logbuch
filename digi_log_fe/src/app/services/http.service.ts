@@ -80,6 +80,18 @@ export class HttpService {
     return Course.fromObj(c);
   }
 
+  delEvent(id:number) {
+    return this.deletePosts(this.baseURL + 'courses/' + id +"/")
+  }
+
+  async updateAttending(ID: number, attending:boolean) {
+    return firstValueFrom(
+      this.patchPosts<Attendee>(this.baseURL + 'attendees/' + ID + '/', {
+        attends: attending,
+      })
+    );
+  }
+
   login(uname: string, passwd: string): Observable<LoginResponse> {
     return this.httpClient.post<LoginResponse>(
       this.baseURL + 'token/',

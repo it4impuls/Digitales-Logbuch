@@ -1,0 +1,1059 @@
+Kurzbeschreibung der Qualifizierungsmodule
+Kurzbeschreibung des
+Qualifizierungsmoduls
+IMPULS AUF KURS
+1
+Stand: Januar 2022Kurzbeschreibung des
+Qualifizierungsmoduls
+Inhalt
+Excel – einfache Formeln und Namen....................................................................... 3
+Excel – Diagramme.......................................................................................................4
+Excel – Listen................................................................................................................. 5
+Excel – besondere Formate, Schutz und Gültigkeit................................................. 6
+Excel – Komplexe Formeln und Funktionen.............................................................. 7
+Excel – Pivot Tabellen und SVERWEIS....................................................................... 8
+Word – Tabellen und Vorlagen..................................................................................... 9
+Teil 1: Word – DIN Brief und einfache Serienbriefe................................................ 10
+Teil 2: Word – komplexer Seriendruck........................................................................11
+Word – Felder, Formulare und Überarbeitung.........................................................12
+Power Point Präsentationen.......................................................................................13
+Power Point Entwurfsvorlagen und Folienmaster...................................................14
+Outlook – effektive Arbeitsorganisation..................................................................15
+Englisch..........................................................................................................................16
+Gehaltsabrechnung...................................................................................................... 17
+Kassenführung..............................................................................................................18
+Umsatzsteuer und Pflichtanforderungen an eine Rechnung.................................19
+Reisekosten..................................................................................................................20
+Gesundheitskompetenzen..........................................................................................21
+Konfliktmanagement.................................................................................................. 22
+Körperwahrnehmung & Psychosomatik...................................................................23
+Leichter lernen – Wie Lernmethoden dabei helfen können!.................................24
+Psychoedukation ........................................................................................................25
+(für TN mit Depressionen/Burnout-Erfahrungen oder TN mit ............................25
+Arbeitsstörungen hauptsächlich auf der Beziehungsebene)................................25
+Ressourcenwerkstatt .................................................................................................26
+Sozialkompetenztraining............................................................................................ 27
+Stilsicher auftreten......................................................................................................28
+Wohlbefinden statt Stress..........................................................................................29
+Wohlfühlwerkstatt ......................................................................................................30
+Zielgerichtete Kommunikation...................................................................................31
+Das Zürcher Ressourcen Modell................................................................................32
+Gesunde Ernährung....................................................................................................33
+Yoga – Kraftquelle für Körper und Geist..................................................................34
+Büroorganisation.........................................................................................................35
+2
+Stand: Januar 2022Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+EDV
+Titel des Kurses
+Excel – einfache Formeln und Namen
+Level
+I Anfänger
+Kurzbeschreibung/Untertitel des Moduls
+Einfache Formeln – Logik erkennen und umsetzen
+Inhalte des Kurses:
+• Einfache Formeln aufbauen, Formeln kopieren, Formeln anzeigen
+• Formeln über mehrere Arbeitsblätter und Dateien
+• Fehler in Formeln finden, Spur zum Vorgänger/Nachfolger
+• bedingte Formatierung
+• Namen einrichten und verwalten, in Formeln einsetzen
+• arbeiten mit Fenstern in komplexen Tabellen, Zeilen und Spalten
+fixieren
+• Zeilen, Spalten, Tabellenblätter ein und ausblenden, hinzufügen,
+kopieren
+• Kommentare einfügen, ausblenden, bearbeiten
+Methoden des Kurses
+Theorie, Praktische Übungen und Fallbeispiele
+Material/Unterlagen
+Handouts zu den einzelnen Themenbereichen
+Wie oft wird der Kurs angeboten
+ca. alle 6 Wochen
+Kursdauer
+ca. 4 Std.
+Stand: Januar 2022
+3Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+EDV
+Titel des Kurses
+Excel – Diagramme
+Level
+II Fortgeschritten
+Kurzbeschreibung/Untertitel des Moduls
+Auswahl und Aufbau geeigneter Diagrammtypen
+Inhalte des Kurses:
+• Welche Daten eignen sich zur grafischen Darstellung
+• Einsatzgebiete, Sinn und Zweck grafischer Darstellungen
+• Welcher Diagrammtyp eignet sich für welche Aussage
+• Datenaufbereitung und Erstellung von unterschiedlichen
+Diagrammen
+• Bearbeitung von Diagrammen, Beschriftung, Achsenformatierung,
+Änderung des Diagrammtyps
+• Trends aufzeigen mit Sparklines
+• Druck von Diagrammen
+Methoden des Kurses
+Theorie, Praktische Übungen und Fallbeispiele
+Material/Unterlagen
+Handouts zu den einzelnen Themenbereichen
+Wie oft wird der Kurs angeboten
+ca. alle 6 Wochen
+Kursdauer
+ca. 2 Std.
+Stand: Januar 2022
+4Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+EDV
+Titel des Kurses:
+Excel – Listen
+Level
+II Fortgeschritten
+Kurzbeschreibung/Untertitel des Moduls
+Arbeit mit unterschiedlichen Listetypen
+Inhalte des Kurses
+• Welche Daten gehören in Listen
+• Aufbau von komplexen Listen gemäß Verwendungszweck
+• Externe Daten importieren
+• Daten als Tabelle formatieren
+• Doppelte Datensätze entfernen
+• Ergebniszeile
+• Daten sortieren und filtern
+• Layoutvariante
+Methoden des Kurses
+Theorie, Praktische Übungen und Fallbeispiele
+Material/Unterlagen
+Handouts zu den einzelnen Themenbereichen
+Wie oft wird der Kurs angeboten
+ca. alle 6 Wochen
+Kursdauer
+ca. 2 Std.
+Stand: Januar 2022
+5Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+EDV
+Titel des Kurses
+Excel – besondere Formate, Schutz und Gültigkeit
+Level
+II Fortgeschritten
+Kurzbeschreibung/Untertitel des Moduls
+Benutzerdefinierte Zellformatierung
+Inhalte des Kurses:
+• Arbeit mit Datum und Zeit,
+Formatierung, Funktionen für Datum und Uhrzeit
+• benutzerdefinierte Zellformatierung
+• Schutz von Zellen, Blättern, Arbeitsmappen
+• Formularerstellung/Benutzer dürfen nur ausgewählte Bereiche
+bearbeiten
+• Gültigkeitsprüfung, Eingabebeschränkung, Fehlermeldung
+Methoden des Kurses
+Theorie, Praktische Übungen und Fallbeispiele
+Material/Unterlagen
+Handouts zu den einzelnen Themenbereichen
+Wie oft wird der Kurs angeboten
+ca. alle 6 Wochen
+Kursdauer
+ca. 2 Std.
+Stand: Januar 2022
+6Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+EDV
+Titel des Kurses
+Excel – Komplexe Formeln und Funktionen
+Level
+III Profi
+Kurzbeschreibung/Untertitel des Moduls
+Komplexe Formeln erstellen und verstehen
+Inhalte des Kurses:
+• Komplexe Formeln erstellen
+• Funktionen, Funktionsbibliothek
+• Aufbau und Einsatzgebiete der WENN-Funktion
+• Formelüberwachung, Spur zum Vorgänger/Nachfolger
+• Gliederung, Gruppierung, Teilergebnis
+Methoden des Kurses
+Theorie, Praktische Übungen und Fallbeispiele
+Material/Unterlagen
+Handouts zu den einzelnen Themenbereichen
+Wie oft wird der Kurs angeboten
+ca. alle 6 Wochen
+Kursdauer
+ca. 3 Std.
+Stand: Januar 2022
+7Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+EDV
+Titel des Kurses
+Excel – Pivot Tabellen und SVERWEIS
+Level
+IV Vollprofi
+Kurzbeschreibung/Untertitel des Moduls
+Arbeiten mit Pivot Tabellen
+Inhalte des Kurses
+• Erstellung und Arbeit mit Pivot-Tabellen,
+Analysen durchführen
+• Erstellung von Pivot-Charts
+• Datenschnitt
+• Verschachtelte Wenn Funktionen
+• SVERWEIS
+• WVERWEIS
+Methoden des Kurses
+Theorie, Praktische Übungen und Fallbeispiele
+Material/Unterlagen
+Handouts zu den einzelnen Themenbereichen
+Wie oft wird der Kurs angeboten
+ca. alle 6 Wochen
+Kursdauer
+ca. 3 Std.
+Stand: Januar 2022
+8Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+EDV
+Titel des Kurses
+Word – Tabellen und Vorlagen
+Level
+I Anfänger
+Kurzbeschreibung/Untertitel des Moduls
+Arbeit mit unterschiedlichen Tabellen
+Inhalte des Kurses:
+• Tabellen einfügen und bearbeiten
+• Nutzung der Tabellentools Entwurf und Layout
+• Zeilen/Spalten einfügen und löschen, Rahmen ausblenden
+• Einzelne Linien gezielt setzen
+• Verwendung von Tabellen im Lebenslauf
+• Mit Exceltabellen in Word arbeiten
+Methoden des Kurses
+Theorie, Praktische Übungen und Fallbeispiele
+Material/Unterlagen
+Handouts zu den einzelnen Themenbereichen
+Wie oft wird der Kurs angeboten
+ca. alle 4 Wochen
+Kursdauer
+ca. 3 Std.
+Stand: Januar 2022
+9Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+EDV
+Titel des Kurses
+Teil 1: Word – DIN Brief und einfache Serienbriefe
+Level
+II Fortgeschritten
+Kurzbeschreibung/Untertitel des Moduls
+Grundlagen der DIN-Briefgestaltung
+Inhalte des Kurses:
+• Verpflichtende Angaben auf Geschäftsbriefen und
+im Mailverkehr
+• Geschäftsbrief, Aufbau 1. Und 2. Seite gemäß DIN
+• Stilelemente
+• Seriendruck, was ist ein Serienbrief und wann nutze ich ihn
+• Erstellung von einfachen Serienbriefen
+• Hauptdokument, Datenquelle, Seriendruckfelder
+• Verwendung des Seriendruckassistenten
+• Erstellen einer Adressquelle in Word (Access)
+• Briefumschläge und Etiketten drucken
+• Portooptimierung
+Methoden des Kurses
+Theorie, Praktische Übungen und Fallbeispiele
+Material/Unterlagen
+Handouts zu den einzelnen Themenbereichen
+Wie oft wird der Kurs angeboten
+ca. alle 6 Wochen
+Kursdauer
+ca. 4 Std.
+Stand: Januar 2022
+10Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+EDV
+Titel des Kurses
+Teil 2: Word – komplexer Seriendruck
+Level
+III Profi
+Voraussetzung Teil 1: Word – DIN Brief und einfache Serienbriefe
+Kurzbeschreibung/Untertitel des Moduls
+Arbeit mit verschiedenen Listentypen
+Inhalte des Kurses:
+• Verwendung externer Datenquellen (Excel, Outlook)
+• Erstellung komplexer Serienbriefe
+• Verwendung einzelner Datenfelder
+• Datenfelder externer Listen zuordnen
+• Arbeiten mit Bedingungsfeldern
+• Serien-E-Mail
+Methoden des Kurses
+Theorie, Praktische Übungen und Fallbeispiele
+Material/Unterlagen
+Handouts zu den einzelnen Themenbereichen
+Wie oft wird der Kurs angeboten
+ca. alle 6 Wochen
+Kursdauer
+ca. 4 Std.
+Stand: Januar 2022
+11Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+EDV
+Titel des Kurses
+Word – Felder, Formulare und Überarbeitung
+Level
+III Profi
+Kurzbeschreibung/Untertitel des Moduls
+Felder und Feldfunktionen
+Inhalte des Kurses:
+• Felder und Feldfunktionen
+• Inhaltsverzeichnis generieren
+• Formulare, Bearbeitungsbereiche einschränken,
+Dokumente schützen,
+• Überarbeitungen kennzeichnen, Änderungen verfolgen,
+annehmen/ablehnen, Kommentare
+Methoden des Kurses
+Theorie, Praktische Übungen und Fallbeispiele
+Material/Unterlagen
+Handouts zu den einzelnen Themenbereichen
+Wie oft wird der Kurs angeboten
+ca. alle 6 Wochen
+Kursdauer
+ca. 2 Std.
+Stand: Januar 2022
+12Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+EDV
+Titel des Kurses
+Power Point – Präsentationen
+Level
+I Anfänger
+Kurzbeschreibung/Untertitel des Moduls
+Präsentationen erstellen und halten
+Inhalte des Kurses:
+• Präsentationstypen für Ausdruck, Mailversand und Referat
+Aufbau und Format gemäß Verwendungszweck
+• benutzerdefinierte Bildschirmanimation
+Animationseffekte zuweisen
+Zeitl. Ablauf und Anzeigedauer einstellen
+• Seitenübergänge
+• Tabellen und Diagramme einfügen, SmartArt Grafiken
+• Folien präsentieren mit Beamer
+Methoden des Kurses
+Theorie, Praktische Übungen und Fallbeispiele
+Material/Unterlagen
+Handouts zu den einzelnen Themenbereichen
+Wie oft wird der Kurs angeboten
+ca. alle 6 Wochen
+Kursdauer
+ca. 4 Std.
+Stand: Januar 2022
+13Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+EDV
+Titel des Kurses
+Power Point – Entwurfsvorlagen und Folienmaster
+Level
+II Fortgeschritten
+Kurzbeschreibung/Untertitel des Moduls
+Professionelle Layouts erstellen
+Inhalte des Kurses:
+• Entwurfsvorlagen
+• Folienmaster
+• Handzettelmaster
+• Notizenseite und Notizenmaster
+• Interaktive Schaltflächen
+• Audio- und Videoclips einfügen
+• Präsentationen zusammenführen und vergleichen
+• Kommentieren
+Methoden des Kurses
+Theorie, Praktische Übungen und Fallbeispiele
+Material/Unterlagen
+Handouts zu den einzelnen Themenbereichen
+Wie oft wird der Kurs angeboten
+ca. alle 6 Wochen
+Kursdauer
+ca. 4 Std.
+Stand: Januar 2022
+14Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+EDV
+Titel des Kurses
+Outlook – effektive Arbeitsorganisation
+Level
+I Anfänger
+Kurzbeschreibung/Untertitel des Moduls
+Einmalige und wiederkehrende Tätigkeiten planen und organisieren
+Inhalte des Kurses:
+• E-Mail – kategorisieren und nachverfolgen
+• Versandoptionen, persönliche Signatur, Briefpapier
+• Ein-und Anfügeoptionen, Lesebestätigung, Abstimmungsschaltflächen,
+Postfach organisieren
+• Ordner anlegen und Regeln erstellen
+• Termine und Besprechungen organisieren
+• Besprechungen erstellen, Verfügbarkeit prüfen,
+annehmen/ablehnen/andere Zeit vorschlagen, Erinnerung
+• Wiederkehrende Ereignisse, Informationen einstellen
+• Kontakte – Kontaktgruppe erstellen und Mitglieder zuweisen
+• Aufgaben planen und vergeben
+• Aufgaben erstellen, zuweisen, Statusabfrage, Erledigungsvermerk, Erinnerung,
+Dokumente Verknüpfen
+• Drucken
+• Druckoptionen für E-Mails, Aufgaben und Kalender
+Methoden des Kurses
+Theorie, Praktische Übungen und Fallbeispiele
+Material/Unterlagen
+Handouts zu den einzelnen Themenbereichen
+Wie oft wird der Kurs angeboten
+ca. alle 4 Wochen
+Kursdauer
+ca. 3 Std.
+15
+Stand: Januar 2022Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Fachspezifische Kompetenz
+Titel des Kurses
+Englisch
+Kurzbeschreibung/Untertitel des Moduls
+Als globale Kommunikationssprache gewinnt Englisch auch im beruflichen
+Kontext immer mehr an Bedeutung. Dabei kommt es in der Regel nicht darauf
+an, die Sprache perfekt zu beherrschen, zumal man es oftmals auch nicht mit
+Muttersprachlern zu tun hat. Vielmehr geht es darum, sich gut verständlich ma-
+chen zu können und grundsätzlich die Scheu vor dem Sprechen zu überwinden.
+In diesem Sinne möchte der Kurs in entspannter Atmosphäre ein Angebot ma-
+chen, Schwellenängste zu überwinden und miteinander ins englische Gespräch
+zu kommen. Themen und Inhalte der Unterrichtsstunden richten sich nach dem
+jeweiligen Kenntnisstand und den Bedürfnissen der TeilnehmerInnen:
+Bitte äußern Sie Ihre Wünsche!
+Inhalte des Kurses
+• Talkrunde auf Englisch
+Wie oft wird der Kurs angeboten
+jeden Dienstag 08:30 – 09:30 h,
+jeden Freitag 14:30 h – 15:30 h
+Teilnahme mind. 5 Termine
+Kursdauer
+ca. 1 Std, max. 5 Teilnehmer
+16
+Stand: Januar 2022Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Fachspezifische Kompetenz
+Titel des Kurses
+Gehaltsabrechnung
+Kurzbeschreibung/Untertitel des Moduls
+Aufbau einer Gehaltsabrechnung
+Inhalte des Kurses:
+• Vermittlung der lohnsteuer- und sozialversicherungsrechtlichen
+Grundlagen einer Gehaltsabrechnung (was ist steuer- / sozial-
+versicherungspflichtig oder frei;
+Bedeutung der Steuerklassen).
+Methoden des Kurses
+Vortrag
+Fragen + Antworten
+Material/Unterlagen
+Muster einer Gehaltsabrechnung;
+Informationen über Lohnsteuer und
+Sozialversicherung z.B. Beitragssätze,
+Grenzwerte
+Wie oft wird der Kurs angeboten
+ca. alle 2 Monate
+Kursdauer
+ca. 2 Std.
+17
+Stand: Januar 2022Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Fachspezifische Kompetenz
+Titel des Kurses
+Kassenführung
+Kurzbeschreibung/Untertitel des Moduls
+Barbelege: Ein- und Ausgaben erkennen und zuordnen,
+mit und ohne Umsatzsteuer. Eintragungen in ein Formular Kassen-
+buch (handschriftlich und mit Excel), Zahlungsarten
+Methoden des Kurses
+Vortrag und Übungen: selbständiges Arbeiten
+durch Umsetzung des vorher Gelernten.
+Material/Unterlagen
+Schriftliche Erläuterungen zum Führen eines Kassenbuches. Kopierte
+(realistische) Barbelege, Kassenbuch Formular
+Wie oft wird der Kurs angeboten
+ca. alle 2 Monate
+Kursdauer
+ca. 1,5 Std.
+Stand: Januar 2022
+18Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Fachspezifische Kompetenz
+Titel des Kurses
+Umsatzsteuer und Pflichtanforderungen an eine Rechnung
+Kurzbeschreibung/Untertitel des Moduls
+Kennenlernen der Voraussetzungen für eine korrekte
+Rechnung. Erstellung einer Umsatzsteuer-Voranmeldung
+Inhalte des Kurses
+• Vorschriften für Rechnungen nach dem Umsatzsteuergesetz
+• Prüfungen von Rechnungen nach den gelernten Kriterien
+• evtl. selbständiges Erstellen einer Rechnung
+• Umsatzsteuer, warum und wann wird Umsatzsteuer berechnet,
+wie läuft das beim Finanzamt
+• Welche Unternehmer ist umsatzsteuerpflichtig, Ust-Befreiung,
+Erläuterungen zu den verschiedenen Steuersätzen und Steu-
+erarten (Ust, Mineralölsteuer etc.), Umsatzsteuerbefreiung
+warum und wann möglich
+• Berechnung plus / inkl. Umsatzsteuer. Praktische Übungen zu
+verschiedenen Umsatzsteuern z.B. Inland, EG, Drittland
+Methoden des Kurses
+Vortrag, selbständiges Erkennen von fehlerhaften Rechnungen, Feststellen
+von umsatzspezifischen Merkmalen. Übung und Umsetzung mit Eingangs-
+und Ausgangsrechnungen in Excel
+Material/Unterlagen
+Rechnungskopien, gesetzliche Kriterien zur
+Umsatzsteuer, Übungsunterlagen
+Wie oft wird der Kurs angeboten
+ca. alle 2 Monate
+Kursdauer
+ca. 2,0 Std.
+Stand: Januar 2022
+19Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Fachspezifische Kompetenz
+Titel des Kurses
+Reisekosten
+Kurzbeschreibung/Untertitel des Moduls
+Erstellung einer Reisekostenabrechnung für das Inland
+mit Pauschalen und nach Belegen
+Inhalte des Kurses
+• Erläuterung warum und wie eine Reisekostenabrechnung er-
+stellt wird.
+• Wo finde ich die Reisekostensätze In- und Ausland.
+• Wie berechne ich die Pauschalen nach Abwesenheitsstunden.
+Methoden des Kurses
+Vortrag, umsetzen des Gelernten in selbständigem Erstellen einer
+Reisekostenabrechnung
+Material/Unterlagen
+Unterlagen über die Pauschalen, Formular Reisekostenabrechnung
+Wie oft wird der Kurs angeboten
+ca. alle 2 Monate
+Kursdauer
+ca. 1,5 Std.
+Stand: Januar 2022
+20Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Persönlichkeitsentwicklung
+Titel des Kurses
+Gesundheitskompetenzen
+Kurzbeschreibung/Untertitel des Moduls
+Entwicklung von individuellen Strategien zur Verbesserung von
+Gesundheit und Wohlbefinden
+Inhalte des Kurses
+Dieser Kurs eröffnet den Teilnehmer / innen die Möglichkeit, ihr
+eigenes Verständnis von Gesundheit zu erweitern und ihren persön-
+lichen Prozess der Genesung und Erhaltung ihrer Gesundheit weiter
+zu entwickeln.
+Es werden Gesundheitsaspekte in den Mittelpunkt gestellt, die von
+den Teilnehmer / innen aus eigener Erfahrung als wichtig erachtet
+werden. Wir beschäftigen uns mit Themen wie „Was ist Gesund-
+heit?“, „Was hält mich gesund?“, „Was beeinflusst meine Gesund-
+heit?“ sowie mit der Entwicklung von individuell passenden Strate-
+gien zu Verbesserung von Gesundheit und Wohlbefinden, auch im
+Kontext von Arbeit und Erwerbstätigkeit, stehen im Vordergrund
+dieses Trainings.
+Methoden
+Erfahrungsaustausch (Peer-Ansatz), Kleingruppen- und Gruppenarbeit
+Kreative Methoden
+Material/Unterlagen
+Jeder Teilnehmer erhält schriftliche Unterlagen.
+Wie oft wird der Kurs angeboten
+ca. 3 x im Jahr, 4 Termine in Folge
+Kursdauer
+4 mal ca. 2,5 Std
+Stand: Januar 2022
+21Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Persönlichkeitstraining
+Titel des Kurses
+Konfliktmanagement
+Kurzbeschreibung/Untertitel des Moduls
+Konflikte sind unbeliebt, aber unvermeidlich.
+Es lohnt sich, verschieden Strategien
+im Umgang mit ihnen zu beherrschen!
+Inhalte des Kurses
+• Bewertung und Ursachen
+• Definition und Konfliktarten
+• Vermeidung
+• Vorbereiten und Austragen
+• Konstruktives Streiten
+• Gewaltfreie Kommunikation
+• Konflikte im Betrieb
+• Aushalten in Gelassenheit
+• Mobbing
+Methoden des Kurses
+Präsentation, Gruppengespräch, Kleingruppen,
+Rollenspiel, Selbststudium
+Material/Unterlagen
+Diverse Handouts zur Selbstklärung;
+Selbsthilfe, Theorie, Regeln und Handhabung
+Wie oft wird der Kurs angeboten
+ca. alle 3 Monate, 2 Termine
+Kursdauer
+2 mal ca. 3 Std.
+Stand: Januar 2022
+22Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Persönlichkeitstraining
+Titel des Kurses
+Körperwahrnehmung & Psychosomatik
+Kurzbeschreibung/Untertitel des Moduls
+Lernen einer bewussten und achtsamen Wahrnehmung des eigenen
+Körpers
+• zur Aufdeckung von psychosomatischen Zusammenhängen
+• als Ausgleich zu Gedankenkreisen, Grübeln und Zwängen
+• als Unterstützung der Entspannung oder Aktivierung des Körers
+Je nach Gruppenzusammensetzung und Wünschen kann der inhalt-
+liche Schwerpunkt auf einen der drei Aspekte gelegt werden.
+Inhalte des Kurses
+• Einführung in das Feld der Psychosomatik und der ganzheitlichen
+		 Betrachtung des Menschen und seiner Gesundheit
+• Prinzipien der Achtsamkeit (insbesondere der achtsamen Haltung
+z.B. 			
+das Prinzip der Nicht-Wertung)
+• Praktische Übungen zur Verbesserung der Körperwahrnehmung –
+		 Übungen auch für den Alltag
+• Körpererleben in Entspannung, Anspannung, Bewegung
+• Den eigenen Körper besser kennenlernen - Auseinandersetzung mit
+		 Gedanken, Gefühlen und dem Umgang mit dem eigenen Körper
+		 (z.B. was tut meinem Körper gut? Wie sorge ich mich um meinen
+		 Körper? Wie reagiert mein Körper bei Stress/Ängsten/Krankheit?)
+Methoden des Kurses
+•		 Praktische Übungen ggf. auch in Bewegung (Einzel- und Gruppenarbeit)
+•		 Theoretische Auseinandersetzung
+•		 Austausch im Plenum, max. 12 TN
+Wichtig! Jede Teilnehmerin/ jeder Teilnehmer entscheidet stets individuell
+welche Übungen in welchem Umfang sie oder er mitmacht. Körperliche Mobi-
+litätseinschränkungen sind kein Hindernis für die Kursteilnahme. Alle Übungen
+können individuell angepasst werden.
+Material/Unterlagen
+Schriftliche Unterlagen werden ausgeteilt. Bitte zusätzlich
+Schreibmaterial mitbringen.
+Wie oft wird der Kurs angeboten
+4 mal im Jahr á 4 Termine
+Kursdauer
+4 Termine á 2,5 Std.
+23
+Stand: Januar 2022Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Persönlichkeitsentwicklung
+Titel des Kurses
+Leichter lernen – Wie Lernmethoden dabei helfen können!
+Kurzbeschreibung/Untertitel des Moduls
+Lernen gehört zum Leben, im Beruf ist es
+Grundvoraussetzung. Aber wieso fällt es manchen
+Menschen das Lernen leicht, anderen dagegen schwer? Im Kurs soll
+dargestellt werden, dass Menschen auf unterschiedliche Weise ler-
+nen können. Am Ende des Kurses soll jede/r Teilnehmer/in die für sie/
+ihn am besten geeignete Lernmethode gefunden haben.
+Inhalte des Kurses
+• Einführung, Lernerfahrung der TeilnehmerInnen
+• Test – Welcher Lerntyp bin ich?
+• Mnemotechniken ( Loci-Methode, Assoziationsketten)
+• Visualisierungstechniken
+• Die Loci-Methode
+• Lernkarteien
+• Mind-Mapping
+• Lernen in der Gruppe
+• Ausprobieren und Einüben der Lernmethoden
+• Abschluss
+Methoden des Kurses
+Theoretische Vermittlung ( Flipchart, Arbeitsblätter)
+Lerntypentest
+Erprobung und Einübung der Techniken
+Material/Unterlagen
+Arbeitsblätter, Testunterlagen, Mitschriften
+Wie oft wird der Kurs angeboten
+ca. alle 2 Monate
+Kursdauer
+ca. 2,5 Std.
+Stand: Januar 2022
+24Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Persönlichkeitstraining
+Titel des Kurses
+Psychoedukation
+(für TN mit Depressionen/Burnout-Erfahrungen oder TN mit
+Arbeitsstörungen hauptsächlich auf der Beziehungsebene)
+Kurzbeschreibung/Untertitel des Moduls
+Verständnis entwickeln für die Bedeutung der eigenen Erkrankung als
+„Arbeitsstörung“ und Entwickeln alternativer Methoden und Strategien im
+Umgang mit Aufgabenplanung, -erledigung und Arbeitsorganisation. Selbst-
+lernprogramm für die Vermeidung erneuter Überforderung.
+Inhalte des Kurses
+• Einführung in die Theorie der „Arbeitsstörung“ und dem Zusammenhang
+zwischen Arbeit und psychischer Erkrankung
+• Rückblick in die Arbeitsbiographie zum besseren Verständnis des Zusam-
+menhangs zwischen Erkrankung und Arbeitsstörung.
+• Ausblick auf den Umgang mit schwierigen Situationen im Arbeitsleben.
+• Erlernen und Erarbeiten kognitiver Strategien für den Umgang mit Auf-
+gaben und der Arbeitsorganisation.
+• Emotionsregulierung bei auftretenden Schwierigkeiten am Arbeitsplatz.
+• Sicherung der eigenen positiven Energiebilanz im Arbeitskontext und in
+der Freizeit.
+Methoden des Kurses
+•Theoretischer Trainer-Input
+•Gruppenarbeit und Austausch im Plenum
+•Praktische Übungen zur Verbesserung der Wahrnehmung und
+der Emotionsregulierung, Entspannungsübungen
+•
+Max. 12 TN
+Wichtig! Die TN sollten das Basistraining abgeschlossen haben und sich
+im 4. Reha-Monat befinden. Bitte Rücksprache mit den jeweiligen PSFs
+halten.
+Material/Unterlagen
+Schriftliche Unterlagen werden ausgeteilt. Bitte zusätzlich Schreibmate-
+rial mitbringen.
+Wie oft wird der Kurs angeboten
+Je nach TN-Nachfrage und Abstimmung mit den zuständigen PSFs.
+Kursdauer
+5 oder 6 Termine á 2 Std je nach Zielgruppe.
+Stand: Januar 2022
+25Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Persönlichkeitsentwicklung
+Titel des Kurses
+Ressourcenwerkstatt
+Kurzbeschreibung/Untertitel des Moduls
+Bewusstsein stärken für persönliche Stärken, berufliche		
+Kompetenzen und individuelle Erfolgsgeschichten.
+Inhalte des Kurses
+Ziel des Kurses ist es, den eigenen „Selbstwert zu polieren“.
+Dies erfolgt durch Würdigung der eigenen Stärken und liebens-
+werten Eigenschaften und durch Wertschätzung großer und
+kleiner eigener Erfolge.
+Methoden des Kurses
+• Mündliche und schriftliche Reflektion
+• Feedback
+• Kreative Methoden(z.B. Collage)
+• Arbeitsblätter
+Material/Unterlagen
+• Arbeitsblätter
+• Collage
+Wie oft wird der Kurs angeboten
+3 mal im Jahr, jeweils 5 Termine
+Kursdauer
+5 mal ca. 2 Std
+26
+Stand: Januar 2022Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Persönlichkeitsentwicklung
+Titel des Kurses
+Sozialkompetenztraining
+Kurzbeschreibung/Untertitel des Moduls
+Einüben von sozial kompetentem Auftreten und der Abgrenzung
+von sicherem, unsicherem und aggressivem Verhalten
+Inhalte des Kurses
+• Sicheres, unsicheres und aggressives Verhalten
+• Recht durchsetzen
+• Beziehungen (beruflich und privat)
+• Äußern von Gefühlen
+Methoden des Kurses
+Theorie und praktische Übungen (z.B. Rollenspiel)
+max. 10 TN
+Material/Unterlagen
+Jeder Teilnehmer erhält schriftliche Unterlagen
+Wie oft wird der Kurs angeboten
+4 mal im Jahr, 5 Termine in Folge
+Kursdauer
+5 mal ca. 2,5 Std
+Stand: Januar 2022
+27Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Persönlichkeitsentwicklung
+Titel des Kurses
+Stilsicher auftreten
+Kurzbeschreibung/Untertitel des Moduls
+Imageberatung für Bewerbungen
+Was nützen die schönsten Bewerbungsunterlagen und besten
+Absichten, wenn der 1. Eindruck beim persönlichen Vorstellungsge-
+spräch nicht dazu passt?
+Die Kleidung spielt beim 1. Eindruck eine große Rolle, weil sie das
+Erste ist, was gesehen wird.
+Welcher Kleidungsstil passt authentisch zu Ihnen und Ihrem künf-
+tigen Beruf? Finden Sie es in diesem Kurs heraus! Wenn Sie dann
+noch Kleidung tragen in Farben, die Ihnen gut zu Gesicht stehen,
+läuft der gute 1. Eindruck fast von alleine.
+Inhalte des Kurses
+• Wie möchte ich auf potenzielle Arbeitgeber wirken und mit was
+kann ich das in der Kleidung unterstreichen
+• Farbberatung der Teilnehmer in der Gruppe
+• Erarbeitung von Stilrichtungen in der Kleidung und Einordnung,
+was dabei zu welchen Teilnehmer bzw. Beruf passt
+• Tipps für Kleidung und Accessoires für Bewerbungsfotos
+• Wenn gewünscht: Tipps zur Wahl von Kleidung passend zum
+Figurtyp
+• Feedback zu den mitgebrachten Outfits
+Methoden des Kurses
+„Learning by Doing“, Interaktive Gruppenarbeit
+Material/Unterlagen
+Alle Teilnehmer werden gebeten, in vorhandener Kleidung zu kommen
+oder mitzubringen, die für ein Vorstellungsgespräch geeignet ist, auch
+gern mit Accessoires. Bitte keine neue Kleidung dafür kaufen!
+Wer bereits ein aktuelles Bewerbungsfoto hat, bringt das bitte mit.
+Jeder Teilnehmer enthält ein Handout mit Farbkarte, Übersicht zu
+Stiltypen, Wirkung von Farben in der Kleidung und unabhängige Tipps
+zu Einkaufsadressen
+Wie oft wird der Kurs angeboten
+1 mal pro Monat
+Kursdauer
+09:00-16:00
+Stand: Januar 2022
+28Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Persönlichkeitsentwicklung
+Titel des Kurses
+Wohlbefinden statt Stress
+Kurzbeschreibung/Untertitel des Moduls
+Stress bewältigen, Belastungen abbauen und
+Wohlbefinden steigern
+Inhalte des Kurses
+Überforderung kann psychische Symptome verstärken und sich
+ungünstig auf den Heilungsverlauf von Erkrankungen
+auswirken. Genauso wie Unterforderung. In diesem
+Stressbewältigungstraining erkunden Teilnehmer ihr
+optimales individuelles Belastungsniveau und lernen, wie sie
+ihr persönliches Gleichgewicht besser gestalten können.
+Neben kurzen Theorieeinheiten liegt der Fokus dieses
+Trainings auf dem praktischen Erlernen von
+Basisbewältigungsstrategien. Ziel ist es, kritische
+Lebensereignisse und Dauerbelastungen besser zu bewältigen
+und somit Rückfälle und Krisen im Alltag besser vorzubeugen.
+Methoden des Kurses
+• Austausch in der Gruppe ( max. 10 TN )
+• Kurze Theorie Einheiten
+• Einzel- und Gruppenübungen
+• Entspannungstechniken
+• Selbstreflexion und Feedback
+• Entspannungstechniken üben und Selbstbeobachtung außer-
+halb der Trainingszeiten
+Material/Unterlagen
+• Arbeitsblätter
+• Entspannungs-CDs
+Wie oft wird der Kurs angeboten
+alle 2 Monate
+Kursdauer
+5 mal ca 2 Std.
+Stand: Januar 2022
+29Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Persönlichkeitsentwicklung
+Titel des Kurses
+Wohlfühlwerkstatt
+Kurzbeschreibung/Untertitel des Moduls
+Erleben von „guten Momenten“ im Alltag und Förderung von Wohl-
+befinden
+Inhalte des Kurses
+• eigene „Wohlfühlmuster“ erkennen“
+• Voraussetzungen für eigene Wohlfühlmomente schaffen
+• Fähigkeit steigern, sich „gute Momente“ im Alltag		
+zu verschaffen
+Methoden des Kurses
+• Mündliche und schriftliche Reflektion in der Gruppe
+• Eigene Verhaltensbeobachtungen
+• Erprobungen zwischen den Seminarterminen
+Material/Unterlagen
+• Arbeitsblätter
+Wie oft wird der Kurs angeboten
+3 mal im Jahr, jeweils 5 Termine
+Kursdauer
+5 mal ca. 2 Std
+30
+Stand: Januar 2022Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Persönlichkeitsentwicklung
+Titel des Kurses
+Zielgerichtete Kommunikation
+Kurzbeschreibung/Untertitel des Moduls
+Grundlagen und Übungen für ein
+empfängerorientiertes Kommunikationsverhalten
+Inhalte des Kurses
+• Was genau ist Kommunikation
+• Die Bedeutung von (selektiver) Wahrnehmung für
+Kommunikation
+• Verbale vs. Nonverbale Kommunikation
+• Die Vier Seiten einer Nachricht (Schulz von Thun)
+• Ich Botschaften
+Methoden des Kurses
+Theorie und praktische Übungen
+min. 4 TN max. 8 TN
+Material/Unterlagen
+Jeder Teilnehmer erhält schriftliche Unterlagen
+Wie oft wird der Kurs angeboten
+ca. alle 3 Monate
+Kursdauer
+09:00-14:00
+Stand: Januar 2022
+31Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Persönlichkeitsentwicklung
+Titel des Kurses
+Das Zürcher Ressourcen Modell –
+Ziele erfolgreich erreichen mit Herz und Verstand
+Kurzbeschreibung/Untertitel des Moduls
+Mit den Methoden des Zürcher Ressourcen Modells (ZRM®) werden Ihnen
+Instrumente an die Hand gegeben, um herauszufinden, was Sie wirklich wol-
+len, wie Sie es umsetzen und wie Sie dranbleiben. Zudem beschäftigen wir uns
+innerhalb des ZRM-Trainings auch mit Stressroutinen und ihrer Steuerung.
+Inhalte des Kurses
+Viele Menschen haben Veränderungswünsche. Manche Absichten sind diffus
+à la „Ich sollte etwas ändern“. Andere sind ganz konkret und von vielfältigster
+Natur – sei es souveräner im Beruf aufzutreten, den Berufswechsel geziel-
+ter anzugehen, konzentrierter zu arbeiten, gelassener zu sein im Alltag, sich
+besser abgrenzen zu können und öfter auch mal nein zu sagen, gesünder zu
+leben, sich mehr zu bewegen, entscheidungsfreudiger zu sein, mehr Selbst-
+bewusstsein zu zeigen und vieles, vieles mehr!
+Obwohl wir sie vom Verstand her wollen und auch wissen, dass sie gut für
+uns sind, können wir manche Ziele nicht umsetzen, weil wir vergessen, unser
+Unbewusstes mit ins Boot zu nehmen. Wenn bei Entscheidungen nur der
+Verstand zum Zuge kommt, können beispielsweise Diäten zum willentlichen
+Kraftakt werden. Am Ende kommt man dann doch nicht an der Torte vor-
+bei. Wieso? In der Fachsprache nennt man das einen Ambivalenzkonflikt. Da
+zerren zwei Kräfte an uns: die eine (der Verstand) will zu etwas hin, und die
+andere (unser Unbewusstes) geht genau in die andere Richtung – bloß weg!
+Im Kurs wird gelernt:
+• das persönliche Handlungsrepertoire zu erweitern.
+• bei Entscheidungen mehr Autonomie zu erlangen.
+• auch in schwierigen, stressigen Situationen kompetent zu agieren.
+• die neu erworbenen Handlungskompetenzen nachhaltig zu ankern.
+• Klarheit zu gewinnen, was in der aktuellen Lebenssituation besonders wichtig ist.
+• Ziele formulieren, die das Selbstbewusstsein stärken und vor Stress schützen.
+• eigene Stärken und Möglichkeiten als Ressourcen erkennen, lernen diese
+wertzuschätzen und zu nutzen.
+Material/Unterlagen
+Bitte bringen Sie Schreibutensilien mit.
+Wie wird der Kurs angeboten
+Jeweils 3 Termine in Folge
+Stand: Januar 2022
+32Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Persönlichkeitsentwicklung
+Titel des Kurses
+Gesunde Ernährung
+Kurzbeschreibung/Untertitel des Moduls
+Vermittlung von Fachkenntnissen im Bereich Ernährung und Ent-
+wicklung von Kompetenzen bei der Umsetzung einer ausgewoge-
+nen Ernährung im Alltag
+Inhalte des Kurses
+• Dieser Kurs eröffnet den Teilnehmer/ Innen die Möglichkeit Ihr
+eigenes Ernährungswissen zu erweitern und die persönlichen
+Ernährungsgewohnheiten zu reflektieren
+• Es werden den Teilnehmer/ Innen Handlungskompetenzen
+aufgezeigt, wie eine gesunde Ernährung in den Alltag integriert
+werden kann
+• Grundlagen der Ernährungslehre: Aktuelle Ernährungsemp-
+fehlungen der Deutschen Gesellschaft für Ernährung – wie
+ernähre ich mich eigentlich gesund und ausgewogen? Aktuelle
+Ernährungssituation in Deutschland; Ernährungspyramide; Wie
+entsteht ein Ernährungsverhalten?
+• Aktuelle Food Trends: Was bedeutet eigentlich vegan, low carb,
+glutenfrei, Bio und Co.? ;
+• Warenkunde: Worauf muss ich beim Einkauf achten? Lebens-
+mittelkennzeichnung – Wie „verstecken“ sich Inhaltsstoffe auf
+dem Lebensmitteletikett?
+• Genuss beim Essen: Wie funktioniert das eigentlich? Vorstel-
+lung Sinnesübungen; Erstellung eines persönlichen Speiseplans;
+Tipps, Anregungen und Rezepte für die Umsetzung einer gesun-
+den Ernährung im Alltag
+Methoden des Kurses
+Power Point Präsentation, Praktische Übungen, Kleingruppenarbeit
+Material/Unterlagen
+Jeder Teilnehmer erhält schriftliche Unterlagen
+Wie oft wird der Kurs angeboten
+2x im Jahr/ 3 Termine in Folge
+Kursdauer
+3x ca. 2 Stunden
+Stand: Januar 2022
+33Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Körperliche und geistige Gesundheitsförderung
+Titel des Kurses
+Yoga – Kraftquelle für Körper und Geist
+Kurzbeschreibung/Untertitel des Moduls
+Durch Yoga Köper und Geist stärken und den Kontakt zu Deiner
+eigenen Mitte entdecken.
+Inhalte des Kurses
+Dieser Kurs wendet sich an Personen, die noch keine oder et-
+was Erfahrungen im Yoga haben, unabhängig der körperlichen
+Verfassung. Dieser Kurs gibt den Teilnehmern die Möglichkeit,
+die eigene Wahrnehmung zu fördern.
+Es werden Yoga-Dehn-und -Streckübungen vermittelt, wobei
+die Teilnehmer Ihre eigenen körperlichen Grenzen kennnen-
+lernen und bei regelmäßiger Teilnahme eine Verbesserung
+Ihrer Beweglichkeit und körperlicher Flexibilität erlangen.
+Am Ende der Stunde gibt es eine kleine Endentspannung, so
+dass die Teilnehmer wieder ausgeglichen für den Rest des
+Tages die täglichen Anforderungen gewachsen sind.
+Ziel des Kurses:
+Schritt für Schritt werden leichte Yogaübungen, kombiniert
+mit sanften Atemübungen und Entspannungstechniken, ver-
+mittelt. Diese wirkungsvollen Techniken vitalisieren, reinigen
+und kräftigen das gesamte Körpersystem und sind darauf
+ausgerichtet wieder Energie zu entwickeln.
+Auf körperlicher Ebene wird auch der Stoffwechsel, die Sau-
+erstoffversorgung, die Atmungsqualität, die Muskulaturdurch-
+blutung und das Immunsystem verbessert.
+Auf seelischer Ebene die Entspannungsfähigkeit gestärkt und
+Streßanfälligkeiten reduziert.
+Als Prävention dienen diese Übungen zur Behandlung von
+Rückenproblemen und anderen Beschwerden im Bewegungs-
+apperat.
+Methoden des Kurses
+Yoga Übungen aus dem klassischen Hatha -und Kundalini Yoga. Die
+Übungen werden hauptsächlich auf der Matte in bequemer Kleidung
+gemacht.
+max. 10 TN
+Material/Unterlagen
+Wir arbeiten mit Yogamattenoder auf dem Stuhl
+Wie oft wird der Kurs angeboten
+Jeweils 1-mal wöchentlich
+Kursdauer
+e 45 Minuten
+34
+Stand: Januar 2022Kurzbeschreibung des
+Qualifizierungsmoduls
+Qualifizierungsbereich
+Fachspezifische Kompetenz
+Titel des Kurses
+Büroorganisation
+Kurzbeschreibung/Untertitel des Moduls
+effektive Ablagetechniken und Ordnungssysteme vermitteln
+Inhalte des Kurses
+• Schreibtisch- und Arbeitsplatzorganisation
+• Ablage- und Ordnungssysteme
+• Wiedervorlagensystem
+Methoden des Kurses
+• Lehrvortrag
+• Erfahrungsaustausch und Diskussion im Plenum
+• Einzel- und Gruppenübungen
+Material/Unterlagen
+• Skript für Büroorganisation
+• Einzelne Übungsblätter
+Wie oft wird der Kurs angeboten
+Ca. alle 2 Monate
+Kursdauer
+ca. 5 Std
+35
+Stand: Januar 2022

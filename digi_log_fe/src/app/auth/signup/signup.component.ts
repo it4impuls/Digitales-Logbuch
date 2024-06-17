@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { AuthService } from '../../services/auth.service';
-import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RPerson } from '../../interfaces';
 import { firstValueFrom } from 'rxjs';
@@ -16,12 +16,13 @@ export const confirmPasswordValidator: ValidatorFn = (
     : { PasswordNoMatch: true };
 };
 
+
 @Component({
-  selector: "app-signup",
-  templateUrl: "./signup.component.html",
-  styleUrl: "./signup.component.less",
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrl: './signup.component.less',
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements AfterViewInit {
   constructor(
     private http: HttpService,
     private auth: AuthService,
@@ -40,32 +41,45 @@ export class SignupComponent implements OnInit {
 
   signupForm = this.formBuilder.group(
     {
-      username: ["", [Validators.required]],
-      email: ["", [Validators.required]],
-      first_name: ["", [Validators.required]],
-      last_name: ["", [Validators.required]],
-      password: ["", [Validators.required]],
-      confirmPassword: ["", [Validators.required]],
+      username: ['', [Validators.required, Validators.minLength(5)]],
+      email: ['', [Validators.required, Validators.email]],
+      first_name: ['', [Validators.required]],
+      last_name: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(2)]],
+      confirmPassword: ['', [Validators.required]],
     },
     { validators: confirmPasswordValidator }
   );
-  error = "";
+  errors = {
+    username: '',
+    email: '',
+    first_name: '',
+    last_name: '',
+    password: '',
+    confimPassword:'',
+    all: ''
+  };
 
-  ngOnInit(): void {}
+  ngAfterViewInit(): void {
+    // this.onchange();
+    // this.error = Object.keys(this.signupForm.errors).length < 5
+    //     ? Object.keys(this.signupForm.errors ?? {}).join(', ')
+    //     : '';
+  }
 
   signup() {
-    console.log("signup called");
+    console.log('signup called');
     let form = this.signupForm.value;
     if (form.password == form.confirmPassword) {
       this.http.signup(RPerson.fromObj(form as RPerson)).subscribe({
         next: (user) => {
           console.log(user);
-          this.error = "";
-          this.snackBar.open("Konto erfolgreich erstellt", "ok");
-          this.router.navigate(["login/"]);
+          this.errors.all = '';
+          this.snackBar.open('Konto erfolgreich erstellt', 'ok');
+          this.router.navigate(['login/']);
         },
         error: (err) => {
-          this.error = Object.values(err.error).join(", ");
+          this.errors.all = Object.values(err.error).join(', ');
           console.log(err);
         },
       });
@@ -73,19 +87,18 @@ export class SignupComponent implements OnInit {
   }
 
   onchange() {
-    if (this.signupForm.errors) {
-      if (this.signupForm.errors["PasswordNoMatch"]) {
-        this.error = "Passwörter stimmen nicht überein";
-      } else {
-        this.error =
-          Object.keys(this.signupForm.errors).length < 5
-            ? Object.keys(this.signupForm.errors ?? {}).join(", ")
-            : "";
-        console.log(Object.keys(this.signupForm.errors));
+    console.log();
+    let controls = this.signupForm.controls;
+    Object.keys(this.signupForm.controls).forEach((key) => {
+      let element = this.signupForm.get(key);
+      if (element!=null && element?.invalid) {
+        if (element.hasError('required')) {
+          if (Object.hasOwn(this.errors, key)) {
+            // this.errors[key] = 'Bitte Feld ausfüllen';
+          }
+        }
       }
-      console.log("updated: " + this.error);
-    } else {
-      this.error = "";
-    }
+    });
+    let c = this.signupForm.controls;
   }
 }
