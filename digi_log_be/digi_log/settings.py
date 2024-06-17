@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=u-15y)c1y&z22*o^9n*hl&f#^7%0bqt($@_l89826#7i)^3!a'
+SECRET_KEY = os.environ.get("SECRET_KEY", 'django-insecure-=u-15y)c1y&z22*o^9n*hl&f#^7%0bqt($@_l89826#7i)^3!a')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -63,6 +63,7 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS= CSRF_TRUSTED_ORIGINS = [
     "https://localhost:4200",
     "http://localhost:4200",
+    "http://localhost:80",
     "http://0.0.0.0:4200",
     "http://172.0.0.1:4200"
 ]
@@ -94,9 +95,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': os.environ.get("MEALPLAN_DB_ENGINE", 'django.db.backends.sqlite3'), 
+        'NAME': os.environ.get("MEALPLAN_DB_NAME", 'kursplan'),
+        'USER': os.environ.get("MEALPLAN_DB_USER", 'root'),
+        'PASSWORD': os.environ.get("MEALPLAN_DB_PASSWORD", 'root'),
+        'HOST': os.environ.get("MEALPLAN_DB_HOST", '127.0.0.1'),
+        'PORT': os.environ.get("MEALPLAN_DB_PORT", '3306'),
+        'TEST': {
+            'MIRROR': 'default'
+        }
+    } 
 }
 
 REST_FRAMEWORK = {

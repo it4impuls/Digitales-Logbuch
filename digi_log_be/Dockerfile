@@ -18,6 +18,8 @@ RUN apt update && apt install -y libldap2-dev libsasl2-dev libssl-dev gunicorn
 RUN pip install -r requirements.txt
 
 RUN ["python", "manage.py", "collectstatic", "--no-input", "-v 2"]
+RUN ["python", "manage.py", "migrate"]
+RUN ["python", "manage.py", "createsuperuser"]
 
 # copy our project code
 # COPY . /opt/services/djangoapp/src
