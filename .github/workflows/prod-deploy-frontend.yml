@@ -4,8 +4,8 @@ on:
     branches:
     - master
     paths:
-    - digi_log_be/**
-    - .github/prod-deploy-backend.yml
+    - digi_log_fe/**
+    - .github/prod-deploy-frontend.yml
   workflow_dispatch:
 
 env:
