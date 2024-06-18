@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  BACKEND_PORT: "8080",
-  BACKEND_IP: "localhost",
+  production: true,
+  BACKEND_PORT: '8000',
+  BACKEND_IP: 'kursplan.impulsreha.local',
 };
 
 /*

@@ -4,15 +4,16 @@ on:
     branches:
     - master
     paths:
-    - myproject/**
-    - .github/prod-deploy.yml
+    - digi_log_be/**
+    - .github/prod-deploy-backend.yml
   workflow_dispatch:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
-  VERSION: master
-  CONTAINER_NAME: mealplan
+  CONTAINER_NAME: ${{ github.repository }}_be
+  IMAGE_NAME: ${{ github.repository}}_be
+  VERSION: latest
+  DOCKERFILE_PATH: digi_log_be
 jobs: 
   build: 
     # runs-on: [ubuntu-latest,build,self-hosted]
@@ -41,7 +42,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ${{env.DOCKERFILE_PATH}}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -56,14 +57,15 @@ jobs:
       - name: Docker rm
         run: docker rm ${{ env.CONTAINER_NAME }} || echo "no containers found, none removed"
       - name: Docker run
-        run: docker run -d -p 8000:8000 
-          -e DJANGO_SUPERUSER_PASSWORD=123456x
-          -e DJANGO_SUPERUSER_EMAIL=admin@admin.org
-          -e DJANGO_SUPERUSER_USERNAME=admin_hwi
-          -e MEALPLAN_DB_NAME=hwi_db
-          -e MEALPLAN_DB_USER=hwi_db_user
-          -e MEALPLAN_DB_PASSWORD=test
-          -e MEALPLAN_DB_HOST=mealplan.impulsreha.local
-          -e MEALPLAN_DB_PORT=3306
+        run: docker run -d -p 8000:${{ vars.BACKEND_PORT }} 
+          -e DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
+          -e DJANGO_SUPERUSER_EMAIL=${{ vars.DJANGO_SUPERUSER_EMAIL }}
+          -e DJANGO_SUPERUSER_USERNAME=${{ vars.DJANGO_SUPERUSER_USERNAME }}
+          -e DB_NAME=${{ vars.DB_NAME }}
+          -e DB_USER=${{ vars.DB_USER }}
+          -e DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+          -e DB_ADDR=${{ vars.DB_ADDR }}
+          -e DB_PORT=${{ vars.DB_PORT }}
+          -e DB_ENGINE=${{ vars.DB_ENGINE }}
           --restart=always
           --name ${{ env.CONTAINER_NAME }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} 

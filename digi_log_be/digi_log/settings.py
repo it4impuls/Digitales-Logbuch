@@ -95,12 +95,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get("MEALPLAN_DB_ENGINE", 'django.db.backends.sqlite3'), 
-        'NAME': os.environ.get("MEALPLAN_DB_NAME", 'kursplan'),
-        'USER': os.environ.get("MEALPLAN_DB_USER", 'root'),
-        'PASSWORD': os.environ.get("MEALPLAN_DB_PASSWORD", 'root'),
-        'HOST': os.environ.get("MEALPLAN_DB_HOST", '127.0.0.1'),
-        'PORT': os.environ.get("MEALPLAN_DB_PORT", '3306'),
+        'ENGINE': os.environ.get("DB_ENGINE", 'django.db.backends.sqlite3'), 
+        'NAME': os.environ.get("DB_NAME", 'kursplan'),
+        'USER': os.environ.get("DB_USER", 'root'),
+        'PASSWORD': os.environ.get("DB_PASSWORD", 'root'),
+        'HOST': os.environ.get("DB_ADDR", '127.0.0.1'),
+        'PORT': os.environ.get("DB_PORT", '3306'),
         'TEST': {
             'MIRROR': 'default'
         }

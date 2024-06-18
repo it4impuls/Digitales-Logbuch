@@ -32,7 +32,7 @@ RUN ["python", "manage.py", "createsuperuser"]
 #RUN cd backend && python manage.py createsuperuser2 --noinput --username=$ADMIN_USERNAME --email=$ADMIN_EMAIL --password=$ADMIN_PASSWORD
 
 # expose the port 80 internally, in the docker-compose.yml it gets redirected to 8000
-EXPOSE 8080
+EXPOSE 8000
 
 
 RUN ls
