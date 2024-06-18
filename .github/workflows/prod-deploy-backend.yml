@@ -5,7 +5,7 @@ on:
     - master
     paths:
     - digi_log_be/**
-    - .github/prod-deploy-backend.yml
+    - .github/workflows/prod-deploy-backend.yml
   workflow_dispatch:
 
 env:
