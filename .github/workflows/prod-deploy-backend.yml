@@ -14,6 +14,7 @@ env:
   IMAGE_NAME: digitales-logbuch_be
   VERSION: ${{github.ref_name}}
   DOCKERFILE_PATH: digi_log_be
+  UNAME: ${{ github.repository_owner }}
 jobs: 
   build: 
     # runs-on: [ubuntu-latest,build,self-hosted]
@@ -31,14 +32,14 @@ jobs:
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
+          username: ${{env.UNAME}}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{env.UNAME}}/${{ env.IMAGE_NAME }}
 
         # Setting up Docker Buildx with docker-container driver is required
         # at the moment to be able to use a subdirectory with Git context
@@ -54,7 +55,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
         
       - name: Docker Login
-        run: docker login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
+        run: docker login -u ${{env.UNAME}} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
 
       - name: Docker pull
         run: docker pull ${{steps.meta.outputs.tags}}
@@ -75,4 +76,4 @@ jobs:
           -e DB_PORT=${{ vars.DB_PORT }}
           -e DB_ENGINE=${{ vars.DB_ENGINE }}
           --restart=always
-          --name ${{ env.CONTAINER_NAME }} ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} 
+          --name ${{ env.CONTAINER_NAME }} ${{ env.REGISTRY }}/${{env.UNAME}}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} 
