@@ -23,7 +23,7 @@ jobs:
       # Since gh-Actions doesnt have a convenient function for this it has to be a step
       - name: downcase IMAGE_NAME
         run: |
-          echo "IMAGE_NAME=${GITHUB_REPOSITORY@L}" >> "${GITHUB_ENV}"
+          echo "IMAGE_NAME=${GITHUB_REPOSITORY@L}_be" >> "${GITHUB_ENV}"
 
       - name: Checkout
         uses: actions/checkout@v3
