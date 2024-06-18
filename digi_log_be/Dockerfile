@@ -16,7 +16,7 @@ RUN pip install -r requirements.txt
 
 RUN ["python", "manage.py", "collectstatic", "--no-input", "-v 2"]
 RUN ["python", "manage.py", "migrate"]
-RUN ["python", "manage.py", "createsuperuser"]
+RUN ["python", "manage.py", "createsuperuser", "--noinput"]
 
 # expose the port 80 internally, in the docker-compose.yml it gets redirected to 8000
 EXPOSE 8080
