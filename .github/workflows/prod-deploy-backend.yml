@@ -2,7 +2,7 @@ name: Deploy Backend to Production
 on: 
   push:
     branches:
-    - master
+    - main
     paths:
     - digi_log_be/**
     - .github/workflows/prod-deploy-backend.yml

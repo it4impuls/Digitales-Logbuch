@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", 'django-insecure-=u-15y)c1y&z22*o^9n*h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1", "kursplan.impulsreha.local"]
 
 LOGIN_URL = "/api/login/"
 
