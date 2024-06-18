@@ -11,7 +11,7 @@ on:
 env:
   REGISTRY: ghcr.io
   CONTAINER_NAME: ${{ github.repository }}_be
-  IMAGE_NAME: ${{ github.repository}}_be
+  IMAGE_NAME: digilog_be    # muss lowercase sein
   VERSION: latest
   DOCKERFILE_PATH: digi_log_be
 jobs: 
