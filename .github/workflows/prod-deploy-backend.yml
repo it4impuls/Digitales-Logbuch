@@ -10,9 +10,9 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  CONTAINER_NAME: ${{ github.repository }}_be
+  CONTAINER_NAME: kursplan_be
   # IMAGE_NAME: digitales-logbuch    # muss lowercase sein
-  VERSION: latest
+  VERSION: ${{github.ref_name}}
   DOCKERFILE_PATH: digi_log_be
 jobs: 
   build: 
