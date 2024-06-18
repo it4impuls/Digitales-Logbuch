@@ -11,7 +11,7 @@ on:
 env:
   REGISTRY: ghcr.io
   CONTAINER_NAME: ${{ github.repository }}_be
-  IMAGE_NAME: ${{ github.repository.lowercase }}    # muss lowercase sein
+  IMAGE_NAME: digitales-logbuch    # muss lowercase sein
   VERSION: latest
   DOCKERFILE_PATH: digi_log_be
 jobs: 
