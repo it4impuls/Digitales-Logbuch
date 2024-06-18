@@ -11,8 +11,8 @@ on:
 env:
   REGISTRY: ghcr.io
   CONTAINER_NAME: ${{ github.repository }}_be
-  IMAGE_NAME: ${{ github.repository}}_be
-  VERSION: latest
+  IMAGE_NAME: ${{ github.repository}}
+  VERSION: backend
   DOCKERFILE_PATH: digi_log_be
 jobs: 
   build: 
