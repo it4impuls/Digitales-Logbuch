@@ -11,9 +11,6 @@ WORKDIR /opt/services/djangoapp/src
 
 COPY . .
 
-# install our dependencies
-# we use --system flag because we don't need an extra virtualenv
-# COPY requirements.txt config/entrypoint.sh config/gunicorn.config.py ./
 RUN apt update && apt install -y libldap2-dev libsasl2-dev libssl-dev gunicorn
 RUN pip install -r requirements.txt
 
@@ -21,21 +18,7 @@ RUN ["python", "manage.py", "collectstatic", "--no-input", "-v 2"]
 RUN ["python", "manage.py", "migrate"]
 RUN ["python", "manage.py", "createsuperuser"]
 
-# copy our project code
-# COPY . /opt/services/djangoapp/src
-
-# /desksharing-web
-# moves static files to correct location
-# RUN python manage.py collectstatic --no-input -v 2
-# move media files to correct location
-#COPY ./media /opt/services/djangoapp/media
-#RUN cd backend && python manage.py createsuperuser2 --noinput --username=$ADMIN_USERNAME --email=$ADMIN_EMAIL --password=$ADMIN_PASSWORD
-
 # expose the port 80 internally, in the docker-compose.yml it gets redirected to 8000
-EXPOSE 8000
+EXPOSE 8080
 
-
-RUN ls
 CMD ["gunicorn", "-c", "./config/gunicorn.config.py"]
-# RUN ["bash", "config/entrypoint.sh"]
-# CMD ["bash"]

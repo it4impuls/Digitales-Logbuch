@@ -11,7 +11,7 @@ on:
 env:
   REGISTRY: ghcr.io
   CONTAINER_NAME: kursplan_be
-  # IMAGE_NAME: digitales-logbuch    # muss lowercase sein
+  IMAGE_NAME: digitales-logbuch_be
   VERSION: ${{github.ref_name}}
   DOCKERFILE_PATH: digi_log_be
 jobs: 
@@ -21,9 +21,9 @@ jobs:
     steps:
       # for some reason Docker pull requires the address to be lower case. 
       # Since gh-Actions doesnt have a convenient function for this it has to be a step
-      - name: downcase IMAGE_NAME
-        run: |
-          echo "IMAGE_NAME=${GITHUB_REPOSITORY@L}_be" >> "${GITHUB_ENV}"
+      # - name: downcase IMAGE_NAME
+      #   run: |
+      #     echo "IMAGE_NAME=${GITHUB_REPOSITORY@L}_be" >> "${GITHUB_ENV}"
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -64,7 +64,7 @@ jobs:
       - name: Docker rm
         run: docker rm ${{ env.CONTAINER_NAME }} || echo "no containers found, none removed"
       - name: Docker run
-        run: docker run -d -p 8000:${{ vars.BACKEND_PORT }} 
+        run: docker run -d -p 8080:${{ vars.BACKEND_PORT }} 
           -e DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
           -e DJANGO_SUPERUSER_EMAIL=${{ vars.DJANGO_SUPERUSER_EMAIL }}
           -e DJANGO_SUPERUSER_USERNAME=${{ vars.DJANGO_SUPERUSER_USERNAME }}
