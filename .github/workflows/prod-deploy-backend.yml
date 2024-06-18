@@ -32,7 +32,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ github.repository }}
 
         # Setting up Docker Buildx with docker-container driver is required
         # at the moment to be able to use a subdirectory with Git context
@@ -50,7 +50,7 @@ jobs:
       - name: Docker Login
         run: docker login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
       - name: Docker pull
-        run: docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+        run: docker pull ${{ env.REGISTRY }}/${{ github.repository }}:${{ env.VERSION }}
         
       - name: Docker stop
         run: docker stop ${{ env.CONTAINER_NAME }} || echo "no containers found, none stopped"   
@@ -68,4 +68,4 @@ jobs:
           -e DB_PORT=${{ vars.DB_PORT }}
           -e DB_ENGINE=${{ vars.DB_ENGINE }}
           --restart=always
-          --name ${{ env.CONTAINER_NAME }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} 
+          --name ${{ env.CONTAINER_NAME }} ${{ env.REGISTRY }}/$${{ github.repository }}:${{ env.VERSION }} 
