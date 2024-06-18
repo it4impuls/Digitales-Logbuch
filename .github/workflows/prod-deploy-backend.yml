@@ -75,4 +75,4 @@ jobs:
           -e DB_PORT=${{ vars.DB_PORT }}
           -e DB_ENGINE=${{ vars.DB_ENGINE }}
           --restart=always
-          --name ${{ env.CONTAINER_NAME }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} 
+          --name ${{ env.CONTAINER_NAME }} ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} 
