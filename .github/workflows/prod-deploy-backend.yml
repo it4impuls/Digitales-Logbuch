@@ -19,9 +19,11 @@ jobs:
     # runs-on: [ubuntu-latest,build,self-hosted]
     runs-on: [self-hosted]
     steps:
+      # for some reason Docker pull requires the address to be lower case. 
+      # Since gh-Actions doesnt have a convenient function for this it has to be a step
       - name: downcase IMAGE_NAME
         run: |
-          echo "IMAGE_NAME={GITHUB_REPOSITORY@L}" >> "${GITHUB_ENV}"
+          echo "IMAGE_NAME=${GITHUB_REPOSITORY@L}" >> "${GITHUB_ENV}"
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -53,6 +55,7 @@ jobs:
         
       - name: Docker Login
         run: docker login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
+
       - name: Docker pull
         run: docker pull ${{steps.meta.outputs.tags}}
         
@@ -72,4 +75,4 @@ jobs:
           -e DB_PORT=${{ vars.DB_PORT }}
           -e DB_ENGINE=${{ vars.DB_ENGINE }}
           --restart=always
-          --name ${{ env.CONTAINER_NAME }} ${{ env.REGISTRY }}/$${{ env.IMAGE_NAME }}:${{ env.VERSION }} 
+          --name ${{ env.CONTAINER_NAME }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} 
