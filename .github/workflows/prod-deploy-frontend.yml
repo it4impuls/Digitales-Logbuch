@@ -10,7 +10,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  CONTAINER_NAME: ${{ github.repository }}_fe
+  CONTAINER_NAME: digitales-logbuch_fe
   DOCKERFILE_PATH: digi_log_fe
   REGISTRY_PATH: ghcr.io/${{ github.repository_owner }}/digitales-logbuch_fe
 jobs: 
