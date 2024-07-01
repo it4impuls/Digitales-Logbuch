@@ -51,7 +51,7 @@ jobs:
       - name: Docker Login
         run: docker login -u ${{ github.repository_owner }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
       - name: Docker pull
-        run: docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+        run: docker pull ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
         
       - name: Docker stop
         run: docker stop ${{ env.CONTAINER_NAME }} || echo "no containers found, none stopped"   
