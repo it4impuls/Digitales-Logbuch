@@ -2,7 +2,7 @@ name: Deploy Frontend to Production
 on: 
   push:
     branches:
-    - master
+    - main
     paths:
     - digi_log_fe/**
     - .github/workflows/prod-deploy-frontend.yml
