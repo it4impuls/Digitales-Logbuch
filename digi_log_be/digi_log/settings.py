@@ -66,7 +66,7 @@ CORS_ALLOWED_ORIGINS= CSRF_TRUSTED_ORIGINS = [
     "http://localhost:80",
     "http://0.0.0.0:4200",
     "http://172.0.0.1:4200",
-    "http://kursplan.impulsreha.local"
+    "http://kursplan.impulsreha.local:80"
 ]
 
 ROOT_URLCONF = 'digi_log.urls'
