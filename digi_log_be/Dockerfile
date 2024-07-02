@@ -2,7 +2,7 @@
 FROM python:3.12
 LABEL name="backend-gunicorn"
 # args
-ARG WORKDIR = /opt/services/djangoapp/src
+ARG WORKDIR=/opt/services/djangoapp/src
 ARG DJANGO_SUPERUSER_EMAIL
 ARG DJANGO_SUPERUSER_USERNAME
 ARG DJANGO_SUPERUSER_PASSWORD
