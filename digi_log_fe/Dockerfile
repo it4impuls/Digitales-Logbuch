@@ -14,12 +14,14 @@ ENV BACKEND_IP $BACKEND_IP
 ARG BACKEND_PORT
 ENV BACKEND_PORT $BACKEND_PORT
 
-RUN npm run build --build-optimizer
+
 
 RUN envsubst < src/environments/environment.ts > src/environments/environment.tmp.ts
 RUN mv src/environments/environment.tmp.ts src/environments/environment.ts
 
 RUN cat src/environments/environment.ts
+
+RUN npm run build --build-optimizer
 
 #stage 2
 FROM nginx:alpine
