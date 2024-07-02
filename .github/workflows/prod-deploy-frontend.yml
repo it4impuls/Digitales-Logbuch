@@ -45,7 +45,9 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: BACKEND_IP=${{ vars.BACKEND_IP}} BACKEND_PORT=${{ vars.BACKEND_PORT }}
+          build-args: | 
+            BACKEND_IP=${{ vars.BACKEND_IP}}
+            BACKEND_PORT=${{ vars.BACKEND_PORT }}
         
       - name: Docker Login
         run: docker login -u ${{ github.repository_owner }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
