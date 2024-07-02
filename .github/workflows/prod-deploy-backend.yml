@@ -53,7 +53,8 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: DJANGO_SUPERUSER_USERNAME=${{ vars.DJANGO_SUPERUSER_USERNAME }} 
+          build-args: |
+            DJANGO_SUPERUSER_USERNAME=${{ vars.DJANGO_SUPERUSER_USERNAME }} 
             DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
             DJANGO_SUPERUSER_EMAIL=${{ vars.DJANGO_SUPERUSER_EMAIL }}
         

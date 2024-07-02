@@ -18,10 +18,10 @@ RUN apt update && apt install -y libldap2-dev libsasl2-dev libssl-dev gunicorn
 RUN pip install -r requirements.txt
 
 RUN ["python", "manage.py", "collectstatic", "--no-input", "-v 2"]
-RUN ["python", "manage.py", "migrate"]
+
 RUN echo python manage.py createsuperuser --noinput || echo 'couldnt create su'
 
 # expose the port 80 internally, in the docker-compose.yml it gets redirected to 8000
 EXPOSE 8080
 
-CMD ["gunicorn", "-c", "./config/gunicorn.config.py"]
+CMD ["entrypoint.sh"]
