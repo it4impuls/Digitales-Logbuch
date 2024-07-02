@@ -22,4 +22,6 @@ RUN ["python", "manage.py", "collectstatic", "--no-input", "-v 2"]
 
 EXPOSE 8080
 
-ENTRYPOINT ["./entrypoint.sh"]
+COPY entrypoint.sh entrypoint.sh
+
+ENTRYPOINT ["entrypoint.sh"]
