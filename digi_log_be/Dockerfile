@@ -2,6 +2,7 @@
 FROM python:3.12
 LABEL name="backend-gunicorn"
 # args
+ARG WORKDIR = /opt/services/djangoapp/src
 ARG DJANGO_SUPERUSER_EMAIL
 ARG DJANGO_SUPERUSER_USERNAME
 ARG DJANGO_SUPERUSER_PASSWORD
@@ -10,8 +11,8 @@ ENV DJANGO_SUPERUSER_USERNAME=$DJANGO_SUPERUSER_USERNAME
 ENV DJANGO_SUPERUSER_PASSWORD=$DJANGO_SUPERUSER_PASSWORD
 
 
-RUN mkdir -p /opt/services/djangoapp/src
-WORKDIR /opt/services/djangoapp/src
+RUN mkdir -p $WORKDIR
+WORKDIR $WORKDIR
 
 COPY . .
 
@@ -22,6 +23,6 @@ RUN ["python", "manage.py", "collectstatic", "--no-input", "-v 2"]
 
 EXPOSE 8080
 
-COPY entrypoint.sh entrypoint.sh
+# COPY entrypoint.sh entrypoint.sh
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["sh", "/entrypoint.sh"]
