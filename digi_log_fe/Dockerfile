@@ -16,6 +16,9 @@ ENV BACKEND_PORT $BACKEND_PORT
 
 RUN npm run build --build-optimizer
 
+RUN envsubst < src/environments/environment.ts > src/environments/environment.tmp.ts && \
+mv src/environments/environment.tmp.ts src/environments/environment.ts
+
 #stage 2
 FROM nginx:alpine
 LABEL name="frontend-nginx"

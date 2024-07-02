@@ -4,8 +4,8 @@
 
 export const environment = {
   production: true,
-  BACKEND_PORT: '8000',
-  BACKEND_IP: 'kursplan.impulsreha.local',
+  BACKEND_PORT: '${BACKEND_PORT}',
+  BACKEND_IP: '${BACKEND_IP}',
 };
 
 /*
