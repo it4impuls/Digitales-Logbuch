@@ -22,4 +22,4 @@ RUN ["python", "manage.py", "collectstatic", "--no-input", "-v 2"]
 # expose the port 80 internally, in the docker-compose.yml it gets redirected to 8000
 EXPOSE 8080
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
