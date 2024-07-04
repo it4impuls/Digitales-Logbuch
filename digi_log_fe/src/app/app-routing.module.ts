@@ -6,12 +6,15 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "/events", pathMatch: "full" },
-  { path: "login", component: LoginComponent },
-  { path: "signup", component: SignupComponent },
-  { path: "events", component: EventBrowserComponent },
-  { path: "event/new", redirectTo: "/event/0", pathMatch: "full" },
-  { path: "event/:id", component: EventEditorComponent },
+  { path: '', redirectTo: '/events', pathMatch: 'full' },
+
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'events', component: EventBrowserComponent },
+  { path: 'event/new', redirectTo: '/event/0', pathMatch: 'full' },
+  { path: 'event/:id', component: EventEditorComponent },
+
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
