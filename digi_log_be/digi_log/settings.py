@@ -93,7 +93,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-print(os.environ.get("DB_PASSWORD", 'root'))
+# print(os.environ.get("DB_PASSWORD", 'root'))
 DATABASES = {
     'default': {
         'ENGINE': os.environ.get("DB_ENGINE", 'django.db.backends.sqlite3'), 
@@ -107,6 +107,8 @@ DATABASES = {
         }
     } 
 }
+
+print(DATABASES)
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
