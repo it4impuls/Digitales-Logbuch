@@ -41,6 +41,6 @@ class Command(BaseCommand):
                 e["material"] = entry.get("Material/Unterlagen", "")
                 e["dates"] = entry.get("Wie oft wird der Kurs angeboten", "")
                 e["duration"] = entry.get("Kursdauer", "")
-                print([(key, len(val)) for key, val in e.items()])
+                print([(key, len(val)) for key, val in e.items() if key != "host"])
                 course = Course.objects.get_or_create(title=e["title"], defaults=e)
                 print(course)
