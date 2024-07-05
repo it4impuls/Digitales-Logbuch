@@ -44,5 +44,5 @@ class Command(BaseCommand):
                 e["duration"] = entry.get("Kursdauer", "")
                 print([(key, len(str(val))) for key, val in e.items()])
                 pprint(e)
-                course = Course.objects.get_or_create(title=e["title"], defaults=e)
+                course = Course.objects.get_or_create(title=e.pop("title"), defaults=e)
                 print(course)
