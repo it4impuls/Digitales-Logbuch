@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.core.management import CommandError
 import json
 from digilog_backend.models import User, Course
+from pprint import pprint
 
 
 class Command(BaseCommand):
@@ -42,6 +43,6 @@ class Command(BaseCommand):
                 e["dates"] = entry.get("Wie oft wird der Kurs angeboten", "")
                 e["duration"] = entry.get("Kursdauer", "")
                 print([(key, len(str(val))) for key, val in e.items()])
-                print(e)
+                pprint(e)
                 course = Course.objects.get_or_create(title=e["title"], defaults=e)
                 print(course)
