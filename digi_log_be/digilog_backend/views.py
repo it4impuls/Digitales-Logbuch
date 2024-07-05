@@ -108,7 +108,7 @@ def login_user(request):
             return HttpResponse(status=200, content=user)
         else:
             print("Invalid account")
-            return HttpResponse(status=400, content="Authentication failed")
+            return HttpResponse(status=401, content="Authentication failed")
     else:
         return render(request, 'digi_log/login.html')
 
