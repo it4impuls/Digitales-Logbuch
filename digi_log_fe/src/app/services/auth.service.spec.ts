@@ -1,16 +1,102 @@
 import { TestBed } from '@angular/core/testing';
-
 import { AuthService } from './auth.service';
+import { CookieService } from './cookie.service';
+import { HttpService } from './http.service';
+import { Router } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { of, throwError } from 'rxjs';
+import { CookieType } from '../interfaces';
+import { HttpClient } from '@angular/common/http';
 
 describe('AuthService', () => {
-  let service: AuthService;
+  let authService: AuthService;
+  let cookieService: any;
+  let httpService: any;
+  let router: Router;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(AuthService);
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [
+        AuthService,
+        {
+          provide: CookieService,
+          useValue: { getValue: jest.fn(), removeFromCookie: jest.fn() },
+        },
+        {
+          provide: HttpService,
+          useValue: { logout: jest.fn(), refreshToken: jest.fn() },
+        },
+        Router,
+      ],
+    });
+    authService = TestBed.inject(AuthService);
+    cookieService = TestBed.inject(CookieService);
+    httpService = TestBed.inject(HttpService);
+    router = TestBed.inject(Router);
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(authService).toBeTruthy();
+  });
+
+  it('should handle error when logout is called', () => {
+    jest.spyOn(cookieService, 'removeFromCookie');
+    jest.spyOn(authService, 'updateLoggedInAs');
+    jest
+      .spyOn(httpService, 'logout')
+      .mockReturnValue(
+        of(
+          throwError(() => new Error('something went wrong'))
+        )
+      );
+    authService.logout();
+    expect(httpService.logout).toHaveBeenCalledWith('');
+    expect(authService.updateLoggedInAs).toHaveBeenCalledWith(null);
+    expect(httpService.openSnackbar).toHaveBeenCalledWith(
+      "Something went wrong, Couldn't log out"
+    );
+  });
+
+  it('should remove username cookie and update loggedInAs when logout is called', () => {
+    jest.spyOn(cookieService, 'removeFromCookie');
+    jest.spyOn(authService, 'updateLoggedInAs');
+
+    const response = {}; // Replace with the actual response object
+
+    jest.spyOn(httpService, 'logout').mockReturnValue(of(response));
+
+    authService.logout()
+
+    expect(httpService.logout).toHaveBeenCalledWith('');
+    expect(authService.updateLoggedInAs).toHaveBeenCalled();
+  });
+
+  it('should handle error when logout is called', () => {
+    jest.spyOn(cookieService, 'removeFromCookie');
+    jest.spyOn(authService, 'updateLoggedInAs');
+    jest
+      .spyOn(httpService, 'logout')
+      .mockReturnValue(of(throwError(() => new Error('something went wrong'))));
+    authService.logout();
+    expect(httpService.logout).toHaveBeenCalledWith('');
+    expect(authService.updateLoggedInAs).toHaveBeenCalledWith(null);
+    expect(httpService.openSnackbar).toHaveBeenCalledWith(
+      "Something went wrong, Couldn't log out"
+    );
+  });
+
+  it('should handle error when refreshToken is called', () => {
+    jest.spyOn(cookieService, 'removeFromCookie');
+    jest.spyOn(authService, 'updateLoggedInAs');
+    jest
+      .spyOn(httpService, 'refreshToken')
+      .mockReturnValue(of(throwError(() => new Error('something went wrong'))));
+    authService.refreshTokens();
+    expect(httpService.refreshToken).toHaveBeenCalled();
+    expect(authService.updateLoggedInAs).toHaveBeenCalled();
+    // expect(httpService.openSnackbar).toHaveBeenCalledWith(
+    //   "Something went wrong, Couldn't refresh tokens"
+    // );
   });
 });
