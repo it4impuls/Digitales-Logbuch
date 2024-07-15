@@ -19,11 +19,14 @@ COPY . .
 RUN apt update && apt install -y libldap2-dev libsasl2-dev libssl-dev gunicorn
 RUN pip install -r requirements.txt
 
-RUN pip install pytest-django && pytest
+RUN pip install pytest-django
+RUN pytest -v
+
 
 RUN ["python", "manage.py", "collectstatic", "--no-input", "-v 2"]
 
 EXPOSE 8080
+EXPOSE 80
 
 # COPY entrypoint.sh entrypoint.sh
 
