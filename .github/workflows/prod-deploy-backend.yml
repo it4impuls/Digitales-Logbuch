@@ -79,3 +79,6 @@ jobs:
           -e DB_ENGINE=${{ vars.DB_ENGINE }}
           --restart=always
           --name ${{ env.CONTAINER_NAME }} ${{ env.REGISTRY }}/${{env.UNAME}}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} 
+
+      - name: check output
+        run: docker logs ${{ env.CONTAINER_NAME }}
