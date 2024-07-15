@@ -14,14 +14,6 @@ env:
   DOCKERFILE_PATH: digi_log_fe
   REGISTRY_PATH: ghcr.io/${{ github.repository_owner }}/digitales-logbuch_fe
 jobs: 
-  test:
-    runs-on: [ubuntu-latest, self-hosted]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: test Frontend
-        run: cd ${{env.DOCKERFILE_PATH}} && npm test
-
   build: 
     # runs-on: [ubuntu-latest,build,self-hosted]
     runs-on: [self-hosted]
@@ -40,6 +32,9 @@ jobs:
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
           images: ${{ env.REGISTRY_PATH }}
+
+      - name: test Frontend
+        run: cd ${{env.DOCKERFILE_PATH}} && npm test
 
         # Setting up Docker Buildx with docker-container driver is required
         # at the moment to be able to use a subdirectory with Git context
