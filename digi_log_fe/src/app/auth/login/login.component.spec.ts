@@ -2,10 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { HttpService } from '../../services/http.service';
 import { AuthService } from '../../services/auth.service';
-import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { CookieService } from '../../services/cookie.service';
 import { of } from 'rxjs';
 
 describe('LoginComponent', () => {
@@ -14,10 +11,6 @@ describe('LoginComponent', () => {
   let httpService: HttpService;
   let authService: AuthService;
   let mockLoginReturn:{refresh:string, access:string, uname:string};
-  // let formBuilder: FormBuilder;
-  // let router: Router;
-  // let location: Location;
-  // let cookieService: CookieService;
 
   beforeEach(() => {
     mockLoginReturn = { refresh: 'test', access: 'test', uname: 'test' };
@@ -42,10 +35,6 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance;
     httpService = TestBed.inject(HttpService);
     authService = TestBed.inject(AuthService);
-    // formBuilder = TestBed.inject(FormBuilder);
-    // router = TestBed.inject(Router);
-    // location = TestBed.inject(Location);
-    // cookieService = TestBed.inject(CookieService);
   });
 
   it('should create LoginComponent', () => {

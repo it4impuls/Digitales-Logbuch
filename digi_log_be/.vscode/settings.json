@@ -1,14 +1,5 @@
 {
-    "python.testing.pytestArgs": [
-        "."
-    ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
-    "python.testing.unittestArgs": [
-        "-v",
-        "-s",
-        "./digilog_backend",
-        "-p",
-        "test_*.py"
-    ]
+    
 }

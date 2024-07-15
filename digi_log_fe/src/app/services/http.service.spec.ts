@@ -80,19 +80,4 @@ describe('HttpService', () => {
     req.flush(testData);
   });
 
-  // it('should get events', async () => {
-  //   const testData = [new Course(1), new Course(2)];
-
-  //   const response = await service.getEvents();
-  //   expect(response).toEqual(testData);
-  // });
-
-  // it('should get a single event', async () => {
-  //   const eventId = 1;
-  //   const testData = { id: eventId, name: 'Event 1' };
-
-  //   const response = await service.getEvent(eventId);
-  //   expect(response).toEqual(testData);
-  // });
-
 });
