@@ -7,4 +7,4 @@ djangorestframework
 djangorestframework-simplejwt
 pytest-django
 gunicorn
-mysqlclient
+# mysqlclient
