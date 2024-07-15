@@ -25,13 +25,15 @@ export class EventBrowserComponent implements OnInit {
   displayedColumns = ['name', 'host', 'description', 'atendees'];
 
   ngOnInit() {
-    this.init();
+    
+    return this.init();
   }
 
-  async init() {
+  async init():Promise<Course[]> {
     this.events = await this.http.getEvents();
     this.dataSource = new MatTableDataSource<Course>(this.events);
-    this.log.log(this.events as Course[]);
+    // this.log.log(this.events as Course[]);
+    return this.events;
   }
 
   onSelectClick(event: Course) {

@@ -24,7 +24,7 @@ export class AppComponent implements OnInit{
     this.authService.logout()
   }
   test(){
-    this.http.getUser().then(ret => console.log(ret));
+    this.http.getUser();
   }
   refresh(){
     this.authService

@@ -33,6 +33,9 @@ jobs:
         with:
           images: ${{ env.REGISTRY_PATH }}
 
+      - name: test Frontend
+        run: cd ${{env.DOCKERFILE_PATH}} && npm test
+
         # Setting up Docker Buildx with docker-container driver is required
         # at the moment to be able to use a subdirectory with Git context
       - name: Set up Docker Buildx

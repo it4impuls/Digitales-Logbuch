@@ -32,7 +32,7 @@ export class CookieService {
   addToCookie(parameter: CookieType, value: string, optionals:string[] = []): void {
     this.parameterMap[parameter] = value;
     document.cookie = `${parameter}=${value}; ${this.expirationDate}; ${this.domain}; ${optionals.join(";")};`;
-    console.log(this.parameterMap);
+    this.refreshCookie();
   }
 
   getValue(parameter: CookieType): string | null {
@@ -45,6 +45,7 @@ export class CookieService {
 
   removeFromCookie(parameter: CookieType): void {
     this.parameterMap[parameter] = "";
+    this.refreshCookie();
   }
 
   refreshCookie(): void {

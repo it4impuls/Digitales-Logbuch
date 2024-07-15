@@ -3,11 +3,6 @@ import { ICourse, Course, Level, Person, PostCourse, Attendee, CookieType } from
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { MatFormField, MatFormFieldControl } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
-import { Time } from '@angular/common';
-import { LogService } from '../../services/log.service';
-import { CookieService } from '../../services/cookie.service';
 import { AuthService } from '../../services/auth.service';
 import { firstValueFrom } from 'rxjs';
 import { MatCheckboxChange } from '@angular/material/checkbox';
@@ -46,8 +41,6 @@ export class EventEditorComponent implements OnInit {
     private router: Router,
     private http: HttpService,
     private formbuilder: FormBuilder,
-    private log: LogService,
-    private cookieService: CookieService,
     private httpService: HttpService,
     public auth: AuthService
   ) {}
@@ -72,8 +65,8 @@ export class EventEditorComponent implements OnInit {
   uname = '';
   attendees: string[] = [];
 
-  ngOnInit(): void {
-    this.init();
+  ngOnInit(): Promise<null> {
+    return this.init();
   }
 
   async init() {
@@ -90,6 +83,8 @@ export class EventEditorComponent implements OnInit {
       }
       this.init_course();
     }
+
+    return null
   }
 
   init_course() {
@@ -176,6 +171,8 @@ export class EventEditorComponent implements OnInit {
       let course = await this.httpService.updateCourse(pCourse);
       if (course) {
         this.http.openSnackbar('Erfolgreich gespeichert');
+        this.course = course;
+        this.init_course();
       }
     }
   }

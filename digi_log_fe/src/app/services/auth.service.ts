@@ -49,7 +49,9 @@ export class AuthService {
         this.cookieService.removeFromCookie(CookieType.username);
         this.updateLoggedInAs();
       },
-      error: (error) => {this.http.openSnackbar("Something went wrong, Couldn't log out")},
+      error: (error) => {
+        this.http.openSnackbar("Something went wrong, Couldn't log out")
+      },
     });
   }
   
