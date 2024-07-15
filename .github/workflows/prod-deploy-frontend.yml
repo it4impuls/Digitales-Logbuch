@@ -26,10 +26,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: latest
-      - run: cd ${{env.FRONTEND_PATH}}
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test
+      - run: 
+        shell: npm ci
+        working-directory: ./${{env.FRONTEND_PATH}}
+      - run: 
+        shell: npm run build --if-present
+        working-directory: ./${{env.FRONTEND_PATH}}
+      - run: 
+        shell: npm test
+        working-directory: ./${{env.FRONTEND_PATH}}
 
 
       - name: Log in to the Container registry
