@@ -16,7 +16,7 @@ WORKDIR $WORKDIR
 
 COPY . .
 
-RUN apt update && apt install -y libldap2-dev libsasl2-dev libssl-dev gunicorn
+RUN apt update && apt install -y < apt.requirements.txt
 RUN pip install -r requirements.txt
 
 RUN pip install pytest-django
