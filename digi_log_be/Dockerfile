@@ -19,15 +19,13 @@ COPY . .
 RUN apt update && apt install -y python3-dev libldap2-dev libsasl2-dev libssl-dev gunicorn default-libmysqlclient-dev build-essential
 RUN pip install -r requirements.txt
 
-RUN pip install pytest-django
-RUN pytest -v
-
-
-RUN ["python", "manage.py", "collectstatic", "--no-input", "-v 2"]
-
 EXPOSE 8080
-EXPOSE 80
 
-# COPY entrypoint.sh entrypoint.sh
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+RUN python manage.py test
+RUN ["python", "manage.py", "collectstatic", "--no-input", "-v 2"]
+RUN python manage.py createsuperuser --noinput
+# ENTRYPOINT gunicorn -c ./config/gunicorn.config.py
 
 ENTRYPOINT ["sh", "entrypoint.sh"]
