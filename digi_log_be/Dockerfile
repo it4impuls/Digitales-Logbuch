@@ -16,7 +16,7 @@ WORKDIR $WORKDIR
 
 COPY . .
 
-RUN apt update && apt install -y < apt.requirements.txt
+RUN apt update && apt install -y python3-dev libldap2-dev libsasl2-dev libssl-dev gunicorn default-libmysqlclient-dev build-essential
 RUN pip install -r requirements.txt
 
 RUN pip install pytest-django
