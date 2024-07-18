@@ -74,28 +74,22 @@ describe('SignupComponent', () => {
     component.signup();
     expect(httpService.signup).toHaveBeenCalledWith(mockFormPerson);
   });
-  
-  it('should call onchange function', () => {
-    jest.spyOn(component, 'onchange');
-    component.onchange();
-    expect(component.onchange).toHaveBeenCalled();
-  });
-
 
   // TODO: implement actual function
   it('should not accecpt different passwords', () => {
-    jest.spyOn(component, 'onchange');
-    component.signupForm.patchValue({
+    component.signupForm.setValue({
       username: mockFormPerson.username,
       password: mockFormPerson.password,
-      confirmPassword: 'test',
+      confirmPassword: mockFormPerson.password+"_invalid",
       first_name: mockFormPerson.first_name,
       last_name: mockFormPerson.last_name,
       email: mockFormPerson.email,
     });
-    component.onchange();
-    expect(component.onchange).toHaveBeenCalled();
-    // expect(component.signupForm.controls.password.invalid).toBeTruthy(); //to be implemented
+
+    // expect(component.onSubmit).toHaveBeenCalledTimes(1);
+    expect(component.signupForm.invalid).toBeTruthy();
+    expect(component.signupForm.controls.confirmPassword.invalid).toBeTruthy();
+    expect(component.signupForm.controls.confirmPassword.getError('PasswordNoMatch')).toBeTruthy();
   })
 
 
