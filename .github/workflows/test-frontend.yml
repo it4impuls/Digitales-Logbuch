@@ -4,7 +4,7 @@ on:
     types: [opened, edited, synchronize]
     paths:
       - digi_log_fe/**
-      - .github/test-frontend.yml
+      - .github/workflows/test-frontend.yml
   workflow_dispatch:
 concurrency:
   group: general-build-${{ github.event.pull_request.number || github.ref_name }}
