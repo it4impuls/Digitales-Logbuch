@@ -13,6 +13,9 @@ concurrency:
 jobs:
   test-frontend:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./digi_log_fe
     steps:
       - uses: actions/checkout@v3
 
