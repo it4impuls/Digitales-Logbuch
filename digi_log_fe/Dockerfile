@@ -18,10 +18,10 @@ ENV BACKEND_PORT=$BACKEND_PORT
 
 RUN apt update && apt install gettext -y
 
-RUN envsubst < src/environments/environment.prod.ts > src/environments/environment.tmp.ts
-RUN mv src/environments/environment.tmp.ts src/environments/environment.prod.ts
+RUN envsubst < src/environments/environment.ts > src/environments/environment.tmp.ts
+RUN mv src/environments/environment.tmp.ts src/environments/environment.ts
 
-RUN cat src/environments/environment.prod.ts
+RUN cat src/environments/environment.ts
 
 RUN npm run build --build-optimizer
 
