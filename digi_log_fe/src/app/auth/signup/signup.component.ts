@@ -16,22 +16,12 @@ export const confirmPasswordValidator: ValidatorFn = (
     : { PasswordNoMatch: true };
 };
 
-// type keys =
-//   | 'username'
-//   | 'email'
-//   | 'first_name'
-//   | 'last_name'
-//   | 'password'
-//   | 'confirmPassword';
-
-
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.less',
 })
-export class SignupComponent implements AfterViewInit {
+export class SignupComponent {
   constructor(
     private http: HttpService,
     private auth: AuthService,
@@ -39,14 +29,6 @@ export class SignupComponent implements AfterViewInit {
     private router: Router,
     private snackBar: MatSnackBar
   ) {}
-
-  // checkPasswords: ValidatorFn = (
-  //   group: AbstractControl
-  // ): ValidationErrors | null => {
-  //   let pass = group.get("password")?.value;
-  //   let confirmPass = group.get("confirmPassword")?.value;
-  //   return pass === confirmPass ? null : { notSame: true };
-  // };
 
   signupForm = this.formBuilder.group(
     {
@@ -59,64 +41,21 @@ export class SignupComponent implements AfterViewInit {
     }
   );
 
-  // errors: { [key in keys | "all"]: string} = {
-  //   username: '',
-  //   email: '',
-  //   first_name: '',
-  //   last_name: '',
-  //   password: '',
-  //   confirmPassword: '',
-  //   all: '',
-  // };
-
-  ngAfterViewInit(): void {
-    // this.onchange();
-    // this.error = Object.keys(this.signupForm.errors).length < 5
-    //     ? Object.keys(this.signupForm.errors ?? {}).join(', ')
-    //     : '';
-  }
-
   signup() {
     console.log('signup called');
     let form = this.signupForm.value;
     if (form.password == form.confirmPassword) {
       this.http.signup(RPerson.fromObj(form as RPerson)).subscribe({
         next: (user) => {
-          console.log(user);
-          // this.errors.all = '';
           this.snackBar.open('Konto erfolgreich erstellt', 'ok');
           this.router.navigate(['login/']);
         },
         error: (err) => {
-          // this.errors.all = Object.values(err.error).join(', ');
-          console.log(err);
+          this.snackBar.open('err');
         },
       });
     }
   }
-
-  // onchange() {
-  //   console.log();
-
-  //   let controls = this.signupForm.controls;
-  //   let okeys = Object.keys(this.signupForm.controls) as keys[]; 
-  //   debugger
-  //   okeys.forEach((key: keys) => {
-  //     let element = this.signupForm.get(key);
-  //     if (element != null && element?.invalid) {
-  //       if (element.hasError('required')) {
-  //         this.errors[key] = 'Bitte Feld ausfüllen';
-  //       } else if (element.hasError('minlength')) {
-  //         let err = element.getError('minlength');
-  //         this.errors[key] = `Feld muss mindestens ${err["requiredlength"]} buchstaben haben`;
-  //       } else {
-  //         console.log(element.errors);
-  //       }
-  //     }
-  //   });
-  //   console.log(this.errors)
-  // }
-
 
   getError(form:FormControl){
     return form.hasError('required') ? "Feld muss ausfüllt werden":
