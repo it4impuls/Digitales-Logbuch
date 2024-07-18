@@ -11,11 +11,8 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  test-backend:
+  test-frontend:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./digi_log_fe
     steps:
       - uses: actions/checkout@v3
 
@@ -23,4 +20,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          working-directory: "frontend"
+          working-directory: "digi_log_fe"
