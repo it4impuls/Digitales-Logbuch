@@ -19,10 +19,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node.js 22.x
-        uses: actions/setup-node@v1
+      - uses: willcaul/jest-github-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          node-version: 22.x
-      - run: npm ci
-      - run: npm run test:prod
-      - run: npm run lint
+          working-directory: "frontend"
