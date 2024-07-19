@@ -18,14 +18,13 @@ export class LoginComponent {
     private http:HttpService, 
     private auth:AuthService, 
     private formBuilder:FormBuilder, 
-    private router:Router, 
-    private _location:Location,
-    private cookieService:CookieService){
+    private _location:Location){
 
   }
   
-  loginForm = this.formBuilder.group({"username":"", "password":""})
-  error = ""
+  loginForm = this.formBuilder.group({username:"", password:""})
+  
+
   
   async login() {HttpService;
     let lForm = this.loginForm.controls

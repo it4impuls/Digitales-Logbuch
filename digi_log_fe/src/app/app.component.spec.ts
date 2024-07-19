@@ -5,6 +5,7 @@ import { HttpService } from './services/http.service';
 import { Person } from './interfaces';
 import { AuthService } from './services/auth.service';
 import { of } from 'rxjs';
+import { imports, imports_test } from './app.imports';
 
 interface LoginResponse {
   refresh: string;

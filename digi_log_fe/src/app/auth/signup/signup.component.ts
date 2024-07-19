@@ -34,7 +34,6 @@ export const confirmPasswordValidator: ValidatorFn = (
 export class SignupComponent implements AfterViewInit {
   constructor(
     private http: HttpService,
-    private auth: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
     private snackBar: MatSnackBar
@@ -70,6 +69,7 @@ export class SignupComponent implements AfterViewInit {
   // };
 
   ngAfterViewInit(): void {
+    console.log()
     // this.onchange();
     // this.error = Object.keys(this.signupForm.errors).length < 5
     //     ? Object.keys(this.signupForm.errors ?? {}).join(', ')
@@ -80,11 +80,12 @@ export class SignupComponent implements AfterViewInit {
     console.log('signup called');
     let form = this.signupForm.value;
     if (form.password == form.confirmPassword) {
-      this.http.signup(RPerson.fromObj(form as RPerson)).subscribe({
+      let su = this.http.signup(RPerson.fromObj(form as RPerson))
+      su.subscribe({
         next: (user) => {
           console.log(user);
           // this.errors.all = '';
-          this.snackBar.open('Konto erfolgreich erstellt', 'ok');
+          this.http.openSnackbar('Konto erfolgreich erstellt', 'ok');
           this.router.navigate(['login/']);
         },
         error: (err) => {

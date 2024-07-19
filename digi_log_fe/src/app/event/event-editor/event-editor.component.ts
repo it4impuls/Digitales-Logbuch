@@ -74,14 +74,18 @@ export class EventEditorComponent implements OnInit {
     if (this.route.snapshot.paramMap.has('id')) {
       let id = Number(this.route.snapshot.paramMap.get('id'));
 
-      if (id != 0) {
+      if (id > 0) {
         this.course = await this.http.getEvent(id);
-      } else {
+      } else if (id == 0) {
         let user = await this.http.getUser();
         this.course = new Course();
         this.course.host = user;
+      } else {
+        throw new Error('invalid id');
       }
       this.init_course();
+    } else {
+      throw new Error('no id');
     }
 
     return null
@@ -118,7 +122,7 @@ export class EventEditorComponent implements OnInit {
         duration: [this.course.duration, [Validators.required]],
       });
       this.uname = this.course.host.username;
-      console.log(this.courseForm);
+      // console.log(this.courseForm);
     }
   }
 

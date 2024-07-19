@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SignupComponent } from './signup.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder } from '@angular/forms';
-import { Person, RPerson } from '../../interfaces';
+import { RPerson } from '../../interfaces';
 import { of } from 'rxjs';
+import { providers } from '../../app.providers';
 
 
 describe('SignupComponent', () => {
@@ -27,18 +27,18 @@ describe('SignupComponent', () => {
     
     await TestBed.configureTestingModule({
       declarations: [SignupComponent],
-      imports: [ReactiveFormsModule],
+      imports: [],
       providers: [
-        { provide: MatSnackBar, useValue: {} },
-        { provide: Router, useValue: {} },
+        ...providers,
+        {provide: Router, useValue: {navigate: jest.fn()}},
+        FormBuilder,
         {
           provide: HttpService,
           useValue: {
             signup: jest.fn().mockReturnValue(of(mockReturnPerson)),
+            openSnackbar: jest.fn(),
           },
         },
-        { provide: AuthService, useValue: {} },
-        FormBuilder,
       ],
     }).compileComponents();
 
@@ -54,16 +54,13 @@ describe('SignupComponent', () => {
   });
 
   it('to be invalid with invalid input', () => {
-    jest.spyOn(httpService, 'signup');
-    jest.spyOn(component, 'signup');
     expect(component.signupForm.invalid).toBeTruthy();
 
   })
   
   it('should call signup function', () => {
     jest.spyOn(httpService, 'signup');
-    jest.spyOn(component, 'signup');
-    component.signupForm.patchValue({
+    component.signupForm.setValue({
       username: mockFormPerson.username,
       password: mockFormPerson.password,
       confirmPassword: mockFormPerson.password,

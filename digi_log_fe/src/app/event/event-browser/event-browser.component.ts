@@ -16,9 +16,10 @@ export class EventBrowserComponent implements OnInit {
     private http: HttpService,
     private log: LogService,
     private router: Router,
-    private route: ActivatedRoute,
     public auth: AuthService
-  ) {}
+  ) {
+    console.log()
+  }
 
   events: Course[] = [];
   dataSource: MatTableDataSource<Course> = new MatTableDataSource();
@@ -26,7 +27,7 @@ export class EventBrowserComponent implements OnInit {
 
   ngOnInit() {
     
-    return this.init();
+    this.init();
   }
 
   async init():Promise<Course[]> {
