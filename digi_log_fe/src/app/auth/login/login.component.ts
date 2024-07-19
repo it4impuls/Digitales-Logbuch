@@ -35,7 +35,6 @@ export class LoginComponent {
 
     res.subscribe({
       next: (data) => {
-        console.log(data);
         this.auth.updateLoggedInAs(data.uname);
         this._location.back();
       }, 

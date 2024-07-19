@@ -17,9 +17,7 @@ export class EventBrowserComponent implements OnInit {
     private log: LogService,
     private router: Router,
     public auth: AuthService
-  ) {
-    console.log()
-  }
+  ) {  }
 
   events: Course[] = [];
   dataSource: MatTableDataSource<Course> = new MatTableDataSource();
@@ -52,7 +50,6 @@ export class EventBrowserComponent implements OnInit {
   }
 
   attending(element:Course) {
-    // console.log(element)
     return element.attendees.filter((a) => a.attends).length;
   }
 

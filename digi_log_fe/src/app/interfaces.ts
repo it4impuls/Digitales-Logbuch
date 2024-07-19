@@ -120,7 +120,6 @@ export class Course implements Course {
   ) {}
 
   static fromObj(obj: ICourse): Course {
-    console.log(obj);
     return new Course(
       obj.id,
       obj.host,

@@ -76,7 +76,6 @@ export class HttpService {
     let c = await firstValueFrom(
       this.getPosts<ICourse>(this.baseURL + 'courses/' + id)
     );
-    console.log(c);
     return Course.fromObj(c);
   }
 
@@ -116,7 +115,6 @@ export class HttpService {
   }
 
   refreshToken(): Observable<RefreshTokenResponse> {
-    console.log("refreshing")
     return this.httpClient.post<LoginResponse>(
       this.baseURL + 'token/refresh/',
       { refresh: "" },
@@ -147,7 +145,6 @@ export class HttpService {
   }
 
   signup(user: RPerson) {
-    console.log('sending signup');
     return this.httpClient.post(this.baseURL + 'users/', user);
   }
 

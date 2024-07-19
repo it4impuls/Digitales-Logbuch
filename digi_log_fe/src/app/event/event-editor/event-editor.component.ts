@@ -70,7 +70,6 @@ export class EventEditorComponent implements OnInit {
   }
 
   async init() {
-    // console.log(this.route.snapshot.paramMap);
     if (this.route.snapshot.paramMap.has('id')) {
       let id = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -96,7 +95,7 @@ export class EventEditorComponent implements OnInit {
       this.attendees = this.course.attendees.map(
         (attendee) => attendee.attendee.username
       );
-      this.attendees.forEach((x) => console.log(x === this.auth.loggedInAs));
+      // this.attendees.forEach((x) => console.log(x === this.auth.loggedInAs));
       this.userInList = this.attendees.includes(this.auth.loggedInAs ?? '');
       let attendees_list = Object.fromEntries(
         this.course.attendees.map((attendee) => [
@@ -122,7 +121,6 @@ export class EventEditorComponent implements OnInit {
         duration: [this.course.duration, [Validators.required]],
       });
       this.uname = this.course.host.username;
-      // console.log(this.courseForm);
     }
   }
 
@@ -205,7 +203,7 @@ export class EventEditorComponent implements OnInit {
             this.course.attendees.splice(index, 1);
             this.init_course();
           } else {
-            console.log(
+            console.error(
               'User nicht gefunden, Seite neu laden um änderung zu sehen'
             );
           }

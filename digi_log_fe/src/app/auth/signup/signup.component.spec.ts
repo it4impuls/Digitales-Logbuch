@@ -8,6 +8,8 @@ import { FormBuilder } from '@angular/forms';
 import { RPerson } from '../../interfaces';
 import { of } from 'rxjs';
 import { providers } from '../../app.providers';
+import { MatFormFieldHarness } from '@angular/material/form-field/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 
 describe('SignupComponent', () => {
@@ -30,7 +32,7 @@ describe('SignupComponent', () => {
       imports: [],
       providers: [
         ...providers,
-        {provide: Router, useValue: {navigate: jest.fn()}},
+        { provide: Router, useValue: { navigate: jest.fn() } },
         FormBuilder,
         {
           provide: HttpService,
@@ -40,6 +42,7 @@ describe('SignupComponent', () => {
           },
         },
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SignupComponent);

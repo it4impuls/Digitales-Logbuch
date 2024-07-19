@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { Course } from '../../interfaces';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 
 describe('EventBrowserComponent', () => {
@@ -22,6 +23,7 @@ describe('EventBrowserComponent', () => {
       providers: [
         provideAnimationsAsync(),
         LogService,
+        {provide: Router, useValue: {navigate: jest.fn()}},
         {
           provide: HttpService,
           useValue: {
@@ -30,6 +32,7 @@ describe('EventBrowserComponent', () => {
           },
         },
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
     fixture = TestBed.createComponent(EventBrowserComponent);
     component = fixture.componentInstance;

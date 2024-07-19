@@ -9,6 +9,7 @@ import { AuthService } from '../../services/auth.service';
 import { of } from 'rxjs';
 import { imports_test } from '../../app.imports';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('EventEditorComponent', () => {
   let component: EventEditorComponent;
@@ -52,6 +53,7 @@ describe('EventEditorComponent', () => {
           },
         },
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
     httpService = TestBed.inject(HttpService);
     route = TestBed.inject(ActivatedRoute);
@@ -146,18 +148,11 @@ describe('EventEditorComponent', () => {
       content_list: updatedCourse.content_list,
     });
 
-    console.log(component.courseForm.controls);
-    console.log(updatedCourse);
-    console.log(component.courseForm.value);
-    console.log(component.courseForm.errors);
-
     expect(component.courseForm.valid).toBeTruthy();
     
     await component.onSubmit();
 
-    // expect(router.navigate).toHaveBeenCalledWith(['/event/' + mockCourse.id]);
     expect(component.course).toEqual(updatedCourse);
-   
     expect(httpService.updateCourse).toHaveBeenCalled();
     // expect(component.init).toHaveBeenCalled();
   });

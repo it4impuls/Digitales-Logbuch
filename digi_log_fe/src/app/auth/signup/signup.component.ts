@@ -69,7 +69,6 @@ export class SignupComponent implements AfterViewInit {
   // };
 
   ngAfterViewInit(): void {
-    console.log()
     // this.onchange();
     // this.error = Object.keys(this.signupForm.errors).length < 5
     //     ? Object.keys(this.signupForm.errors ?? {}).join(', ')
@@ -77,47 +76,22 @@ export class SignupComponent implements AfterViewInit {
   }
 
   signup() {
-    console.log('signup called');
     let form = this.signupForm.value;
     if (form.password == form.confirmPassword) {
       let su = this.http.signup(RPerson.fromObj(form as RPerson))
       su.subscribe({
         next: (user) => {
-          console.log(user);
           // this.errors.all = '';
           this.http.openSnackbar('Konto erfolgreich erstellt', 'ok');
           this.router.navigate(['login/']);
         },
         error: (err) => {
           // this.errors.all = Object.values(err.error).join(', ');
-          console.log(err);
+          console.error(err);
         },
       });
     }
   }
-
-  // onchange() {
-  //   console.log();
-
-  //   let controls = this.signupForm.controls;
-  //   let okeys = Object.keys(this.signupForm.controls) as keys[]; 
-  //   debugger
-  //   okeys.forEach((key: keys) => {
-  //     let element = this.signupForm.get(key);
-  //     if (element != null && element?.invalid) {
-  //       if (element.hasError('required')) {
-  //         this.errors[key] = 'Bitte Feld ausfüllen';
-  //       } else if (element.hasError('minlength')) {
-  //         let err = element.getError('minlength');
-  //         this.errors[key] = `Feld muss mindestens ${err["requiredlength"]} buchstaben haben`;
-  //       } else {
-  //         console.log(element.errors);
-  //       }
-  //     }
-  //   });
-  //   console.log(this.errors)
-  // }
-
 
   getError(form:FormControl){
     return form.hasError('required') ? "Feld muss ausfüllt werden":

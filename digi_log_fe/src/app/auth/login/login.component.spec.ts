@@ -6,6 +6,7 @@ import { providers } from '../../app.providers';
 import { of } from 'rxjs';
 import { Location } from '@angular/common';
 import { FormBuilder } from '@angular/forms';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -35,6 +36,7 @@ describe('LoginComponent', () => {
         },
         AuthService,
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     });
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
