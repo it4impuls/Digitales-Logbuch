@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatTableDataSource } from '@angular/material/table';
 import { LogService } from '../../services/log.service';
 import { EventBrowserComponent } from './event-browser.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { Course } from '../../interfaces';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';

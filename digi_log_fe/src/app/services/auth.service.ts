@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { CookieService } from './cookie.service';
 import { CookieType } from '../interfaces';
 import { HttpService } from './http.service';
-import { catchError, firstValueFrom, of } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({

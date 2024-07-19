@@ -3,7 +3,7 @@ import { HttpService } from '../../services/http.service';
 import { MatTableDataSource } from "@angular/material/table";
 import { LogService } from '../../services/log.service';
 import { Course } from '../../interfaces';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({

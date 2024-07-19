@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICourse, Course, Level, Person, PostCourse, Attendee, CookieType } from '../../interfaces';
+import { Course, Level, PostCourse, Attendee } from '../../interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
@@ -7,28 +7,10 @@ import { AuthService } from '../../services/auth.service';
 import { firstValueFrom } from 'rxjs';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 
-interface attendeesGroup {
-  [x: string]: FormControl<boolean | null>;
-}
+
 export type ModelFormGroup<T> = FormGroup<{
   [K in keyof T]: FormControl<T[K]>;
 }>;
-
-interface EventFormControls {
-  id: FormControl<number>;
-  attendees: | attendeesGroup;
-  title: FormControl<string>;
-  qualification: FormControl<string>;
-  age: FormControl<number>;
-  level: FormControl<Level>;
-  requirements: FormControl<string>;
-  description_short: FormControl<string>;
-  content_list: FormControl<string>;
-  methods: FormControl<string>;
-  material: FormControl<string>;
-  dates: FormControl<string>;
-  duration: FormControl<string>;
-}
 
 @Component({
   selector: 'app-event-editor',

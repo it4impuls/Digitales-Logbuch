@@ -4,11 +4,7 @@ import { HttpService } from '../../services/http.service'; // Import HttpService
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course, Level, Person } from '../../interfaces';
 import { providers } from '../../app.providers';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
-import { of } from 'rxjs';
-import { imports_test } from '../../app.imports';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormBuilder } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('EventEditorComponent', () => {
@@ -94,7 +90,6 @@ describe('EventEditorComponent', () => {
       mockCourse.attendees.map((attendee) => attendee.attendee.username)
     );
     expect(httpService.getEvent).toHaveBeenCalledWith(mockCourse.id);
-    // expect(httpService.getUser).toHaveBeenCalled();
   });
 
   it('should create a new course when id is 0', async () => {
@@ -117,25 +112,10 @@ describe('EventEditorComponent', () => {
     updatedCourse.dates = "test dates";
     updatedCourse.content_list = "content list";
     updatedCourse.requirements = "Updated Event requirements";
-    // new Course(
-    //   1,
-    //   mockUser,
-    //   [],
-    //   '',
-    //   'Updated Event',
-    //   Level.II,
-    //   'Updated Event requirements',
-    //   'Updated Event',
-    //   'content list',
-    //   '',
-    //   '',
-    //   'test dates',
-    //   'test Duration'
-    // );
+
     jest.spyOn(httpService, 'updateCourse').mockResolvedValue(updatedCourse);
     jest.spyOn(router, 'navigate');
     jest.spyOn(httpService, 'openSnackbar');
-    // jest.spyOn(component, 'init').mockResolvedValue(null);
     
     component.courseForm.patchValue({
       id: updatedCourse.id,

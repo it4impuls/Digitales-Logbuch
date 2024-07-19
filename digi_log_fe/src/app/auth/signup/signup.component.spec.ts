@@ -1,14 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SignupComponent } from './signup.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
-import { AuthService } from '../../services/auth.service';
 import { FormBuilder } from '@angular/forms';
 import { RPerson } from '../../interfaces';
 import { of } from 'rxjs';
 import { providers } from '../../app.providers';
-import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 

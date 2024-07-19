@@ -11,13 +11,6 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
-import { RouterModule } from "@angular/router";
-import { routes } from "./app-routing.module";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
-
-
-
-
 
 export const imports = [
   BrowserModule,
@@ -35,7 +28,6 @@ export const imports = [
   MatButtonModule,
   HttpClientXsrfModule,
 ];
-
 
 export const imports_test = [
   MatTableModule,

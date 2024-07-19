@@ -5,8 +5,6 @@ import { HttpService } from './http.service';
 import { Router } from '@angular/router';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of, throwError } from 'rxjs';
-import { CookieType } from '../interfaces';
-import { HttpClient } from '@angular/common/http';
 
 describe('AuthService', () => {
   let authService: AuthService;
@@ -80,9 +78,6 @@ describe('AuthService', () => {
     authService.refreshTokens();
     expect(httpService.refreshToken).toHaveBeenCalled();
     expect(authService.updateLoggedInAs).toHaveBeenCalled();
-    // expect(httpService.openSnackbar).toHaveBeenCalledWith(
-    //   "Something went wrong, Couldn't refresh tokens"
-    // );
   });
 
 });
