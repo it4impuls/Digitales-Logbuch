@@ -3,7 +3,8 @@ on:
   pull_request:
     types: [opened, edited, synchronize]
     paths:
-      - digi_log_be/**
+      - digi_log_be/digi_log/**
+      - digi_log_be/digilog_backend/**
       - .github/workflows/test-backend.yml
   workflow_dispatch:
 concurrency:
