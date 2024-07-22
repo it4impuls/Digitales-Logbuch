@@ -31,5 +31,5 @@ FROM nginx:alpine
 LABEL name="frontend-nginx"
 COPY --from=node /app/dist/digi_log_fe/browser /usr/share/nginx/html
 COPY /nginx.conf  /etc/nginx/nginx.conf
-RUN nginx -t && nginx -s reload
+RUN nginx -t
 EXPOSE 80
