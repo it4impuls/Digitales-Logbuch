@@ -10,7 +10,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  CONTAINER_NAME: digitales-logbuch_fe
+  CONTAINER_NAME: kursplan_fe
   FRONTEND_PATH: digi_log_fe
   REGISTRY_PATH: ghcr.io/${{ github.repository_owner }}/digitales-logbuch_fe
 
