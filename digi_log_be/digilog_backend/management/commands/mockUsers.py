@@ -2013,18 +2013,18 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         super(Command, self).add_arguments(parser)
         parser.add_argument(
-            '--file',
-            dest='file',
-            default=None,
-            help='json file to import from',
+            'num', type=int, nargs='?', default=1000,
         )
 
     def handle(self, *args, **options):
-        if len(User.objects.all())>1:
-            print(f"{len(User.objects.all())} Users already exist")
+        num = options.get('num', 1000)
+        num_existing = len(User.objects.all())
+        if num_existing>=num:
+            print(f"{num_existing} Users already exist")
             return
         courses = Course.objects.all()
-        for i in range(1000):
+        print(f"{num_existing} Users already exist, Creating {num - num_existing} Users")
+        for i in range(num - num_existing):
             try:
                 vorname = random.choice(vornamen)
                 nachname = random.choice(nachnamen)
