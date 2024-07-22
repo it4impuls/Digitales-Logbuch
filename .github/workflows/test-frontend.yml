@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, edited, synchronize]
     paths:
-      - digi_log_fe/**
+      - digi_log_fe/src/**
       - .github/workflows/test-frontend.yml
   workflow_dispatch:
 concurrency:
