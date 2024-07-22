@@ -203,5 +203,30 @@ describe('EventEditorComponent', () => {
     
   })
 
+  it('should sort the attendees', () => {
+    const mockuser2 = new Person(2, 'Test', 'User', '', 'MockUname2');
+    const mockAttendee = { id: 1, attendee: mockUser, attends: true } as Attendee;
+    const mockAttendee2 = {
+      id: 2,
+      attendee: mockuser2,
+      attends: false,
+    } as Attendee;
+    const mocklist = [mockAttendee2, mockAttendee];
+    let sortedlist = mocklist;
+    sortedlist = mocklist.sort((a, b) => (a.attends < b.attends ? 1 : -1));
+    // once foreward, once backward
+    for (let i = 0; i < mocklist.length; i++) {
+      component.course.attendees = [mocklist[i], mocklist[(i + 1)%mocklist.length]];
+      console.log(component.course.attendees);
+      component.init_course();
+
+      // attending user first, not attending user last
+      expect(component.course.attendees.length).toEqual(mocklist.length);
+      expect(component.course.attendees).toEqual(sortedlist);
+      expect(component.attendees).toEqual(sortedlist.map((a) => a.attendee.username)); 
+    }
+    
+  });
+
   // Add more test cases for other methods and scenarios
 });
