@@ -79,6 +79,7 @@ export class EventEditorComponent implements OnInit {
         (attendee) => attendee.attendee.username
       );
       console.log(this.course.attendees);
+      console.log(this.attendees);
       // this.attendees.forEach((x) => console.log(x === this.auth.loggedInAs));
       this.userInList = this.attendees.includes(this.auth.loggedInAs ?? '');
       let attendees_list = Object.fromEntries(

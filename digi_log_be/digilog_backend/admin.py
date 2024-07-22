@@ -15,7 +15,7 @@ class CourseAdmin(admin.ModelAdmin):
     list_display = ['title', 'host', 'get_attendees', 'get_attendees_attending']
     search_fields = ['title', 'host__username']
     
-    readonly_fields = ['get_attendees', 'get_attendees_attending']
+    readonly_fields = ['get_attendees', 'get_attendees_attending', 'attendee_set']
 
     @admin.display(description="Num attending")
     def get_attendees_attending(self, obj):
