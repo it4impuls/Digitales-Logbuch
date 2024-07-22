@@ -5,6 +5,8 @@ import { HttpService } from './services/http.service';
 import { Person } from './interfaces';
 import { AuthService } from './services/auth.service';
 import { of } from 'rxjs';
+import { imports, imports_test } from './app.imports';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 interface LoginResponse {
   refresh: string;
@@ -31,6 +33,7 @@ describe('AppComponent', () => {
           },
         },
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 

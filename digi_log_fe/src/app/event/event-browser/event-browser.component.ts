@@ -3,7 +3,7 @@ import { HttpService } from '../../services/http.service';
 import { MatTableDataSource } from "@angular/material/table";
 import { LogService } from '../../services/log.service';
 import { Course } from '../../interfaces';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -16,9 +16,8 @@ export class EventBrowserComponent implements OnInit {
     private http: HttpService,
     private log: LogService,
     private router: Router,
-    private route: ActivatedRoute,
     public auth: AuthService
-  ) {}
+  ) {  }
 
   events: Course[] = [];
   dataSource: MatTableDataSource<Course> = new MatTableDataSource();
@@ -26,7 +25,7 @@ export class EventBrowserComponent implements OnInit {
 
   ngOnInit() {
     
-    return this.init();
+    this.init();
   }
 
   async init():Promise<Course[]> {
@@ -51,7 +50,6 @@ export class EventBrowserComponent implements OnInit {
   }
 
   attending(element:Course) {
-    // console.log(element)
     return element.attendees.filter((a) => a.attends).length;
   }
 

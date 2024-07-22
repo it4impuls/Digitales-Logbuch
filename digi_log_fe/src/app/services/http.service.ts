@@ -4,9 +4,7 @@ import { firstValueFrom, Observable, of, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { environment } from "../../environments/environment";
-import { Attendee, CookieType, Course, ICourse, Person, PostCourse, RPerson } from "../interfaces";
-// import { AuthService } from "./auth.service";
-// import {  } from "app/interfaces";
+import { Attendee, Course, ICourse, Person, PostCourse, RPerson } from "../interfaces";
 
 interface LoginResponse {
   refresh:string;
@@ -76,11 +74,10 @@ export class HttpService {
     let c = await firstValueFrom(
       this.getPosts<ICourse>(this.baseURL + 'courses/' + id)
     );
-    console.log(c);
     return Course.fromObj(c);
   }
 
-  delEvent(id:number) {
+  remCourse(id:number) {
     return this.deletePosts(this.baseURL + 'courses/' + id +"/")
   }
 
@@ -116,7 +113,6 @@ export class HttpService {
   }
 
   refreshToken(): Observable<RefreshTokenResponse> {
-    console.log("refreshing")
     return this.httpClient.post<LoginResponse>(
       this.baseURL + 'token/refresh/',
       { refresh: "" },
@@ -147,7 +143,6 @@ export class HttpService {
   }
 
   signup(user: RPerson) {
-    console.log('sending signup');
     return this.httpClient.post(this.baseURL + 'users/', user);
   }
 

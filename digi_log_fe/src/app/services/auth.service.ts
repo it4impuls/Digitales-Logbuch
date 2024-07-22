@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { CookieService } from './cookie.service';
 import { CookieType } from '../interfaces';
 import { HttpService } from './http.service';
-import { catchError, firstValueFrom, of } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -18,19 +17,12 @@ export class AuthService {
   loggedInAs:string|null = ""
 
   async refreshTokens() {
-    console.log('Refreshing');
-    // let rToken = this.cookieService.getValue(CookieType.refreshToken) ?? '';
-    // if (rToken) {
     this.http.refreshToken().subscribe({
       next: (response) => {
-        // this.cookieService.addToCookieWithName(
-        //   CookieType.accessToken,
-        //   response['access']
-        // );
         this.updateLoggedInAs();
       },
       error: (err) => {
-        // console.log(err);
+        console.error(err);
         // this.cookieService.clearAll()
       },
     });
@@ -39,7 +31,6 @@ export class AuthService {
   updateLoggedInAs(uname:string|null = null) {
     
     this.loggedInAs = uname?? this.cookieService.getValue(CookieType.username);
-    console.log("updated logged in:" + this.loggedInAs)
   }
 
   async logout() {

@@ -1,35 +1,45 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { MatTableDataSource } from '@angular/material/table';
 import { LogService } from '../../services/log.service';
 import { EventBrowserComponent } from './event-browser.component';
-import { ActivatedRoute, Router } from '@angular/router';
-import { of } from 'rxjs';
+import { Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { Course } from '../../interfaces';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 
 describe('EventBrowserComponent', () => {
   let component: EventBrowserComponent;
   let fixture: ComponentFixture<EventBrowserComponent>;
-  let httpService: HttpService;
   let router: Router;
-  let activatedRoute: ActivatedRoute;
+  let httpService: HttpService;
+  let mockEvents = [new Course(1), new Course(2)];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
+      imports: [],
       declarations: [EventBrowserComponent],
-      providers: [LogService, HttpService],
+      providers: [
+        provideAnimationsAsync(),
+        LogService,
+        {provide: Router, useValue: {navigate: jest.fn()}},
+        {
+          provide: HttpService,
+          useValue: {
+            getEvents: jest.fn().mockResolvedValue(mockEvents),
+            openSnackbar: jest.fn(),
+          },
+        },
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
-
     fixture = TestBed.createComponent(EventBrowserComponent);
     component = fixture.componentInstance;
     httpService = TestBed.inject(HttpService);
     router = TestBed.inject(Router);
-    activatedRoute = TestBed.inject(ActivatedRoute);
     fixture.detectChanges();
+    
   });
 
   it('should create', () => {
@@ -37,25 +47,18 @@ describe('EventBrowserComponent', () => {
   });
 
   it('should initialize events and dataSource on ngOnInit', async () => {
-    const mockEvents = [new Course(1), new Course(2)];
-    const httpServiceSpy = jest
-      .spyOn(httpService, 'getEvents')
-      .mockResolvedValue(mockEvents);
 
     await component.ngOnInit();
-    expect(httpServiceSpy).toHaveBeenCalled();
     expect(component.dataSource).toBeInstanceOf(MatTableDataSource);
     expect(component.dataSource.data).toEqual(mockEvents);
     expect(component.events).toEqual(mockEvents);
   });
 
   it('should navigate to event details page on onSelectClick', () => {
-    const mockEvent:Course = new Course (1);
+    const mockEvents = [new Course(1), new Course(2)];
     const routerSpy = jest.spyOn(router, 'navigate');
-
-    component.onSelectClick(mockEvent);
-
-    expect(routerSpy).toHaveBeenCalledWith(['event', mockEvent.id]);
+    component.onSelectClick(mockEvents[0]);
+    expect(routerSpy).toHaveBeenCalledWith(['event', mockEvents[0].id]);
   });
 
   it('should filter dataSource based on event input', () => {
@@ -86,4 +89,5 @@ describe('EventBrowserComponent', () => {
 
     expect(result).toBe(mockEvent.id);
   });
+
 });

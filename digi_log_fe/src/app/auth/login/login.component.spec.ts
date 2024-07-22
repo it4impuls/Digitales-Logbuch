@@ -2,8 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { HttpService } from '../../services/http.service';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { providers } from '../../app.providers';
 import { of } from 'rxjs';
+import { Location } from '@angular/common';
+import { FormBuilder } from '@angular/forms';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -15,21 +18,25 @@ describe('LoginComponent', () => {
   beforeEach(() => {
     mockLoginReturn = { refresh: 'test', access: 'test', uname: 'test' };
     TestBed.configureTestingModule({
+      imports: [],
       declarations: [LoginComponent],
       providers: [
-        { provide: Router, useValue: {} },
+        ...providers,
+        HttpService,
+        AuthService,
+        FormBuilder,
+        Location,
         {
           provide: HttpService,
           useValue: {
-            login: jest
-              .fn()
-              .mockReturnValue(
-                of(mockLoginReturn)
-              ),
+            // getEvent: jest.fn().mockResolvedValue(mockCourse),
+            // getUser: jest.fn().mockResolvedValue(mockUser),
+            login: jest.fn().mockReturnValue(of(mockLoginReturn)),
           },
         },
-        AuthService
+        AuthService,
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     });
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;

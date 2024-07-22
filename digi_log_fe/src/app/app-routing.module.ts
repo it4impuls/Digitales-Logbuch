@@ -5,7 +5,7 @@ import { EventEditorComponent } from './event/event-editor/event-editor.componen
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', redirectTo: '/events', pathMatch: 'full' },
 
   { path: 'login', component: LoginComponent },

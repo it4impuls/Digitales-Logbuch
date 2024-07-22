@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICourse, Course, Level, Person, PostCourse, Attendee, CookieType } from '../../interfaces';
+import { Course, Level, PostCourse, Attendee } from '../../interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
@@ -7,28 +7,10 @@ import { AuthService } from '../../services/auth.service';
 import { firstValueFrom } from 'rxjs';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 
-interface attendeesGroup {
-  [x: string]: FormControl<boolean | null>;
-}
+
 export type ModelFormGroup<T> = FormGroup<{
   [K in keyof T]: FormControl<T[K]>;
 }>;
-
-interface EventFormControls {
-  id: FormControl<number>;
-  attendees: | attendeesGroup;
-  title: FormControl<string>;
-  qualification: FormControl<string>;
-  age: FormControl<number>;
-  level: FormControl<Level>;
-  requirements: FormControl<string>;
-  description_short: FormControl<string>;
-  content_list: FormControl<string>;
-  methods: FormControl<string>;
-  material: FormControl<string>;
-  dates: FormControl<string>;
-  duration: FormControl<string>;
-}
 
 @Component({
   selector: 'app-event-editor',
@@ -70,18 +52,21 @@ export class EventEditorComponent implements OnInit {
   }
 
   async init() {
-    // console.log(this.route.snapshot.paramMap);
     if (this.route.snapshot.paramMap.has('id')) {
       let id = Number(this.route.snapshot.paramMap.get('id'));
 
-      if (id != 0) {
+      if (id > 0) {
         this.course = await this.http.getEvent(id);
-      } else {
+      } else if (id == 0) {
         let user = await this.http.getUser();
         this.course = new Course();
         this.course.host = user;
+      } else {
+        throw new Error('invalid id');
       }
       this.init_course();
+    } else {
+      throw new Error('no id');
     }
 
     return null
@@ -92,7 +77,7 @@ export class EventEditorComponent implements OnInit {
       this.attendees = this.course.attendees.map(
         (attendee) => attendee.attendee.username
       );
-      this.attendees.forEach((x) => console.log(x === this.auth.loggedInAs));
+      // this.attendees.forEach((x) => console.log(x === this.auth.loggedInAs));
       this.userInList = this.attendees.includes(this.auth.loggedInAs ?? '');
       let attendees_list = Object.fromEntries(
         this.course.attendees.map((attendee) => [
@@ -118,7 +103,6 @@ export class EventEditorComponent implements OnInit {
         duration: [this.course.duration, [Validators.required]],
       });
       this.uname = this.course.host.username;
-      console.log(this.courseForm);
     }
   }
 
@@ -201,7 +185,7 @@ export class EventEditorComponent implements OnInit {
             this.course.attendees.splice(index, 1);
             this.init_course();
           } else {
-            console.log(
+            console.error(
               'User nicht gefunden, Seite neu laden um änderung zu sehen'
             );
           }
@@ -221,7 +205,7 @@ export class EventEditorComponent implements OnInit {
 
   async remCourse(){
     if( confirm("Wollen Sie wirklich diesen Kurs entfernen?")){
-      this.http.delEvent(this.course.id).subscribe({
+      this.http.remCourse(this.course.id).subscribe({
         next: (response) => {
           this.http.openSnackbar("Erfolgreich entfernt")
           this.router.navigate(["/"])

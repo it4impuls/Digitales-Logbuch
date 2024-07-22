@@ -5,7 +5,6 @@ import {
 } from '@angular/common/http/testing';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpService } from './http.service';
-import { ICourse, Course } from '../interfaces';
 
 describe('HttpService', () => {
   let service: HttpService;
