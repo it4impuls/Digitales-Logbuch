@@ -2037,9 +2037,11 @@ class Command(BaseCommand):
             user, created = User.objects.get_or_create(username=uname, defaults={"password": uname, "email":uname+"@example.com", "first_name":vorname, "last_name":nachname,})
 
             if len(courses) > 0 and created:
-                for j in range(random.randint(1, 10)):
+                for j in range(random.randint(1, max(1, 10-(num - num_existing)))):
                     course = random.choice(courses)
                     try:
+                        if course.attendee_set.count() > 20:
+                            continue
                         Attendee.objects.create(
                             attends=random.choice([True, False]),
                             attendee=user,

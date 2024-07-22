@@ -32,16 +32,29 @@ class Command(BaseCommand):
             for entry in entries:
                 e = {}
                 e["host"] = User.objects.first()
-                e["qualification"] = entry.get("Qualifizierungsbereich", "")[:Course.qualification.max_length]
-                e["title"] = entry.get("Titel des Kurses", "")[:Course.title.max_length]
-                e["level"]=entry.get('Level', "I").split(" ")[0][:Course.level.max_length]
-                e["requirements"]= entry.get("Material/Unterlagen", "")[:Course.requirements.max_length]
-                e["description_short"] = entry.get("Kurzbeschreibung/Untertitel des Moduls")[:Course.description_short.max_length]
-                e["content_list"] = entry.get("Inhalte des Kurses", "")[:Course.content_list.max_length]
-                e["methods"]=entry.get("methods", "")[:Course.methods.max_length]
-                e["material"] = entry.get("Material/Unterlagen", "")[:Course.material.max_length]
-                e["dates"] = entry.get("Wie oft wird der Kurs angeboten", "")[:Course.dates.max_length]
-                e["duration"] = entry.get("Kursdauer", "")[:Course.duration.max_length]
+                try:
+                    e["qualification"] = entry.get("Qualifizierungsbereich", "")[:Course.qualification.max_length]
+                    e["title"] = entry.get("Titel des Kurses", "")[:Course.title.max_length]
+                    e["level"]=entry.get('Level', "I").split(" ")[0][:Course.level.max_length]
+                    e["requirements"]= entry.get("Material/Unterlagen", "")[:Course.requirements.max_length]
+                    e["description_short"] = entry.get("Kurzbeschreibung/Untertitel des Moduls")[:Course.description_short.max_length]
+                    e["content_list"] = entry.get("Inhalte des Kurses", "")[:Course.content_list.max_length]
+                    e["methods"]=entry.get("methods", "")[:Course.methods.max_length]
+                    e["material"] = entry.get("Material/Unterlagen", "")[:Course.material.max_length]
+                    e["dates"] = entry.get("Wie oft wird der Kurs angeboten", "")[:Course.dates.max_length]
+                    e["duration"] = entry.get("Kursdauer", "")[:Course.duration.max_length]
+                except Exception as err:
+                    e["qualification"] = entry.get("Qualifizierungsbereich", "")
+                    e["title"] = entry.get("Titel des Kurses", "")
+                    e["level"]=entry.get('Level', "I").split(" ")[0]
+                    e["requirements"]= entry.get("Material/Unterlagen", "")
+                    e["description_short"] = entry.get("Kurzbeschreibung/Untertitel des Moduls")
+                    e["content_list"] = entry.get("Inhalte des Kurses", "")
+                    e["methods"]=entry.get("methods", "")
+                    e["material"] = entry.get("Material/Unterlagen", "")
+                    e["dates"] = entry.get("Wie oft wird der Kurs angeboten", "")
+                    e["duration"] = entry.get("Kursdauer", "")
+                    
                 
                 try:
                     course = Course.objects.get_or_create(title=e.pop("title"), defaults=e)
