@@ -78,14 +78,14 @@ export class EventEditorComponent implements OnInit {
       this.attendees = this.course.attendees.map(
         (attendee) => attendee.attendee.username
       );
-      console.log()
+      console.log(this.course.attendees);
       // this.attendees.forEach((x) => console.log(x === this.auth.loggedInAs));
       this.userInList = this.attendees.includes(this.auth.loggedInAs ?? '');
       let attendees_list = Object.fromEntries(
         this.course.attendees.map((attendee) => [
           attendee.id as number,
           attendee.attends,
-        ])
+        ]) 
       );
       console.log(attendees_list);
       this.courseForm = this.formbuilder.group({
