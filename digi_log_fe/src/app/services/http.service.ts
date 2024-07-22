@@ -77,7 +77,7 @@ export class HttpService {
     return Course.fromObj(c);
   }
 
-  delEvent(id:number) {
+  remCourse(id:number) {
     return this.deletePosts(this.baseURL + 'courses/' + id +"/")
   }
 

@@ -205,7 +205,7 @@ export class EventEditorComponent implements OnInit {
 
   async remCourse(){
     if( confirm("Wollen Sie wirklich diesen Kurs entfernen?")){
-      this.http.delEvent(this.course.id).subscribe({
+      this.http.remCourse(this.course.id).subscribe({
         next: (response) => {
           this.http.openSnackbar("Erfolgreich entfernt")
           this.router.navigate(["/"])

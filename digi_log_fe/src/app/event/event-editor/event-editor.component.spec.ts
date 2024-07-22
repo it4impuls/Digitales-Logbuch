@@ -2,22 +2,25 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EventEditorComponent } from './event-editor.component';
 import { HttpService } from '../../services/http.service'; // Import HttpService or provide a mock
 import { ActivatedRoute, Router } from '@angular/router';
-import { Course, Level, Person } from '../../interfaces';
+import { Attendee, Course, Level, Person } from '../../interfaces';
 import { providers } from '../../app.providers';
 import { FormBuilder } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { of } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 describe('EventEditorComponent', () => {
   let component: EventEditorComponent;
   let fixture: ComponentFixture<EventEditorComponent>;
   let httpService: HttpService;
+  let authService: AuthService;
   let route: ActivatedRoute;
   let router: Router;
   let mockCourse: Course;
   let mockUser: Person;
 
   beforeEach(async () => {
-    mockUser = new Person(1, 'Test', 'User');
+    mockUser = new Person(1, 'Test', 'User', '', 'MockUname');
     mockCourse = new Course(1, mockUser, [], '', 'Test Event', Level.II);
 
     await TestBed.configureTestingModule({
@@ -26,6 +29,7 @@ describe('EventEditorComponent', () => {
       providers: [
         ...providers,
         FormBuilder,
+        {provide: AuthService, useValue: {loggedInAs: mockUser.username}},
         {
           provide: HttpService,
           useValue: {
@@ -33,6 +37,8 @@ describe('EventEditorComponent', () => {
             getUser: jest.fn().mockResolvedValue(mockUser),
             createCourse: jest.fn().mockResolvedValue(mockCourse),
             updateCourse: jest.fn().mockResolvedValue(mockCourse),
+            remCourse: jest.fn().mockReturnValue(of(null)),
+            courseUnattend: jest.fn().mockReturnValue(of(null)),
             openSnackbar: jest.fn(),
           },
         },
@@ -48,10 +54,12 @@ describe('EventEditorComponent', () => {
             },
           },
         },
+        { provide: Router, useValue: { navigate: jest.fn() } },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
     httpService = TestBed.inject(HttpService);
+    authService = TestBed.inject(AuthService);
     route = TestBed.inject(ActivatedRoute);
     router = TestBed.inject(Router);
     fixture = TestBed.createComponent(EventEditorComponent);
@@ -155,6 +163,45 @@ describe('EventEditorComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(['/event/'+mockCourse.id]);
     // expect(component.init).toHaveBeenCalled();
   });
+
+  it('should remove attendee when removeAttendee is called', () => {
+    jest.spyOn(component, 'unAttend');
+    jest.spyOn(httpService, 'courseUnattend');
+    // jest.spyOn(authService, 'loggedInAs');
+    const mockAttendee = { id: 1, attendee: mockUser, attends: true } as Attendee;
+
+    expect(authService.loggedInAs).toBe(mockUser.username);
+    component.course.attendees = [mockAttendee];
+    component.init_course()
+    expect(component.attendees.find((a) => a === mockUser.username)).toEqual(
+      mockUser.username
+    );
+    expect(component.course.attendees).toContain(mockAttendee);
+    
+    component.unAttend();
+
+    expect(httpService.courseUnattend).toHaveBeenCalledWith(mockUser.id);
+    expect(component.attendees.find((a) => a === mockUser.username)).toBe(
+      undefined
+    );
+    expect(component.course.attendees).not.toContain(mockAttendee);
+  });
+
+  it('should remove course if user is host', () => {
+    jest.spyOn(component, 'unAttend');
+    jest.spyOn(httpService, 'remCourse');
+    jest.spyOn(window, "confirm").mockReturnValue(true);
+    
+
+    expect(authService.loggedInAs).toBe(mockUser.username);
+    component.course.host = mockUser;
+    component.init_course()
+    expect(component.course.host).toEqual(mockUser);
+    component.remCourse();
+    expect(httpService.remCourse).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith(['/']);
+    
+  })
 
   // Add more test cases for other methods and scenarios
 });
