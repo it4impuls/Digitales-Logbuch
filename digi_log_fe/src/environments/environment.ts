@@ -4,9 +4,12 @@
 
 export const environment = {
   production: true,
-  BACKEND_PORT: '${BACKEND_PORT}',
-  BACKEND_IP: '${BACKEND_IP}',
+  // $ENV is defined in src/typings.d.ts, var gotten from custom-webpack.config.js
+  BACKEND_PORT: 8080,
+  BACKEND_IP: 'localhost',
 };
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file
