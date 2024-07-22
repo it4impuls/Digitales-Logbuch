@@ -31,6 +31,8 @@ ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1", "kursplan.impulsreha.local
 
 LOGIN_URL = "/api/login/"
 
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000 if DEBUG else 1000 
+
 # Application definition
 
 INSTALLED_APPS = [
