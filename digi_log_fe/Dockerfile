@@ -18,8 +18,8 @@ ENV BACKEND_PORT=$BACKEND_PORT
 
 RUN apt update && apt install gettext -y
 
-RUN envsubst < src/environments/environment.production.ts > src/environments/environment.tmp.ts
-RUN mv src/environments/environment.tmp.ts src/environments/environment.production.ts
+RUN envsubst < src/environments/environment.prod.ts > src/environments/environment.tmp.ts
+RUN mv src/environments/environment.tmp.ts src/environments/environment.prod.ts
 
 RUN cat src/environments/environment.ts
 
