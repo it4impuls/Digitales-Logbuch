@@ -74,6 +74,7 @@ export class EventEditorComponent implements OnInit {
 
   init_course() {
     if (this.course) {
+      console.log(this.course)
       this.course.attendees.sort((a, b) => (a.attends < b.attends ? 1 : -1));
       this.attendees = this.course.attendees.map(
         (attendee) => attendee.attendee.username
