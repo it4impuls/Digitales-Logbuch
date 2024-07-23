@@ -38,7 +38,7 @@ class Command(BaseCommand):
                     e["level"]=entry.get('Level', "I").split(" ")[0][:Course.level.max_length-1]
                     e["requirements"]= entry.get("Material/Unterlagen", "")[:Course.requirements.max_length-1]
                     e["description_short"] = entry.get("Kurzbeschreibung/Untertitel des Moduls")[:Course.description_short.max_length-1]
-                    e["content_list"] = entry.get("Inhalte des Kurses", "")[:Course.content_list.max_length-1]
+                    e["content_list"] = entry.get("Inhalte des Kurses", "")
                     e["methods"]=entry.get("methods", "")[:Course.methods.max_length-1]
                     e["material"] = entry.get("Material/Unterlagen", "")[:Course.material.max_length-1]
                     e["dates"] = entry.get("Wie oft wird der Kurs angeboten", "")[:Course.dates.max_length-1]
