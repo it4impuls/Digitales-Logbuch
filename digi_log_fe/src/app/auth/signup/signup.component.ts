@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export const confirmPasswordValidator: ValidatorFn = (
   control: AbstractControl
 ): ValidationErrors | null => {
-  return control.value === control.parent?.value.confirmPassword
+  return control.value === control.parent?.value.password
     ? null
     : { PasswordNoMatch: true };
 };

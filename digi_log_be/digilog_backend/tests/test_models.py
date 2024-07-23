@@ -1,11 +1,14 @@
 from django.test import TestCase#
 from digilog_backend.models import Course, User, Attendee
 
+
+
 # Create your tests here.
 class CourseTest(TestCase):
 
     def setUp(self):
         self.host = User.objects.create(username = "test_user")
+        self.nonhost = User.objects.create(username="test_user2")
 
     def test_course_creation(self):
         course = Course.objects.create(
@@ -26,6 +29,21 @@ class CourseTest(TestCase):
         self.assertEqual(course.methods, "methods")
         self.assertEqual(course.material, "material")
         self.assertEqual(course.dates, "dates")
+
+    def test_course_update(self):
+        course = Course.objects.create(
+            host=self.host,
+            title="Test course",
+            level=Course.Level.BEGINNER,
+            description_short="short description",
+            content_list="content list",
+            methods="methods",
+            material="material",
+            dates="dates",
+        )
+        course.title = "Test course updated"
+        course.save()
+        self.assertEqual(course.title, "Test course updated")
 
     def test_course_field_length(self):
         test_title = "a" * 100

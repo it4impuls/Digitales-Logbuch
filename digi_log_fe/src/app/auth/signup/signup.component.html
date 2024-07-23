@@ -28,7 +28,7 @@
     <mat-form-field  class="passwd input">
         <mat-label>Passwort wiederholen</mat-label>
         <input matInput formControlName="confirmPassword"  type="password">
-        <mat-error>{{getError(signupForm.controls.confirmPassword)}}</mat-error>
+        <mat-error *ngIf="signupForm.controls.confirmPassword.hasError('PasswordNoMatch')">{{getError(signupForm.controls.confirmPassword)}}</mat-error>
     </mat-form-field>
 
     <mat-error *ngIf="signupForm.errors">getError(signupForm)</mat-error>
