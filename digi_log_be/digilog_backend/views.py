@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
 
 from .authenticator import CustomAuthentication
-from .serializers import AttendeeSerializer, ShortAttendeeSerializer, UserSerializer, CourseSerializer, myTokenObtainPairSerializer, myTokenRefreshSerializer, TokenVerifySerializer
+from .serializers import AttendeeSerializer, ShortAttendeeSerializer, UserSerializer, CourseSerializer, myTokenObtainPairSerializer, myTokenRefreshSerializer, TokenVerifySerializer, ShortCourseSerializer
 from .models import Course, User, Attendee
 
 from rest_framework import viewsets
@@ -61,6 +61,11 @@ class CourseViewSet(AuthViewset):
         if not request.data["host"]:
             raise AuthenticationFailed()
         return super().create(request, *args, **kwargs)
+    
+    def get_serializer_class(self):
+        if self.action == "list":
+            return ShortCourseSerializer
+        return super().get_serializer_class()
 
 
 class AttendeeViewSet(AuthViewset):

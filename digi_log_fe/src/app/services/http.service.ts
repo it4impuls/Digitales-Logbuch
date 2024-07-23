@@ -67,12 +67,12 @@ export class HttpService {
   async getEvents(): Promise<Course[]> {
     return (
       await firstValueFrom(this.getPosts<ICourse[]>(this.baseURL + 'courses'))
-    ).map((course) => Course.fromObj(course));
+    ).map((course) => Course.fromICourse(course));
   }
 
   async getEvent(id: number): Promise<Course> {
     let c = await firstValueFrom(
-      this.getPosts<ICourse>(this.baseURL + 'courses/' + id)
+      this.getPosts<Course>(this.baseURL + 'courses/' + id)
     );
     return Course.fromObj(c);
   }
@@ -148,7 +148,7 @@ export class HttpService {
 
   async createCourse(course: PostCourse) {
     return firstValueFrom(
-      this.postPosts<ICourse>(
+      this.postPosts<Course>(
         this.baseURL + 'courses/',
         course
       )
@@ -157,7 +157,7 @@ export class HttpService {
 
   async updateCourse(course: PostCourse) {
     return firstValueFrom(
-      this.patchPosts<ICourse>(
+      this.patchPosts<Course>(
         this.baseURL + 'courses/' + course.id + '/',
         course
       )

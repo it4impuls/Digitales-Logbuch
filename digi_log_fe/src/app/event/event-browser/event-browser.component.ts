@@ -21,7 +21,7 @@ export class EventBrowserComponent implements OnInit {
 
   events: Course[] = [];
   dataSource: MatTableDataSource<Course> = new MatTableDataSource();
-  displayedColumns = ['name', 'host', 'description', 'atendees'];
+  displayedColumns = ['name', 'host', 'description'];
 
   ngOnInit() {
     
@@ -49,9 +49,9 @@ export class EventBrowserComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  attending(element:Course) {
-    return element.attendees.filter((a) => a.attends).length;
-  }
+  // attending(element:Course) {
+  //   return element.attendees.filter((a) => a.attends).length;
+  // }
 
   // newCourse() {
   //   this.router.navigate(["event/new", { pathMatch: "full" }]);

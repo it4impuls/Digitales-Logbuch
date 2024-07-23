@@ -91,6 +91,14 @@ class AttendeeSerializer(serializers.ModelSerializer):
         return super().validate(attrs)
 
     
+class ShortCourseSerializer(serializers.ModelSerializer):
+    host = UserSerializer(read_only=True)
+    AttendeeSerializer(many=True, source="attendee_set", read_only=True)
+
+    class Meta:
+        model = Course
+        fields = '__all__'
+
 class CourseSerializer(serializers.ModelSerializer):
     host = UserSerializer(read_only=True)
     attendees = AttendeeSerializer(many=True, source="attendee_set", read_only=True)
@@ -120,9 +128,6 @@ class CourseSerializer(serializers.ModelSerializer):
 
             
         return super().update(instance, validated_data)
-
-    def validate(self, attrs):
-        return super().validate(attrs)
     
 # class MyTokenBlacklistSerializer(TokenBlacklistSerializer):
 #     def validate(self, attrs: Dict[str, Any]) -> Dict[str, str]:

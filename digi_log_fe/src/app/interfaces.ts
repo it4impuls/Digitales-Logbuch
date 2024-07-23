@@ -32,7 +32,7 @@ export interface Course {
   duration: string;
 }
 
-export interface ICourse extends Omit<Course, 'info'> {}
+export interface ICourse extends Omit<Course, 'attendees'> {}
 
 export interface PostCourse extends Omit<Course, 'host' | 'attendees'> {
 }
@@ -119,7 +119,25 @@ export class Course implements Course {
     public duration: string = ''
   ) {}
 
-  static fromObj(obj: ICourse): Course {
+  static fromICourse(obj: ICourse): Course {
+    return new Course(
+      obj.id,
+      obj.host,
+      [] as Attendee[], //obj.attendees.map((p) => Attendee.fromObj(p)),
+      obj.qualification,
+      obj.title,
+      obj.level,
+      obj.requirements,
+      obj.description_short,
+      obj.content_list,
+      obj.methods,
+      obj.material,
+      obj.dates,
+      obj.duration
+    );
+  }
+
+  static fromObj(obj: Course): Course {
     return new Course(
       obj.id,
       obj.host,
