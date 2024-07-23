@@ -33,17 +33,19 @@ class Command(BaseCommand):
                 e = {}
                 e["host"] = User.objects.first()
                 try:
-                    e["qualification"] = entry.get("Qualifizierungsbereich", "")[:Course.qualification.max_length]
-                    e["title"] = entry.get("Titel des Kurses", "")[:Course.title.max_length]
-                    e["level"]=entry.get('Level', "I").split(" ")[0][:Course.level.max_length]
-                    e["requirements"]= entry.get("Material/Unterlagen", "")[:Course.requirements.max_length]
-                    e["description_short"] = entry.get("Kurzbeschreibung/Untertitel des Moduls")[:Course.description_short.max_length]
-                    e["content_list"] = entry.get("Inhalte des Kurses", "")[:Course.content_list.max_length]
-                    e["methods"]=entry.get("methods", "")[:Course.methods.max_length]
-                    e["material"] = entry.get("Material/Unterlagen", "")[:Course.material.max_length]
-                    e["dates"] = entry.get("Wie oft wird der Kurs angeboten", "")[:Course.dates.max_length]
-                    e["duration"] = entry.get("Kursdauer", "")[:Course.duration.max_length]
+                    e["qualification"] = entry.get("Qualifizierungsbereich", "")[:Course.qualification.max_length-1]
+                    e["title"] = entry.get("Titel des Kurses", "")[:Course.title.max_length-1]
+                    e["level"]=entry.get('Level', "I").split(" ")[0][:Course.level.max_length-1]
+                    e["requirements"]= entry.get("Material/Unterlagen", "")[:Course.requirements.max_length-1]
+                    e["description_short"] = entry.get("Kurzbeschreibung/Untertitel des Moduls")[:Course.description_short.max_length-1]
+                    e["content_list"] = entry.get("Inhalte des Kurses", "")[:Course.content_list.max_length-1]
+                    e["methods"]=entry.get("methods", "")[:Course.methods.max_length-1]
+                    e["material"] = entry.get("Material/Unterlagen", "")[:Course.material.max_length-1]
+                    e["dates"] = entry.get("Wie oft wird der Kurs angeboten", "")[:Course.dates.max_length-1]
+                    e["duration"] = entry.get("Kursdauer", "")[:Course.duration.max_length-1]
                 except Exception as err:
+                    print(err)
+                    print("couldnt truncate")
                     e["qualification"] = entry.get("Qualifizierungsbereich", "")
                     e["title"] = entry.get("Titel des Kurses", "")
                     e["level"]=entry.get('Level', "I").split(" ")[0]
@@ -63,4 +65,5 @@ class Command(BaseCommand):
                     print([(key, len(str(val))) for key, val in e.items()])
                     pprint(e)
                     pprint(err)
+                    print()
                 
