@@ -59,8 +59,8 @@ class Command(BaseCommand):
                 try:
                     course = Course.objects.get_or_create(title=e.pop("title"), defaults=e)
                     print(course)
-                except Exception as e:
+                except Exception as err:
                     print([(key, len(str(val))) for key, val in e.items()])
                     pprint(e)
-                    pprint(e)
+                    pprint(err)
                 
