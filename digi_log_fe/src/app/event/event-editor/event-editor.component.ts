@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { AuthService } from '../../services/auth.service';
 import { firstValueFrom } from 'rxjs';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { LogService } from '../../services/log.service';
 
 
 export type ModelFormGroup<T> = FormGroup<{
@@ -24,6 +25,7 @@ export class EventEditorComponent implements OnInit {
     private http: HttpService,
     private formbuilder: FormBuilder,
     private httpService: HttpService,
+    private log: LogService,
     public auth: AuthService
   ) {}
   edit = false;
@@ -74,13 +76,13 @@ export class EventEditorComponent implements OnInit {
 
   init_course() {
     if (this.course) {
-      console.log(this.course)
+      this.log.log(this.course)
       this.course.attendees.sort((a, b) => (a.attends < b.attends ? 1 : -1));
       this.attendees = this.course.attendees.map(
         (attendee) => attendee.attendee.username
       );
-      console.log(this.course.attendees);
-      console.log(this.attendees);
+      this.log.log(this.course.attendees);
+      this.log.log(this.attendees);
       // this.attendees.forEach((x) => console.log(x === this.auth.loggedInAs));
       this.userInList = this.attendees.includes(this.auth.loggedInAs ?? '');
       let attendees_list = Object.fromEntries(
@@ -89,7 +91,7 @@ export class EventEditorComponent implements OnInit {
           attendee.attends,
         ]) 
       );
-      console.log(attendees_list);
+      this.log.log(attendees_list);
       this.courseForm = this.formbuilder.group({
         id: this.course.id as number,
         attendees: this.formbuilder.group(attendees_list),
