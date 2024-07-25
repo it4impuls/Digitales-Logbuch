@@ -81,7 +81,7 @@ describe('AppComponent', () => {
     const mockPerson = new Person(1, 'John', 'Doe', 'Developer', 'johndoe');
     jest.spyOn(httpService, 'getUser').mockResolvedValue(mockPerson);
 
-    await component.test();
+    await component.getUser();
 
     expect(httpService.getUser).toHaveBeenCalled();
   });

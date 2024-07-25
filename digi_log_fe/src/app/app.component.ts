@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/']);
   }
-  test() {
+  getUser() {
     this.http.getUser();
   }
 
