@@ -12,8 +12,8 @@ from .models import User, Course, Attendee
 
 class myTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
-        
-        data = super().validate(attrs)
+        s = super()
+        data = s.validate(attrs)
         assert self.user != None
         refresh = self.get_token(self.user)
         data["refresh"] = str(refresh)   # comment out if you don't want this

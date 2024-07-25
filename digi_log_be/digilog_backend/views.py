@@ -57,7 +57,10 @@ class CourseViewSet(AuthViewset):
         return super().get_permissions()
 
     def create(self, request, *args, **kwargs):
-        request.data["host"], token = CustomAuthentication().authenticate(request)
+        try:
+            request.data["host"], token = CustomAuthentication().authenticate(request)
+        except Exception as e:
+            raise AuthenticationFailed()
         if not request.data["host"]:
             raise AuthenticationFailed()
         return super().create(request, *args, **kwargs)

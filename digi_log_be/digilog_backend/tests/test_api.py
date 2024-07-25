@@ -4,9 +4,37 @@ from django.test import TestCase
 from digilog_backend.models import Course, User, Attendee
 from rest_framework.test import APIRequestFactory, RequestsClient, APIClient
 import json
+from django.contrib.auth import authenticate
+
+from digilog_backend.views import login_user
 # from digilog_backend.views import CourseViewSet, UserViewSet
 
 factory = APIRequestFactory()
+
+
+class AuthAPITest(TestCase):
+
+    @classmethod
+    def setUpTestData(cls) -> None:
+        cls.host = {
+            "username": "test_user",
+            "email": "test_email@test.com",
+            "first_name": "test_first_name",
+            "last_name": "test_last_name",
+            "password": "test_password",
+        }
+        cls.user = User.objects.create(**cls.host)
+        cls.user.set_password(cls.host['password'])
+        cls.user.save()
+        cls.client = APIClient()
+    
+    def test_login(self):
+        response = self.client.post('/api/token/', json.dumps({"username":self.host["username"], "password":self.host["password"]}), content_type='application/json')
+        data = json.loads(response.content)
+        self.assertIsInstance(data, dict)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(data.get("uname"), self.host["username"])
+        self.assertIn("access", data.keys())
 
 class UserAPITest(TestCase):
 
@@ -81,6 +109,8 @@ class CourseAPITest(TestCase):
         }
 
         cls.host_cls = User.objects.create(**cls.host)
+        cls.host_cls.set_password(cls.host['password'])
+        cls.host_cls.save()
         cls.course = Course.objects.create(title="Test course", host=cls.host_cls)
 
 
@@ -88,15 +118,28 @@ class CourseAPITest(TestCase):
     def setUp(self) -> None:
         return super().setUp()
     
+
+    
     
     def test_create_course(self):
-        
-        newCourse = {'title':'Test course', 'host':self.host_cls.id, 'description_short':'short description', 'content_list':'content list', 'methods':'methods', 'material':'material', 'dates':'dates'}
+        # login required
+        login_response = self.client.post(
+            '/api/token/',
+            json.dumps({"username": self.host["username"], "password": self.host["password"]}),
+            content_type='application/json',
+        )
+        self.assertEqual(login_response.status_code, 200)
+        newCourse = {'title':'Test course2', 'description_short':'short description', 'content_list':'content list', 'methods':'methods', 'material':'material', 'dates':'dates'}
         response = self.client.post('/api/courses/', json.dumps(newCourse), content_type='application/json')
         self.assertEqual(response.status_code, 201)
-        self.assertEqual(newCourse.title, "Test course")
-        self.assertEqual(newCourse.host, self.host_cls)
+        self.assertEqual(response.data["title"], newCourse["title"])
+        self.assertEqual(response.data["host"]["username"], self.host["username"])
         self.assertIsNotNone(Course.objects.get(title=newCourse["title"]))
+
+    def test_not_create_course_without_login(self):
+        newCourse = {'title':'Test course2', 'description_short':'short description', 'content_list':'content list', 'methods':'methods', 'material':'material', 'dates':'dates'}
+        response = self.client.post('/api/courses/', json.dumps(newCourse), content_type='application/json')
+        self.assertEqual(response.status_code, 401)
     
     def test_list_courses(self):
         response = self.client.get('/api/courses/')
