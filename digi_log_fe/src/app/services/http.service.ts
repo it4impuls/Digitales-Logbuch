@@ -178,6 +178,9 @@ export class HttpService {
     console.log(msg);
     if (msg) {
       let snackBarRef = this.snackBar.open(msg, dismiss);
+      setTimeout(() => {
+        snackBarRef.dismiss();
+      }, 5000);
       
     }
   }

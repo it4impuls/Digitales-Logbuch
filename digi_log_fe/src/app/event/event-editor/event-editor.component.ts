@@ -173,7 +173,7 @@ export class EventEditorComponent implements OnInit {
       this.httpService.courseSignup(this.getCourse().id)
     );
     if (l && Object.keys(l).length > 0) {
-      this.http.openSnackbar('Erfolgreich Angemeldet');
+      this.http.openSnackbar('Erfolgreich Auf Warteliste gesetzt; Veranstalter wird in kürze informiert');
       this.course.attendees.push(l);
       this.init_course();
     }
@@ -186,7 +186,7 @@ export class EventEditorComponent implements OnInit {
     if (attendee) {
       this.httpService.courseUnattend(attendee.id).subscribe({
         next: (data) => {
-          this.http.openSnackbar('Erfolgreich abgemeldet');
+          this.http.openSnackbar('Erfolgreich ausgetreten');
           const index = this.course.attendees.indexOf(attendee, 0);
           if (index > -1) {
             this.course.attendees.splice(index, 1);

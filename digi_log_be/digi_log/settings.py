@@ -107,7 +107,8 @@ DATABASES = {
         'HOST': os.environ.get("DB_ADDR", '127.0.0.1'),
         'PORT': os.environ.get("DB_PORT", '3306'),
         'TEST': {
-            'MIRROR': 'default'
+            # 'MIRROR': 'default',
+            'NAME': 'mytestdatabase',
         }
     } 
 }

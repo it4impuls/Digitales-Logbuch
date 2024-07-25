@@ -50,7 +50,8 @@ describe('EventBrowserComponent', () => {
 
     await component.ngOnInit();
     expect(component.dataSource).toBeInstanceOf(MatTableDataSource);
-    expect(component.dataSource.data).toEqual(mockEvents);
+    expect(component.dataSource.data.map((e) => e.id)).toEqual(mockEvents.map((e) => e.id));
+    
     expect(component.events).toEqual(mockEvents);
   });
 
@@ -63,13 +64,13 @@ describe('EventBrowserComponent', () => {
 
   it('should filter dataSource based on event input', () => {
     const mockEvents = [new Course(1), new Course(2)];
-    component.dataSource = new MatTableDataSource(mockEvents);
+    component.dsFromCourses(mockEvents);
 
     component.applyFilter({ target: { value: '1' } } as any);
 
     expect(component.dataSource.filter).toBe('1');
     expect(component.dataSource.filteredData.length).toBe(1);
-    expect(component.dataSource.filteredData[0]).toEqual(mockEvents[0]);
+    expect(component.dataSource.filteredData[0].id).toEqual(mockEvents[0].id);
   });
 
   // it('should return the number of attendees attending an event', () => {

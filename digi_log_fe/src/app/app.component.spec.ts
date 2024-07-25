@@ -5,8 +5,8 @@ import { HttpService } from './services/http.service';
 import { Person } from './interfaces';
 import { AuthService } from './services/auth.service';
 import { of } from 'rxjs';
-import { imports, imports_test } from './app.imports';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface LoginResponse {
   refresh: string;
@@ -19,6 +19,7 @@ describe('AppComponent', () => {
   let httpService: HttpService;
   let fixture: ComponentFixture<AppComponent>;
   let authService: AuthService;
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -40,6 +41,7 @@ describe('AppComponent', () => {
   beforeEach(() => {
     httpService = TestBed.inject(HttpService);
     authService = TestBed.inject(AuthService);
+    router = TestBed.inject(Router);
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -68,8 +70,11 @@ describe('AppComponent', () => {
 
   it('should call logout on logout', () => {
     jest.spyOn(authService, 'logout');
+    jest.spyOn(router, 'navigate');
     component.logout();
     expect(authService.logout).toHaveBeenCalled();
+    expect(authService.updateLoggedInAs).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith(['/']);
   });
 
   it('should call getUser on test', async () => {

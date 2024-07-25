@@ -87,6 +87,8 @@ class AttendeeViewSet(AuthViewset):
         # ser.is_valid(raise_exception=True)
         ret.data = ser.data
         return ret
+    
+    
 
     def get_serializer_class(self):
         if self.action == "list":

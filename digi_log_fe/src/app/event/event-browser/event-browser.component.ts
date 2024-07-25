@@ -6,6 +6,13 @@ import { Course } from '../../interfaces';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
+interface CourseDatasource{
+  id: typeof Course.prototype.id;
+  title: typeof Course.prototype.title;
+  host: typeof Course.prototype.host.first_name;
+  description: typeof Course.prototype.description_short;
+}
+
 @Component({
   selector: 'app-event-browser',
   templateUrl: './event-browser.component.html',
@@ -19,8 +26,10 @@ export class EventBrowserComponent implements OnInit {
     public auth: AuthService
   ) {  }
 
+  
+
   events: Course[] = [];
-  dataSource: MatTableDataSource<Course> = new MatTableDataSource();
+  dataSource: MatTableDataSource<CourseDatasource> = new MatTableDataSource();
   displayedColumns = ['name', 'host', 'description'];
 
   ngOnInit() {
@@ -30,7 +39,7 @@ export class EventBrowserComponent implements OnInit {
 
   async init():Promise<Course[]> {
     this.events = await this.http.getEvents();
-    this.dataSource = new MatTableDataSource<Course>(this.events);
+    this.dsFromCourses(this.events);
     // this.log.log(this.events as Course[]);
     return this.events;
   }
@@ -47,6 +56,17 @@ export class EventBrowserComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  dsFromCourses(courses: Course[]) {
+    this.dataSource = new MatTableDataSource<CourseDatasource>(
+      courses.map((c) => ({ 
+        id: c.id,
+        title: c.title, 
+        host: c.host.first_name + ' ' + c.host.last_name, 
+        description: c.description_short 
+      }))
+    );
   }
 
   // attending(element:Course) {
