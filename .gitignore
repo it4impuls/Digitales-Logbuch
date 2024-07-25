@@ -2,6 +2,7 @@
 dev.env
 kursplan
 *.sqlite3
+TODO.md
 
 
 # Logs
@@ -301,4 +302,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
 

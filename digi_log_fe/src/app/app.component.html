@@ -4,11 +4,11 @@
     <div class="spacer"></div>
     <nav>    
         @if (authService.loggedInAs) {
-            <a (click)="logout()" class="button"> Logout {{authService.loggedInAs}} </a>
+            <span (click)="logout()" class="button"> Logout {{authService.loggedInAs}} </span>
         }
         @else {
-            <a routerLink="/login" class="button"> Login </a>
-            <a routerLink="/signup" class="button"> Sign up </a>
+            <span routerLink="/login" class="button"> Anmelden </span>
+            <span routerLink="/signup" class="button"> Registrieren </span>
         }
     </nav>
     

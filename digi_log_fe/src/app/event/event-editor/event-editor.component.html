@@ -45,9 +45,8 @@
         } 
         
     </div>
-
-    <div class="attendees list">
-        @if(uname==auth.loggedInAs ||  auth.loggedInAs == 'admin'){
+    @if(uname==auth.loggedInAs ||  auth.loggedInAs == 'admin'){
+        <div class="attendees list">
             <div class="listdescription">Anmeldungen:</div>
             <section class="attending" [formGroup]="courseForm.controls.attendees">
                 @for (attendee of course.attendees; track attendee) {
@@ -56,13 +55,15 @@
             </section>
 
             <button #button class="button" mat-raised-button type="button" color="warn" (click)="remCourse()"> Kurs entfernen </button>
-        }
-        @if(userInList) {
-            <button #button class="button" mat-raised-button type="button" (click)="unAttend()"> Abmelden </button>
+        </div>
+    }
+        
+    
+    @if(userInList) {
+            <button #button class="button" mat-raised-button type="button" (click)="unAttend()"> Austreten </button>
         } @else if (auth.loggedInAs) {
-            <button #button class="button" mat-raised-button type="button" (click)="signup()"> Anmelden </button>
+            <button #button class="button" mat-raised-button type="button" (click)="signup()"> Beitritt anfordern </button>
         }
-    </div>
 </Form>
 
 <!-- <input [ngxTimepicker]="picker">

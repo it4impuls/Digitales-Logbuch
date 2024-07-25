@@ -8,7 +8,6 @@ class CourseTest(TestCase):
 
     def setUp(self):
         self.host = User.objects.create(username = "test_user")
-        self.nonhost = User.objects.create(username="test_user2")
 
     def test_course_creation(self):
         course = Course.objects.create(

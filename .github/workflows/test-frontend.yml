@@ -51,6 +51,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          # this is just an example, this could be any command that will trigger jest
           test-command: "npm test"
           working-directory: ${{env.DOCKERFILE_PATH}}
+          coverage-comment: false

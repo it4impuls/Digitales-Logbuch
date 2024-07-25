@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
 import { HttpService } from './services/http.service';
 import { Person } from './interfaces';
 import { AuthService } from './services/auth.service';
 import { of } from 'rxjs';
-import { imports, imports_test } from './app.imports';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { routes } from './app-routing.module';
 
 interface LoginResponse {
   refresh: string;
@@ -22,8 +22,11 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppModule],
+      imports: [],
+      declarations: [AppComponent],
       providers: [
+        provideRouter(routes),
+        // {provide:Router, useValue: {navigate: jest.fn().mockReturnValue(of(true))}},
         {
           provide: HttpService,
           useValue: {
@@ -35,9 +38,7 @@ describe('AppComponent', () => {
       ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
-  });
 
-  beforeEach(() => {
     httpService = TestBed.inject(HttpService);
     authService = TestBed.inject(AuthService);
     fixture = TestBed.createComponent(AppComponent);
@@ -68,15 +69,19 @@ describe('AppComponent', () => {
 
   it('should call logout on logout', () => {
     jest.spyOn(authService, 'logout');
+    jest.spyOn(authService, 'updateLoggedInAs');
+    // jest.spyOn(router, 'navigate');
     component.logout();
     expect(authService.logout).toHaveBeenCalled();
+    expect(authService.updateLoggedInAs).toHaveBeenCalled();
+    // expect(router.navigate).toHaveBeenCalledWith(['/']);
   });
 
   it('should call getUser on test', async () => {
     const mockPerson = new Person(1, 'John', 'Doe', 'Developer', 'johndoe');
     jest.spyOn(httpService, 'getUser').mockResolvedValue(mockPerson);
 
-    await component.test();
+    await component.getUser();
 
     expect(httpService.getUser).toHaveBeenCalled();
   });

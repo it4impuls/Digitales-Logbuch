@@ -1,6 +1,6 @@
 <mat-form-field class="filter">
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  <mat-label>Suche</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Excel" #input>
 </mat-form-field>
 
 @if (auth.loggedInAs) {
@@ -28,7 +28,7 @@
       </th>
       <td mat-cell *matCellDef="let element" > 
         <div class="bttn " (click)="onSelectClick(element)">
-          {{element.host.first_name}} {{element.host.last_name}}
+          {{element.host}}
         </div>
       </td>
     </ng-container>
@@ -50,7 +50,7 @@
       </th>
       <td mat-cell *matCellDef="let element" > 
         <div class="bttn " (click)="onSelectClick(element)">
-          {{element.description_short}}
+          {{element.description}}
         </div>
       </td>
     </ng-container>
