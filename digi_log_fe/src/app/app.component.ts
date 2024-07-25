@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from './services/http.service';
 import { AuthService } from './services/auth.service';
-import { CookieService } from './services/cookie.service';
-import { CookieType } from './interfaces';
 import { Router } from '@angular/router';
+import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +12,12 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'digi_log_fe';
   constructor(
-    private cookieService: CookieService,
     public authService: AuthService,
     private http: HttpService,
     private router: Router
-  ) {}
+  ) {
+    noop
+  }
 
   ngOnInit(): void {
     this.authService.refreshTokens();
