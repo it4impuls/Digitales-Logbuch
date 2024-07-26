@@ -10,11 +10,17 @@
         </mat-form-field>
         <mat-form-field  class="description input">
             <mat-label>Level</mat-label>
-            <select matNativeControl required [readonly]="!edit" formControlName="level" [disabled]="!edit">
-                <option value="I">I Anfänger</option>
-                <option value="II">II Fortgeschritten</option>
-                <option value="III">III Profi</option>
-            </select>
+            <!-- @if (edit) { -->
+                <select matNativeControl required formControlName="level" [disabled]="true">
+                    <option value="I">I Anfänger</option>
+                    <option value="II">II Fortgeschritten</option>
+                    <option value="III">III Profi</option>
+                </select>
+            <!-- } @else {
+                <input matInput formControlName="level"  placeholder="Lorem Ipsum" type="text" [readonly]="!edit">
+            } -->
+            
+            
         </mat-form-field>
         <mat-form-field  class="description input">
             <mat-label>Kurzbeschreibung/Untertitel des Moduls</mat-label>

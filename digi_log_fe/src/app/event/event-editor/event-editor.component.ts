@@ -77,6 +77,12 @@ export class EventEditorComponent implements OnInit {
   init_course() {
     if (this.course) {
       this.log.log(this.course)
+      if (
+        this.auth.loggedInAs === this.course.host.username ||
+        this.auth.loggedInAs === 'admin'
+      ) {
+        this.edit = true;
+      }
       this.course.attendees.sort((a, b) => (a.attends < b.attends ? 1 : -1));
       this.attendees = this.course.attendees.map(
         (attendee) => attendee.attendee.username
@@ -91,7 +97,6 @@ export class EventEditorComponent implements OnInit {
           attendee.attends,
         ]) 
       );
-      this.log.log(attendees_list);
       this.courseForm = this.formbuilder.group({
         id: this.course.id as number,
         attendees: this.formbuilder.group(attendees_list),
@@ -109,7 +114,6 @@ export class EventEditorComponent implements OnInit {
         dates: [this.course.dates, [Validators.required]],
         duration: [this.course.duration, [Validators.required]],
       });
-      this.uname = this.course.host.username;
     }
   }
 
