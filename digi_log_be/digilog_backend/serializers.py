@@ -16,7 +16,7 @@ class myTokenObtainPairSerializer(TokenObtainPairSerializer):
         try:
             data = super().validate(attrs)
         except TokenError as e:
-            raise exceptions.AuthenticationFailed(e.detail)
+            return exceptions.AuthenticationFailed(e.detail)
         assert self.user != None
         refresh = self.get_token(self.user)
         data["refresh"] = str(refresh)   # comment out if you don't want this
@@ -34,7 +34,7 @@ class myTokenRefreshSerializer(TokenRefreshSerializer):
         try:
             attrs["access"] = super().validate(attrs)["access"]
         except TokenError as e:
-            raise exceptions.AuthenticationFailed(e.detail)
+            return exceptions.AuthenticationFailed(e.detail)
         attrs["uname"] = User.objects.get(id=self.token_class(attrs["refresh"]).get("user_id")).username
         return attrs
 
