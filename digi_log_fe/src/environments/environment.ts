@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
+  production: false,
   // $ENV is defined in src/typings.d.ts, var gotten from custom-webpack.config.js
   BACKEND_PORT: 8080,
   BACKEND_IP: 'kursplan.impulsreha.local',
