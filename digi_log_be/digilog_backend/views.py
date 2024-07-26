@@ -140,9 +140,9 @@ class myTokenObtainPairView(TokenObtainPairView):
         if access is not None:
             response = JsonResponse(
                 {"access": access, "refresh": refresh, "uname": uname}, status=200)
-            response.set_cookie('access', access, httponly=True)
-            response.set_cookie('refresh', refresh, httponly=True)
-            response.set_cookie('uname', uname)
+            response.set_cookie('access', access, httponly=True, samesite="strict")
+            response.set_cookie('refresh', refresh, httponly=True, samesite="strict")
+            response.set_cookie('uname', uname, samesite="lax")
             return response
 
         return HttpResponse({"Error": "Something went wrong"}, status = 400)
