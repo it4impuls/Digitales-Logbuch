@@ -1,13 +1,9 @@
 
 
 from django.test import TestCase
-from digilog_backend.models import Course, User, Attendee
-from rest_framework.test import APIRequestFactory, RequestsClient, APIClient
+from digilog_backend.models import Course, User
+from rest_framework.test import APIRequestFactory, APIClient
 import json
-from django.contrib.auth import authenticate
-
-from digilog_backend.views import login_user
-# from digilog_backend.views import CourseViewSet, UserViewSet
 
 factory = APIRequestFactory()
 

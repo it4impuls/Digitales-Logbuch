@@ -1,7 +1,7 @@
 
 from django.test import TestCase
 from django.contrib.auth.models import User
-from digilog_backend.models import Course, User, Attendee
+from digilog_backend.models import Course, User
 import json
 
 
@@ -58,20 +58,6 @@ class TestViews(TestCase):
         }
         response = self.client.post('/api/token/', data)
         self.assertEqual(response.status_code, 401)
-
-    # def test_attendee_list_no_auth(self):
-    #     """
-    #     Test attendee list view with no authentication
-    #     """
-    #     response = self.client.get('/api/attendees/')
-    #     self.assertEqual(response.status_code, 401)
-
-    # def test_course_list_no_auth(self):
-    #     """
-    #     Test course list view with no authentication
-    #     """
-    #     response = self.client.get('/api/course/')
-    #     self.assertEqual(response.status_code, 401)
 
     def test_login_view_no_data(self):
         """

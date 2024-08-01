@@ -2,25 +2,29 @@ import json
 
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST, require_GET
+from django.views.decorators.http import require_GET
 
 from .authenticator import CustomAuthentication
-from .serializers import AttendeeSerializer, ShortAttendeeSerializer, UserSerializer, CourseSerializer, myTokenObtainPairSerializer, myTokenRefreshSerializer, TokenVerifySerializer, ShortCourseSerializer
+from .serializers import (AttendeeSerializer,
+                    ShortAttendeeSerializer,
+                    UserSerializer,
+                    CourseSerializer,
+                    myTokenObtainPairSerializer,
+                    myTokenRefreshSerializer,
+                    ShortCourseSerializer)
 from .models import Course, User, Attendee
 
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK
-from rest_framework.decorators import permission_classes, authentication_classes
+from rest_framework.decorators import permission_classes
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenVerifyView, TokenRefreshView, TokenBlacklistView
 from rest_framework_simplejwt.serializers import TokenVerifySerializer, TokenBlacklistSerializer
-from rest_framework_simplejwt.exceptions import TokenError, InvalidToken, AuthenticationFailed
-from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.exceptions import AuthenticationFailed
 
 
 # from django.views.decorators.vary import 

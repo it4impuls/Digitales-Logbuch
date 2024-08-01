@@ -1,9 +1,8 @@
 from typing import Any, Dict
-from rest_framework import viewsets, serializers, exceptions
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer,\
-    TokenVerifySerializer, \
-    TokenRefreshSerializer, \
-    TokenBlacklistSerializer
+from rest_framework import serializers, exceptions
+from rest_framework_simplejwt.serializers import (
+    TokenObtainPairSerializer,
+    TokenRefreshSerializer)
 from rest_framework.validators import UniqueValidator, UniqueTogetherValidator
 from rest_framework_simplejwt.exceptions import TokenError
 from .models import User, Course, Attendee
