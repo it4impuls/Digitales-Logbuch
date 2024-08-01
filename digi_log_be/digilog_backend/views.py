@@ -91,8 +91,6 @@ class AttendeeViewSet(AuthViewset):
         ret.data = ser.data
         return ret
     
-    
-
     def get_serializer_class(self):
         if self.action == "list":
             return AttendeeSerializer
@@ -177,13 +175,14 @@ class myTokenVerifyView(TokenVerifyView):
     serializer_class = TokenVerifySerializer
 
     def post(self, request: Request, *args, **kwargs) -> Response:
-        try:
-            serializer = self.get_serializer(
-                data={"token": request.COOKIES.get("access") or request.data.get("access")})
-            serializer.is_valid(raise_exception=True)
-        except TokenError as e:
-            raise InvalidToken(e.args[0])
-        return Response(serializer.validated_data, status=HTTP_200_OK)
+        # try:
+        #     serializer = self.get_serializer(
+        #         data={"token": request.COOKIES.get("refresh") or request.data.get("refresh")})
+        #     serializer.is_valid(raise_exception=True)
+        # except TokenError as e:
+        #     raise InvalidToken(e.args[0])
+        return super().post(request, *args, **kwargs)
+        # return Response(serializer.validated_data, status=HTTP_200_OK)
 
 class myTokenBlacklistView(TokenBlacklistView):
     serializer_class = TokenBlacklistSerializer
@@ -195,6 +194,7 @@ class myTokenBlacklistView(TokenBlacklistView):
 def getUser(request:HttpRequest):
     user, token = CustomAuthentication().authenticate(request)
     if user:
-        return redirect("/api/users/"+str(user.id))
+        serializer = UserSerializer(instance=user)
+        return JsonResponse(serializer.data)
     else: return user
         

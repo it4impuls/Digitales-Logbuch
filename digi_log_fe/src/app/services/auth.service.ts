@@ -34,10 +34,11 @@ export class AuthService {
   }
 
   async logout() {
-    let rToken = this.cookieService.getValue(CookieType.refreshToken) ?? '';
-    this.http.logout(rToken).subscribe({
+    this.http.logout().subscribe({
       next: (response) => {
         this.cookieService.removeFromCookie(CookieType.username);
+        this.cookieService.removeFromCookie(CookieType.refreshToken);
+        this.cookieService.removeFromCookie(CookieType.accessToken);
         this.updateLoggedInAs();
       },
       error: (error) => {
