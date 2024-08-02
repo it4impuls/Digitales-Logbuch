@@ -1,4 +1,5 @@
 
+
 .form{
     align-content: center;
     display:flex;
@@ -34,11 +35,15 @@
     
 }
 
-mat-input:read-only, mat-label:read-only, label:read-only, .readonly{
+.readonly {
     cursor: default;
     pointer-events: none;
-    background-color: unset
 }
+
+// .detail.list > #formfield.readonly.input *>:has(label){
+//     pointer-events: none;
+// }
+
 
 .button {
     margin: 5px;
