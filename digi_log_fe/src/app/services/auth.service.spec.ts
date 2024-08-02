@@ -47,7 +47,7 @@ describe('AuthService', () => {
         throwError(() => new Error('something went wrong'))
       );
     authService.logout();
-    expect(httpService.logout).toHaveBeenCalledWith('');
+    expect(httpService.logout).toHaveBeenCalled();
     expect(authService.updateLoggedInAs).toHaveBeenCalledTimes(0);
     expect(httpService.openSnackbar).toHaveBeenCalledWith(
       "Something went wrong, Couldn't log out"
@@ -65,7 +65,7 @@ describe('AuthService', () => {
 
     authService.logout()
 
-    expect(httpService.logout).toHaveBeenCalledWith('');
+    expect(httpService.logout).toHaveBeenCalled();
     expect(authService.updateLoggedInAs).toHaveBeenCalled();
   });
 

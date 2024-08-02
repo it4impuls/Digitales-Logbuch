@@ -34,8 +34,10 @@
     
 }
 
-select:read-only input:read-only{
+mat-input:read-only, mat-label:read-only, label:read-only, .readonly{
     cursor: default;
+    pointer-events: none;
+    background-color: unset
 }
 
 .button {

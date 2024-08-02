@@ -137,7 +137,7 @@ export class HttpService {
     );
   }
 
-  logout(rToken: string) {
+  logout() {
     return this.httpClient
       .post(this.baseURL + 'logout/', {}, { withCredentials: true })
   }

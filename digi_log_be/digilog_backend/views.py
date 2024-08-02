@@ -2,25 +2,29 @@ import json
 
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST, require_GET
+from django.views.decorators.http import require_GET
 
 from .authenticator import CustomAuthentication
-from .serializers import AttendeeSerializer, ShortAttendeeSerializer, UserSerializer, CourseSerializer, myTokenObtainPairSerializer, myTokenRefreshSerializer, TokenVerifySerializer, ShortCourseSerializer
+from .serializers import (AttendeeSerializer,
+                    ShortAttendeeSerializer,
+                    UserSerializer,
+                    CourseSerializer,
+                    myTokenObtainPairSerializer,
+                    myTokenRefreshSerializer,
+                    ShortCourseSerializer)
 from .models import Course, User, Attendee
 
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK
-from rest_framework.decorators import permission_classes, authentication_classes
+from rest_framework.decorators import permission_classes
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenVerifyView, TokenRefreshView, TokenBlacklistView
 from rest_framework_simplejwt.serializers import TokenVerifySerializer, TokenBlacklistSerializer
-from rest_framework_simplejwt.exceptions import TokenError, InvalidToken, AuthenticationFailed
-from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.exceptions import AuthenticationFailed
 
 
 # from django.views.decorators.vary import 
@@ -91,8 +95,6 @@ class AttendeeViewSet(AuthViewset):
         ret.data = ser.data
         return ret
     
-    
-
     def get_serializer_class(self):
         if self.action == "list":
             return AttendeeSerializer
@@ -177,13 +179,14 @@ class myTokenVerifyView(TokenVerifyView):
     serializer_class = TokenVerifySerializer
 
     def post(self, request: Request, *args, **kwargs) -> Response:
-        try:
-            serializer = self.get_serializer(
-                data={"token": request.COOKIES.get("access") or request.data.get("access")})
-            serializer.is_valid(raise_exception=True)
-        except TokenError as e:
-            raise InvalidToken(e.args[0])
-        return Response(serializer.validated_data, status=HTTP_200_OK)
+        # try:
+        #     serializer = self.get_serializer(
+        #         data={"token": request.COOKIES.get("refresh") or request.data.get("refresh")})
+        #     serializer.is_valid(raise_exception=True)
+        # except TokenError as e:
+        #     raise InvalidToken(e.args[0])
+        return super().post(request, *args, **kwargs)
+        # return Response(serializer.validated_data, status=HTTP_200_OK)
 
 class myTokenBlacklistView(TokenBlacklistView):
     serializer_class = TokenBlacklistSerializer
@@ -195,6 +198,7 @@ class myTokenBlacklistView(TokenBlacklistView):
 def getUser(request:HttpRequest):
     user, token = CustomAuthentication().authenticate(request)
     if user:
-        return redirect("/api/users/"+str(user.id))
+        serializer = UserSerializer(instance=user)
+        return JsonResponse(serializer.data)
     else: return user
         

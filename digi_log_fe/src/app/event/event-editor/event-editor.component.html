@@ -1,51 +1,51 @@
 <Form (ngSubmit)="onSubmit()" [formGroup]="courseForm" class="form">
     <div class="detail list">
-        <mat-form-field  class="input">
+        <mat-form-field [ngClass]="!edit?'readonly':'rw'" [hideRequiredMarker]="!edit" class="input">
             <mat-label>Qualifizierungsbereich</mat-label>
             <input matInput formControlName="qualification"  placeholder="Lorem Ipsum" type="text" [readonly]="!edit">
         </mat-form-field>
-        <mat-form-field  class="description input">
+        <mat-form-field [ngClass]="!edit?'readonly':'rw'" [hideRequiredMarker]="!edit" class="description input">
             <mat-label>Titel des Kurses</mat-label>
             <input matInput formControlName="title"  placeholder="Lorem Ipsum" type="text" [readonly]="!edit">
         </mat-form-field>
-        <mat-form-field  class="description input">
+        <mat-form-field [ngClass]="!edit?'readonly':'rw'" [hideRequiredMarker]="!edit" class="description input">
             <mat-label>Level</mat-label>
-            <select matNativeControl required [readonly]="!edit" formControlName="level" [disabled]="!edit">
+            <select matNativeControl required [readonly]="!edit" formControlName="level">
                 <option value="I">I Anfänger</option>
                 <option value="II">II Fortgeschritten</option>
                 <option value="III">III Profi</option>
             </select>
         </mat-form-field>
-        <mat-form-field  class="description input">
+        <mat-form-field [ngClass]="!edit?'readonly':'rw'" [hideRequiredMarker]="!edit" class="description input">
             <mat-label>Kurzbeschreibung/Untertitel des Moduls</mat-label>
             <input matInput formControlName="description_short"  placeholder="Lorem Ipsum" type="text" [readonly]="!edit">
         </mat-form-field>
-        <mat-form-field  class="description input">
+        <mat-form-field [ngClass]="!edit?'readonly':'rw'" [hideRequiredMarker]="!edit" class="description input">
             <mat-label>Inhalte des Kurses</mat-label>
             <textarea matInput formControlName="content_list"  placeholder="Lorem Ipsum" cdkTextareaAutosize [readonly]="!edit">test</textarea>
         </mat-form-field>
-        <mat-form-field  class="description input">
+        <mat-form-field [ngClass]="!edit?'readonly':'rw'" [hideRequiredMarker]="!edit" class="description input">
             <mat-label>Methoden des Kurses</mat-label>
             <input matInput formControlName="methods"  placeholder="Lorem Ipsum" type="text" [readonly]="!edit">
         </mat-form-field>
-        <mat-form-field  class="description input">
+        <mat-form-field [ngClass]="!edit?'readonly':'rw'" [hideRequiredMarker]="!edit" class="description input">
             <mat-label>Material/Unterlagen</mat-label>
             <input matInput formControlName="material"  placeholder="Lorem Ipsum" type="text" [readonly]="!edit">
         </mat-form-field>
-        <mat-form-field  class="description input">
+        <mat-form-field [ngClass]="!edit?'readonly':'rw'" [hideRequiredMarker]="!edit" class="description input">
             <mat-label>Wie oft wird der Kurs angeboten</mat-label>
             <input matInput formControlName="dates"  placeholder="Lorem Ipsum" type="text" [readonly]="!edit">
         </mat-form-field>
-        <mat-form-field  class="description input">
+        <mat-form-field [ngClass]="!edit?'readonly':'rw'" [hideRequiredMarker]="!edit" class="description input">
             <mat-label>Kursdauer</mat-label>
             <input matInput formControlName="duration"  placeholder="Lorem Ipsum" type="text" [readonly]="!edit">
         </mat-form-field>
-        @if (uname==auth.loggedInAs) {
+        @if (edit) {
             <button #button mat-raised-button type="submit"> Speichern </button>
         } 
         
     </div>
-    @if(uname==auth.loggedInAs ||  auth.loggedInAs == 'admin'){
+    @if(edit ||  auth.loggedInAs == 'admin'){
         <div class="attendees list">
             <div class="listdescription">Anmeldungen:</div>
             <section class="attending" [formGroup]="courseForm.controls.attendees">

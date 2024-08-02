@@ -1,19 +1,19 @@
 
 
 from django.test import TestCase
-from digilog_backend.models import Course, User, Attendee
-from rest_framework.test import APIRequestFactory, RequestsClient, APIClient
+from digilog_backend.models import Course, User
+from rest_framework.test import APIRequestFactory, APIClient
 import json
-from django.contrib.auth import authenticate
-
-from digilog_backend.views import login_user
-# from digilog_backend.views import CourseViewSet, UserViewSet
 
 factory = APIRequestFactory()
 
 
 class AuthAPITest(TestCase):
-
+    """
+    Note: For Authentication, access and refresh tokens are required in cookies.
+        They are automatically when sucessfully loggin in with /api/token/.
+        Thus, we don't need to set them manually.
+    """
     @classmethod
     def setUpTestData(cls) -> None:
         cls.host = {
@@ -36,6 +36,58 @@ class AuthAPITest(TestCase):
         self.assertEqual(data.get("uname"), self.host["username"])
         self.assertIn("access", data.keys())
 
+    def test_refresh(self):
+        tokenresponse = self.client.post(
+            '/api/token/',
+            json.dumps({"username": self.host["username"], "password": self.host["password"]}),
+            content_type='application/json')
+        self.assertEqual(tokenresponse.status_code, 200)
+        self.assertContains(tokenresponse, "access")
+
+        
+        refreshresponse = self.client.post('/api/token/refresh/', headers={'refresh': tokenresponse.json()['refresh']})
+        self.assertEqual(refreshresponse.status_code, 200)
+        self.assertContains(refreshresponse, "access")
+
+    def test_invalid_refresh(self):
+        tokenresponse = self.client.post('/api/token/refresh/', headers={'refresh': '1234'})
+        self.assertEqual(tokenresponse.status_code, 400)
+
+
+        tokenresponse = self.client.post(
+            '/api/token/',
+            json.dumps({"username": self.host["username"], "password": self.host["password"]}),
+            content_type='application/json')
+        self.assertEqual(tokenresponse.status_code, 200)
+        self.assertContains(tokenresponse, "access")
+
+        refreshresponse = self.client.post('/api/token/refresh/')
+        self.assertEqual(refreshresponse.status_code, 200)
+
+        authtestresponse = self.client.post('/api/authTest/', {"token": tokenresponse.json()['refresh']})
+        self.assertEqual(authtestresponse.status_code, 200,)
+
+        logoutresponse = self.client.post('/api/logout/')
+
+        self.assertEqual(logoutresponse.status_code, 200)
+
+        refreshresponse = self.client.post('/api/token/refresh/')
+        self.assertEqual(refreshresponse.status_code, 401)
+
+        _authtestresponse = self.client.post('/api/authTest/')
+        self.assertEqual(_authtestresponse.status_code, 400)
+
+    def test_get_token_user(self):
+        response = self.client.post('/api/token/', {"username":self.host["username"], "password":self.host["password"]}, content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "access")
+
+        authtestresponse = self.client.get('/api/getUser/')
+        self.assertEqual(authtestresponse.status_code, 200)
+        self.assertEqual(authtestresponse.json().get("username"), self.host["username"])
+
+
+
 class UserAPITest(TestCase):
 
     @classmethod
@@ -54,13 +106,9 @@ class UserAPITest(TestCase):
             "last_name": "test_last_name2",
             "password": "test_password2",
         }
-        # cls.UserViewSet = UserViewSet.as_view({'post': 'create', 'get': 'list'})
         cls.client=APIClient()
         cls.userResponse = cls.client.post('/api/users/', json.dumps(cls.host), content_type='application/json')
-        # cls.userResponse = cls.UserViewSet(request)
-
         cls.userResponse2 = cls.client.post('/api/users/', json.dumps(cls.nonhost), content_type='application/json')
-        # cls.userResponse2 = cls.UserViewSet(request)
 
         cls.retHost = cls.userResponse.data
         cls.retNonHost = cls.userResponse2.data
@@ -79,12 +127,13 @@ class UserAPITest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.data), 2)
 
-    def test_get_user(self):
+    def test_get_rest_user(self):
         pk = User.objects.get(username=self.host["username"]).id
         # vs = UserViewSet.as_view({'get': 'retrieve'})
         response = self.client.get(f'/api/users/{pk}/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data.get("username"), self.host["username"])
+
 
     def test_update_user(self):
         p2 = self.host.copy()
