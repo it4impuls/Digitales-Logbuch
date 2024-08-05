@@ -40,7 +40,7 @@ class AuthAPITest(TestCase):
         tokenresponse = self.client.post(
             '/api/token/',
             json.dumps({"username": self.host["username"], "password": self.host["password"]}),
-            content_type='application/json').set_cookie()
+            content_type='application/json')
         self.assertEqual(tokenresponse.status_code, 200)
         self.assertContains(tokenresponse, "access")
 
