@@ -155,7 +155,6 @@ class myTokenRefreshView(TokenRefreshView):
         # super().post()
         # you need to instantiate the serializer with the request data
         refresh_token = request.COOKIES.get("refresh", None)
-        print(request.COOKIES)
         if refresh_token is None:
             return HttpResponse({"Error; No refresh Token found"}, status=400)
         serializer = self.get_serializer(data={"refresh":refresh_token})
