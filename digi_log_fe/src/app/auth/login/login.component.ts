@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpService } from '../../services/http.service';
-import { AuthService } from '../../services/auth.service';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { catchError } from 'rxjs';
 import { Location } from '@angular/common';
-import { CookieService } from '../../services/cookie.service';
-import { CookieType } from '../../interfaces';
 
 @Component({
   selector: "app-login",
@@ -34,7 +29,6 @@ export class LoginComponent {
 
     res.subscribe({
       next: (data) => {
-        // this.auth.updateLoggedInAs(data.uname);
         this._location.back();
       }, 
       error: (e) => {

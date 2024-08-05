@@ -25,6 +25,7 @@ from rest_framework.decorators import permission_classes
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenVerifyView, TokenRefreshView, TokenBlacklistView
 from rest_framework_simplejwt.serializers import TokenVerifySerializer, TokenBlacklistSerializer
 from rest_framework_simplejwt.exceptions import AuthenticationFailed
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 # from django.views.decorators.vary import 
@@ -128,9 +129,7 @@ def login_user(request):
 class myTokenObtainPairView(TokenObtainPairView):
     serializer_class = myTokenObtainPairSerializer
     def post(self, request, *args, **kwargs):
-        # you need to instantiate the serializer with the request data
         serializer = self.get_serializer(data=request.data)
-        # you must call .is_valid() before accessing validated_data
         serializer.is_valid(raise_exception=True)
 
         # get access and refresh tokens to do what you like with
@@ -139,24 +138,23 @@ class myTokenObtainPairView(TokenObtainPairView):
         uname = serializer.validated_data.get("uname", None)
 
         # build your response and set cookie
-        if access is not None:
+        if access and refresh:
+            rtoken = RefreshToken(refresh)
             response = JsonResponse(
                 {"access": access, "refresh": refresh, "uname": uname}, status=200)
-            response.set_cookie('access', access, httponly=True, samesite="strict")
-            response.set_cookie('refresh', refresh, httponly=True, samesite="strict")
-            response.set_cookie('uname', uname, samesite="lax")
+            response.set_cookie('access', access, httponly=True, samesite="lax")
+            response.set_cookie('refresh', refresh, httponly=True, samesite="lax", expires=rtoken.lifetime+rtoken.current_time)
+            response.set_cookie('uname', uname, samesite="lax", expires=rtoken.lifetime+rtoken.current_time)
             return response
 
-        return HttpResponse({"Error": "Something went wrong"}, status = 400)
+        return HttpResponse({"Error: Something went wrong"}, status = 400)
 
 class myTokenRefreshView(TokenRefreshView):
     serializer_class = myTokenRefreshSerializer
-    def post(self, request, *args, **kwargs):
-        # super().post()
-        # you need to instantiate the serializer with the request data
+    def get(self, request, *args, **kwargs):
         refresh_token = request.COOKIES.get("refresh", None)
         if refresh_token is None:
-            return HttpResponse({"Error": "No refresh Token found"}, status=400)
+            return HttpResponse({"Error; No refresh Token found"}, status=400)
         serializer = self.get_serializer(data={"refresh":refresh_token})
         # you must call .is_valid() before accessing validated_data
         serializer.is_valid(raise_exception=True)

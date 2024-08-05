@@ -82,7 +82,7 @@ class TestViews(TestCase):
         self.assertTrue('access' in data)
         self.assertTrue('refresh' in data)
 
-        response = self.client.post('/api/token/refresh/', headers={'refresh': data['refresh']})
+        response = self.client.get('/api/token/refresh/', headers={'refresh': data['refresh']})
         data = json.loads(response.content)
         self.assertTrue("access" in data)
         self.assertEqual(response.status_code, 200)

@@ -37,7 +37,6 @@ describe('CookieService', () => {
       service.removeFromCookie(CookieType.refreshToken);
       expect(document.cookie).toContain(`${CookieType.refreshToken}=`);
       expect(service.getValue(CookieType.refreshToken)).toBe("");
-      // expect(document.cookie).not.toContain(cookieValue);
     });
   });
 

@@ -58,21 +58,7 @@ export class SignupComponent implements AfterViewInit {
     }
   );
 
-  // errors: { [key in keys | "all"]: string} = {
-  //   username: '',
-  //   email: '',
-  //   first_name: '',
-  //   last_name: '',
-  //   password: '',
-  //   confirmPassword: '',
-  //   all: '',
-  // };
-
   ngAfterViewInit(): void {
-    // this.onchange();
-    // this.error = Object.keys(this.signupForm.errors).length < 5
-    //     ? Object.keys(this.signupForm.errors ?? {}).join(', ')
-    //     : '';
   }
 
   signup() {
@@ -81,12 +67,10 @@ export class SignupComponent implements AfterViewInit {
       let su = this.http.signup(RPerson.fromObj(form as RPerson))
       su.subscribe({
         next: (user) => {
-          // this.errors.all = '';
           this.http.openSnackbar('Konto erfolgreich erstellt', 'ok');
           this.router.navigate(['login/']);
         },
         error: (err) => {
-          // this.errors.all = Object.values(err.error).join(', ');
           console.error(err);
         },
       });

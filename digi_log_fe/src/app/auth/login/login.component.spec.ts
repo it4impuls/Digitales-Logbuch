@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { HttpService } from '../../services/http.service';
-import { AuthService } from '../../services/auth.service';
 import { providers } from '../../app.providers';
 import { of } from 'rxjs';
 import { Location } from '@angular/common';
@@ -27,8 +26,6 @@ describe('LoginComponent', () => {
         {
           provide: HttpService,
           useValue: {
-            // getEvent: jest.fn().mockResolvedValue(mockCourse),
-            // getUser: jest.fn().mockResolvedValue(mockUser),
             login: jest.fn().mockReturnValue(of(mockLoginReturn)),
           },
         },
@@ -38,7 +35,6 @@ describe('LoginComponent', () => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     httpService = TestBed.inject(HttpService);
-    // authService = TestBed.inject(AuthService);
   });
 
   it('should create LoginComponent', () => {
@@ -50,7 +46,6 @@ describe('LoginComponent', () => {
   });
 
   it('should call login method', () => {
-    // jest.spyOn(authService, 'loggedInAs');
     jest.spyOn(httpService, 'login');
 
     component.loginForm.patchValue({
