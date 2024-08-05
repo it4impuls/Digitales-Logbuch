@@ -20,7 +20,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.refreshTokens();
+    if (this.authService.loggedInAs) {
+      this.authService.refreshTokens();
+    }
   }
 
   logout() {
@@ -33,8 +35,5 @@ export class AppComponent implements OnInit {
 
   login() {
     // this.router.
-  }
-  refresh() {
-    this.authService;
   }
 }

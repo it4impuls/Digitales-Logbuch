@@ -25,8 +25,8 @@ describe('CookieService', () => {
       expect(service.getValue(CookieType.refreshToken)).toEqual(cookieValue);
     });
 
-    it('should return null if the cookie does not exist', () => {
-      expect(service.getValue(CookieType.username)).toBeNull();
+    it('should return undefined if the cookie does not exist', () => {
+      expect(service.getValue(CookieType.username)).toBeUndefined();
     });
   });
 

@@ -35,12 +35,12 @@ export class CookieService {
     this.refreshCookie();
   }
 
-  getValue(parameter: CookieType): string | null {
+  getValue(parameter: CookieType): string | undefined {
     if (this.parameterMap.hasOwnProperty(parameter)) {
       return this.parameterMap[parameter];
     }
 
-    return null;
+    return undefined;
   }
 
   removeFromCookie(parameter: CookieType): void {

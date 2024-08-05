@@ -61,19 +61,29 @@ describe('AppComponent', () => {
     );
   });
 
-  it('should call refreshTokens on ngOnInit', () => {
+  it('should call refreshTokens on ngOnInit, when logged in', () => {
     jest.spyOn(authService, 'refreshTokens');
+    authService.loggedInAs = 'johndoe';
     component.ngOnInit();
     expect(authService.refreshTokens).toHaveBeenCalled();
   });
 
+  it('should not call refreshTokens on ngOnInit, when not logged in', () => {
+    jest.spyOn(authService, 'refreshTokens');
+    authService.loggedInAs = undefined;
+    component.ngOnInit();
+    expect(authService.refreshTokens).not.toHaveBeenCalled();
+  });
+
   it('should call logout on logout', () => {
     jest.spyOn(authService, 'logout');
-    jest.spyOn(authService, 'updateLoggedInAs');
+    authService.loggedInAs = 'johndoe';
+    // jest.spyOn(authService, 'updateLoggedInAs');
     // jest.spyOn(router, 'navigate');
     component.logout();
+    // authService.loggedInAs = null       //
     expect(authService.logout).toHaveBeenCalled();
-    expect(authService.updateLoggedInAs).toHaveBeenCalled();
+    expect(authService.loggedInAs).toBeFalsy();
     // expect(router.navigate).toHaveBeenCalledWith(['/']);
   });
 
@@ -82,7 +92,6 @@ describe('AppComponent', () => {
     jest.spyOn(httpService, 'getUser').mockResolvedValue(mockPerson);
 
     await component.getUser();
-
     expect(httpService.getUser).toHaveBeenCalled();
   });
 

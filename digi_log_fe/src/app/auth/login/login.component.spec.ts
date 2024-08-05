@@ -12,7 +12,6 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let httpService: HttpService;
-  let authService: AuthService;
   let mockLoginReturn:{refresh:string, access:string, uname:string};
 
   beforeEach(() => {
@@ -23,7 +22,6 @@ describe('LoginComponent', () => {
       providers: [
         ...providers,
         HttpService,
-        AuthService,
         FormBuilder,
         Location,
         {
@@ -34,14 +32,13 @@ describe('LoginComponent', () => {
             login: jest.fn().mockReturnValue(of(mockLoginReturn)),
           },
         },
-        AuthService,
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     httpService = TestBed.inject(HttpService);
-    authService = TestBed.inject(AuthService);
+    // authService = TestBed.inject(AuthService);
   });
 
   it('should create LoginComponent', () => {
@@ -53,7 +50,7 @@ describe('LoginComponent', () => {
   });
 
   it('should call login method', () => {
-    jest.spyOn(authService, 'updateLoggedInAs');
+    // jest.spyOn(authService, 'loggedInAs');
     jest.spyOn(httpService, 'login');
 
     component.loginForm.patchValue({
@@ -61,7 +58,6 @@ describe('LoginComponent', () => {
       password: 'test',
     });
     component.login();
-    expect(authService.updateLoggedInAs).toHaveBeenCalledWith(mockLoginReturn.uname);
     expect(httpService.login).toHaveBeenCalled();
   });
 

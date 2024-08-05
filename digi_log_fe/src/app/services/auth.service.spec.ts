@@ -40,7 +40,7 @@ describe('AuthService', () => {
 
   it('should handle error when logout is called', () => {
     jest.spyOn(cookieService, 'removeFromCookie');
-    jest.spyOn(authService, 'updateLoggedInAs');
+    // jest.spyOn(authService, 'updateLoggedInAs');
     jest
       .spyOn(httpService, 'logout')
       .mockReturnValue(
@@ -48,7 +48,7 @@ describe('AuthService', () => {
       );
     authService.logout();
     expect(httpService.logout).toHaveBeenCalled();
-    expect(authService.updateLoggedInAs).toHaveBeenCalledTimes(0);
+    expect(authService.loggedInAs).toBeFalsy();
     expect(httpService.openSnackbar).toHaveBeenCalledWith(
       "Something went wrong, Couldn't log out"
     );
@@ -57,7 +57,7 @@ describe('AuthService', () => {
 
   it('should remove username cookie and update loggedInAs when logout is called', () => {
     jest.spyOn(cookieService, 'removeFromCookie');
-    jest.spyOn(authService, 'updateLoggedInAs');
+    // jest.spyOn(authService, 'updateLoggedInAs');
 
     const response = {}; // Replace with the actual response object
 
@@ -66,18 +66,18 @@ describe('AuthService', () => {
     authService.logout()
 
     expect(httpService.logout).toHaveBeenCalled();
-    expect(authService.updateLoggedInAs).toHaveBeenCalled();
+    expect(authService.loggedInAs).toBeFalsy();
   });
 
   it('should handle error when refreshToken is called', () => {
     jest.spyOn(cookieService, 'removeFromCookie');
-    jest.spyOn(authService, 'updateLoggedInAs');
+    // jest.spyOn(authService, 'updateLoggedInAs');
     jest
       .spyOn(httpService, 'refreshToken')
       .mockReturnValue(of(throwError(() => new Error('something went wrong'))));
     authService.refreshTokens();
     expect(httpService.refreshToken).toHaveBeenCalled();
-    expect(authService.updateLoggedInAs).toHaveBeenCalled();
+    expect(authService.loggedInAs).toBeFalsy();
   });
 
 });

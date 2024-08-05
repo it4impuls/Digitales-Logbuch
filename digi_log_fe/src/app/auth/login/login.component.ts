@@ -15,8 +15,7 @@ import { CookieType } from '../../interfaces';
 })
 export class LoginComponent {
   constructor(
-    private http:HttpService, 
-    private auth:AuthService, 
+    private http:HttpService,
     private formBuilder:FormBuilder, 
     private _location:Location){
 
@@ -35,7 +34,7 @@ export class LoginComponent {
 
     res.subscribe({
       next: (data) => {
-        this.auth.updateLoggedInAs(data.uname);
+        // this.auth.updateLoggedInAs(data.uname);
         this._location.back();
       }, 
       error: (e) => {
