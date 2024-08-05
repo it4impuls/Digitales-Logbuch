@@ -56,11 +56,6 @@ class CourseViewSet(AuthViewset):
     queryset = Course.objects.all().order_by('id')
     serializer_class = CourseSerializer
 
-    def get_permissions(self):
-        if self.request.method in {'GET', "POST", "OPTIONS"}:
-            return []
-        return super().get_permissions()
-
     def create(self, request, *args, **kwargs):
         try:
             request.data["host"], token = CustomAuthentication().authenticate(request)
@@ -75,6 +70,18 @@ class CourseViewSet(AuthViewset):
             return ShortCourseSerializer
         return super().get_serializer_class()
 
+    def update(self, request, *args, **kwargs):
+        try:
+            request.data["host"], token = CustomAuthentication().authenticate(request)
+        except Exception as e:
+            raise AuthenticationFailed()
+        if not request.data["host"]:
+            raise AuthenticationFailed()
+        
+        if self.get_object().host != request.data["host"]:
+            raise AuthenticationFailed()
+
+        return super().update(request, *args, **kwargs)
 
 class AttendeeViewSet(AuthViewset):
     queryset = Attendee.objects.all()
@@ -142,8 +149,8 @@ class myTokenObtainPairView(TokenObtainPairView):
             rtoken = RefreshToken(refresh)
             response = JsonResponse(
                 {"access": access, "refresh": refresh, "uname": uname}, status=200)
-            response.set_cookie('access', access, httponly=True, samesite="lax")
-            response.set_cookie('refresh', refresh, httponly=True, samesite="lax", expires=rtoken.lifetime+rtoken.current_time)
+            response.set_cookie('access', access, httponly=True, samesite="strict")
+            response.set_cookie('refresh', refresh, httponly=True, samesite="strict", expires=rtoken.lifetime+rtoken.current_time)
             response.set_cookie('uname', uname, samesite="lax", expires=rtoken.lifetime+rtoken.current_time)
             return response
 
@@ -167,9 +174,10 @@ class myTokenRefreshView(TokenRefreshView):
         if access is None:
             return HttpResponse({"Error": "Something went wrong"}, status=400)
         response = JsonResponse({"access": access, "refresh": refresh, "uname": uname}, status=200)
-        response.set_cookie("access", access, httponly=True)
-        response.set_cookie("refresh", refresh, httponly=True)
-        response.set_cookie("uname", uname)
+        rtoken = RefreshToken(refresh)
+        response.set_cookie('access', access, httponly=True, samesite="strict")
+        response.set_cookie('refresh', refresh, httponly=True, samesite="strict", expires=rtoken.lifetime+rtoken.current_time)
+        response.set_cookie('uname', uname, samesite="lax", expires=rtoken.lifetime+rtoken.current_time)
         return response
     
 

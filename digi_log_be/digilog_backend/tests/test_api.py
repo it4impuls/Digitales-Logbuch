@@ -167,9 +167,6 @@ class CourseAPITest(TestCase):
     def setUp(self) -> None:
         return super().setUp()
     
-
-    
-    
     def test_create_course(self):
         # login required
         login_response = self.client.post(
@@ -190,6 +187,42 @@ class CourseAPITest(TestCase):
         response = self.client.post('/api/courses/', json.dumps(newCourse), content_type='application/json')
         self.assertEqual(response.status_code, 401)
     
+    def test_update_course(self):
+        login_response = self.client.post(
+            '/api/token/',
+            json.dumps({"username": self.host["username"], "password": self.host["password"]}),
+            content_type='application/json',
+        )
+        p2 = {'title':'Test course2'}
+        course = Course.objects.get(host=self.host_cls)
+        response = self.client.patch(f'/api/courses/{course.id}/', json.dumps(p2), content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data.get("title"), p2["title"])
+        self.assertIsNotNone(Course.objects.get(title=p2["title"]).title)
+
+    def test_not_update_course_without_login(self):
+        user2 = {
+            "username": "test_user2",
+            "email": "test_email2@test.com",
+            "first_name": "test_first_name2",
+            "last_name": "test_last_name2",
+            "password": "test_password2",
+        }
+
+        user2_cls = User.objects.create(**user2)
+        user2_cls.set_password(user2['password'])
+        user2_cls.save()
+
+        login_response = self.client.post(
+            '/api/token/',
+            json.dumps({"username": user2["username"], "password": user2["password"]}),
+            content_type='application/json',
+        )
+        p2 = {'title':'Test course3'}
+        course = Course.objects.first()
+        response = self.client.patch(f'/api/courses/{course.id}/', json.dumps(p2), content_type='application/json')
+        self.assertEqual(response.status_code, 401)
+
     def test_list_courses(self):
         response = self.client.get('/api/courses/')
         self.assertEqual(response.status_code, 200)
