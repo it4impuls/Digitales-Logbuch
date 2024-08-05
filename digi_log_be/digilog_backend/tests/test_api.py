@@ -61,7 +61,7 @@ class AuthAPITest(TestCase):
         self.assertEqual(tokenresponse.status_code, 200)
         self.assertContains(tokenresponse, "access")
 
-        refreshresponse = self.client.post('/api/token/refresh/')
+        refreshresponse = self.client.get('/api/token/refresh/')
         self.assertEqual(refreshresponse.status_code, 200)
 
         authtestresponse = self.client.post('/api/authTest/', {"token": tokenresponse.json()['refresh']})
@@ -71,7 +71,7 @@ class AuthAPITest(TestCase):
 
         self.assertEqual(logoutresponse.status_code, 200)
 
-        refreshresponse = self.client.post('/api/token/refresh/')
+        refreshresponse = self.client.get('/api/token/refresh/')
         self.assertEqual(refreshresponse.status_code, 401)
 
         _authtestresponse = self.client.post('/api/authTest/')
