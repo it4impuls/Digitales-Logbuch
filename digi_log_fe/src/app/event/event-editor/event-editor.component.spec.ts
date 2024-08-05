@@ -142,32 +142,28 @@ describe('EventEditorComponent', () => {
 
     expect(component.course).toEqual(updatedCourse);
     expect(httpService.updateCourse).toHaveBeenCalled();
-    // expect(component.init).toHaveBeenCalled();
   });
 
   it('should submit the form and create a new course', async () => {
     jest.spyOn(httpService, 'createCourse').mockResolvedValue(mockCourse);
     jest.spyOn(router, 'navigate')
     jest.spyOn(httpService, 'openSnackbar')
-    // jest.spyOn(component, 'init').mockResolvedValue(null);
 
     component.courseForm.patchValue({
       title: mockCourse.title,
-      level: mockCourse.level,
-      // Add more form values as needed
+      level: mockCourse.level
     });
 
     await component.onSubmit();
     
     expect(component.course).toEqual(mockCourse);
     expect(router.navigate).toHaveBeenCalledWith(['/event/'+mockCourse.id]);
-    // expect(component.init).toHaveBeenCalled();
   });
 
   it('should remove attendee when removeAttendee is called', () => {
     jest.spyOn(component, 'unAttend');
     jest.spyOn(httpService, 'courseUnattend');
-    // jest.spyOn(authService, 'loggedInAs');
+    
     const mockAttendee = { id: 1, attendee: mockUser, attends: true } as Attendee;
 
     expect(authService.loggedInAs).toBe(mockUser.username);

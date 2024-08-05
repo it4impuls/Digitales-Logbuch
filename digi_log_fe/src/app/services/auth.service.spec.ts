@@ -57,9 +57,8 @@ describe('AuthService', () => {
 
   it('should remove username cookie and update loggedInAs when logout is called', () => {
     jest.spyOn(cookieService, 'removeFromCookie');
-    // jest.spyOn(authService, 'updateLoggedInAs');
 
-    const response = {}; // Replace with the actual response object
+    const response = {};
 
     jest.spyOn(httpService, 'logout').mockReturnValue(of(response));
 
@@ -71,7 +70,7 @@ describe('AuthService', () => {
 
   it('should handle error when refreshToken is called', () => {
     jest.spyOn(cookieService, 'removeFromCookie');
-    // jest.spyOn(authService, 'updateLoggedInAs');
+    
     jest
       .spyOn(httpService, 'refreshToken')
       .mockReturnValue(of(throwError(() => new Error('something went wrong'))));

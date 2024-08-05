@@ -129,9 +129,7 @@ def login_user(request):
 class myTokenObtainPairView(TokenObtainPairView):
     serializer_class = myTokenObtainPairSerializer
     def post(self, request, *args, **kwargs):
-        # you need to instantiate the serializer with the request data
         serializer = self.get_serializer(data=request.data)
-        # you must call .is_valid() before accessing validated_data
         serializer.is_valid(raise_exception=True)
 
         # get access and refresh tokens to do what you like with
@@ -149,7 +147,7 @@ class myTokenObtainPairView(TokenObtainPairView):
             response.set_cookie('uname', uname, samesite="lax", expires=rtoken.lifetime+rtoken.current_time)
             return response
 
-        return HttpResponse({"Error": "Something went wrong"}, status = 400)
+        return HttpResponse({"Error: Something went wrong"}, status = 400)
 
 class myTokenRefreshView(TokenRefreshView):
     serializer_class = myTokenRefreshSerializer

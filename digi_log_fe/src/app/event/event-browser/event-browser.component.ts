@@ -68,12 +68,4 @@ export class EventBrowserComponent implements OnInit {
       }))
     );
   }
-
-  // attending(element:Course) {
-  //   return element.attendees.filter((a) => a.attends).length;
-  // }
-
-  // newCourse() {
-  //   this.router.navigate(["event/new", { pathMatch: "full" }]);
-  // }
 }

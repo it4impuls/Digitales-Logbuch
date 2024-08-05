@@ -73,16 +73,6 @@ describe('EventBrowserComponent', () => {
     expect(component.dataSource.filteredData[0].id).toEqual(mockEvents[0].id);
   });
 
-  // it('should return the number of attendees attending an event', () => {
-  //   const mockEvent = {
-  //     attendees: [{ attends: true }, { attends: false }, { attends: true }],
-  //   };
-
-  //   const result = component.attending(mockEvent as any);
-
-  //   expect(result).toBe(2);
-  // });
-
   it('should track by event id', () => {
     const mockEvent = { id: 1, name: 'Event 1' };
 

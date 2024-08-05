@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { firstValueFrom, Observable, of, throwError } from "rxjs";
-import { catchError, map } from "rxjs/operators";
+import { catchError } from "rxjs/operators";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { environment } from "../../environments/environment";
 import { Attendee, Course, ICourse, Person, PostCourse, RPerson } from "../interfaces";
@@ -23,7 +23,7 @@ export class HttpService {
   constructor(
     private httpClient: HttpClient,
     private snackBar: MatSnackBar
-  ) // private authService: AuthService
+  )
   {}
 
   baseURL = `http://${environment.BACKEND_IP}:${environment.BACKEND_PORT}/api/`;

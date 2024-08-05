@@ -87,7 +87,7 @@ export class EventEditorComponent implements OnInit {
       this.attendees = this.course.attendees.map(
         (attendee) => attendee.attendee.username
       );
-      // this.attendees.forEach((x) => console.log(x === this.auth.loggedInAs));
+      
       this.userInList = this.attendees.includes(this.auth.loggedInAs ?? '');
       let attendees_list = Object.fromEntries(
         this.course.attendees.map((attendee) => [
@@ -112,17 +112,6 @@ export class EventEditorComponent implements OnInit {
         dates: [this.course.dates, [Validators.required]],
         duration: [this.course.duration, [Validators.required]],
       });
-      if (!this.edit){
-        // WHY DOESNT TIS CLEAR THE LEVEL VALIDATORS????  
-        // Object.values(this.courseForm.controls).forEach((value) => {
-        //   value.clearValidators();
-        // });
-        // this.courseForm.clearValidators()
-        // console.log(this.courseForm.controls);
-        // .forEach(element => {
-        //   element.clearValidators();
-        // }); 
-      }
     }
   }
 
