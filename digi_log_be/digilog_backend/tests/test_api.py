@@ -40,12 +40,12 @@ class AuthAPITest(TestCase):
         tokenresponse = self.client.post(
             '/api/token/',
             json.dumps({"username": self.host["username"], "password": self.host["password"]}),
-            content_type='application/json')
+            content_type='application/json').set_cookie()
         self.assertEqual(tokenresponse.status_code, 200)
         self.assertContains(tokenresponse, "access")
 
         
-        refreshresponse = self.client.post('/api/token/refresh/', headers={'refresh': tokenresponse.json()['refresh']})
+        refreshresponse = self.client.get('/api/token/refresh/', headers={'refresh': tokenresponse.json()['refresh']})
         self.assertEqual(refreshresponse.status_code, 200)
         self.assertContains(refreshresponse, "access")
 
