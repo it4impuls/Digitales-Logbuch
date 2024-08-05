@@ -113,7 +113,7 @@ export class HttpService {
   }
 
   refreshToken(): Observable<RefreshTokenResponse> {
-    return this.httpClient.post<LoginResponse>(
+    return this.httpClient.get<LoginResponse>(
       this.baseURL + 'token/refresh/',
       { withCredentials: true }
     );

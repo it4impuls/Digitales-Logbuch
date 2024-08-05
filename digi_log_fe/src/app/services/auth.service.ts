@@ -34,11 +34,6 @@ export class AuthService {
     this.cookieService.addToCookieWithName(CookieType.username, value??"");
   }
 
-  // updateLoggedInAs(uname:string|null = null) {
-
-  //   this.loggedInAs = uname?? this.cookieService.getValue(CookieType.username);
-  // }
-
   async logout() {
     this.http.logout().subscribe({
       next: (response) => {
