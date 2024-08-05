@@ -14,13 +14,11 @@ export class AuthService {
     private router: Router
   ) {}
 
-  loggedInAs:string|null = ""
+  // loggedInAs:string|null = ""
 
   async refreshTokens() {
     this.http.refreshToken().subscribe({
-      next: (response) => {
-        this.updateLoggedInAs();
-      },
+      next: (response) => {},
       error: (err) => {
         console.error(err);
         // this.cookieService.clearAll()
@@ -28,10 +26,18 @@ export class AuthService {
     });
   }
 
-  updateLoggedInAs(uname:string|null = null) {
-    
-    this.loggedInAs = uname?? this.cookieService.getValue(CookieType.username);
+  get loggedInAs() {
+    return this.cookieService.getValue(CookieType.username);
   }
+
+  set loggedInAs(value:string|undefined) {
+    this.cookieService.addToCookieWithName(CookieType.username, value??"");
+  }
+
+  // updateLoggedInAs(uname:string|null = null) {
+
+  //   this.loggedInAs = uname?? this.cookieService.getValue(CookieType.username);
+  // }
 
   async logout() {
     this.http.logout().subscribe({
@@ -39,14 +45,12 @@ export class AuthService {
         this.cookieService.removeFromCookie(CookieType.username);
         this.cookieService.removeFromCookie(CookieType.refreshToken);
         this.cookieService.removeFromCookie(CookieType.accessToken);
-        this.updateLoggedInAs();
       },
       error: (error) => {
-        this.http.openSnackbar("Something went wrong, Couldn't log out")
+        this.http.openSnackbar("Something went wrong, Couldn't log out");
       },
     });
   }
-  
 
   // async getToken():Promise<string> {
   //   let token = ""
