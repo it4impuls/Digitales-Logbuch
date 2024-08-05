@@ -23,24 +23,24 @@ In den Ordnern sind auch auch vscode config dateien zu finden.
 Für Informationen zu den jeweiligen Projekt siehe die README in den Ordnern
 
 ## Example Workflow
-Guide angepasst von [hier](https://github.com/CleverRaven/Cataclysm-DDA/blob/master/doc/CONTRIBUTING.md#example-workflow)
+Guide angepasst von [hier](https://github.com/CleverRaven/Cataclysm-DDA/blob/main/doc/CONTRIBUTING.md#example-workflow)
 
 
 
 #### Setup your environment
 
-#### Update your `master` branch
+#### Update your `main` branch
 
-1. Make sure you have your `master` branch checked out.
+1. Make sure you have your `main` branch checked out.
 
 ```bash
-$ git checkout master
+$ git checkout main
 ```
 
-2. Pull the changes from the `upstream/master` branch.
+2. Pull the changes from the `upstream/main` branch.
 
 ```bash
-$ git pull --ff-only upstream master
+$ git pull --ff-only upstream main
 ```
 
 4. For each new feature or bug fix, create a new branch.
@@ -61,7 +61,7 @@ $ git push origin new_feature
 
 6. now make your changes
 
-7. Once you're finished working on your branch, and have committed and pushed all your changes, submit a pull request from your `new_feature` branch to this repository's `master` branch.
+7. Once you're finished working on your branch, and have committed and pushed all your changes, submit a pull request from your `new_feature` branch to this repository's `main` branch.
 
  * Note: any new commits to the `new_feature` branch on GitHub will automatically be included in the pull request, so make sure to only commit related changes to the same branch.
 
