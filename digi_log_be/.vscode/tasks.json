@@ -1,65 +1,26 @@
+// to use env file, see: https://github.com/microsoft/vscode/issues/36769#issuecomment-703781109
+
 {
 	"version": "2.0.0",
 	"tasks": [
     {
       "label": "makemigrations",
       "type": "shell",
-      "args": ["${workspaceFolder}/manage.py", "makemigrations"],
-      "command": "python3",
+      "command":" export $(xargs < dev.env) && python3 manage.py makemigrations",
       "problemMatcher": [],
-      "options": {
-        "env": {
-          "DJANGO_SUPERUSER_EMAIL": "admin@example.com",
-          "DJANGO_SUPERUSER_USERNAME": "admin",
-          "DJANGO_SUPERUSER_PASSWORD": "admin",
-          "MEALPLAN_DB_USER": "hwi_db_user",
-          "MEALPLAN_DB_PASSWORD": "test",
-          "MEALPLAN_DB_HOST": "localhost",
-          "MEALPLAN_DB_ENGINE": "django.db.backends.sqlite3"
-        }
-      }
     },
     {
       "label": "migrate",
       "type": "shell",
-      "args": ["${workspaceFolder}/manage.py", "migrate"],
-      "command": "python3",
+      "command": " export $(xargs < dev.env) && python3 manage.py migrate",
       "problemMatcher": [],
       "dependsOn": "makemigrations",
-      "options": {
-        "env": {
-          "DJANGO_SUPERUSER_EMAIL": "admin@example.com",
-          "DJANGO_SUPERUSER_USERNAME": "admin",
-          "DJANGO_SUPERUSER_PASSWORD": "admin",
-          "MEALPLAN_DB_USER": "hwi_db_user",
-          "MEALPLAN_DB_PASSWORD": "test",
-          "MEALPLAN_DB_HOST": "localhost",
-          "MEALPLAN_DB_ENGINE": "django.db.backends.sqlite3"
-        }
-      }
     },
     {
       "label": "create Superuser",
       "type": "shell",
-      "args": [
-        "${workspaceFolder}/manage.py",
-        "createsuperuser",
-        "--noinput",
-        "--skip-checks"
-      ],
-      "command": "python3",
+      "command": "export $(xargs < dev.env) && python3 manage.py createsuperuser --noinput --skip-checks",
       "problemMatcher": [],
-      "options": {
-        "env": {
-          "DJANGO_SUPERUSER_EMAIL": "admin@example.com",
-          "DJANGO_SUPERUSER_USERNAME": "admin",
-          "DJANGO_SUPERUSER_PASSWORD": "admin",
-          "MEALPLAN_DB_USER":"hwi_db_user",
-          "MEALPLAN_DB_PASSWORD":"test",
-          "MEALPLAN_DB_HOST":"localhost",
-          "MEALPLAN_DB_ENGINE":"django.db.backends.sqlite3",
-        }
-      }
     }
   ]
 }
