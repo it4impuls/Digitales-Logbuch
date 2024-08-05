@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { FormBuilder } from '@angular/forms';
 import { Location } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: "app-login",
@@ -12,7 +14,8 @@ export class LoginComponent {
   constructor(
     private http:HttpService,
     private formBuilder:FormBuilder, 
-    private _location:Location){
+    private _location:Location,
+    private auth: AuthService){
 
   }
   
@@ -29,6 +32,7 @@ export class LoginComponent {
 
     res.subscribe({
       next: (data) => {
+        this.auth.loggedInAs = data.uname;
         this._location.back();
       }, 
       error: (e) => {

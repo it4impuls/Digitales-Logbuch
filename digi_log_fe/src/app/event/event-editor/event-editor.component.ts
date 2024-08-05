@@ -63,6 +63,7 @@ export class EventEditorComponent implements OnInit {
         let user = await this.http.getUser();
         this.course = new Course();
         this.course.host = user;
+        this.edit = true;
       } else {
         throw new Error('invalid id');
       }
@@ -87,7 +88,7 @@ export class EventEditorComponent implements OnInit {
       this.attendees = this.course.attendees.map(
         (attendee) => attendee.attendee.username
       );
-      
+
       this.userInList = this.attendees.includes(this.auth.loggedInAs ?? '');
       let attendees_list = Object.fromEntries(
         this.course.attendees.map((attendee) => [
