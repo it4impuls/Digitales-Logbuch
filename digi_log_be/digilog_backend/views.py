@@ -152,8 +152,6 @@ class myTokenObtainPairView(TokenObtainPairView):
 class myTokenRefreshView(TokenRefreshView):
     serializer_class = myTokenRefreshSerializer
     def get(self, request, *args, **kwargs):
-        # super().post()
-        # you need to instantiate the serializer with the request data
         refresh_token = request.COOKIES.get("refresh", None)
         if refresh_token is None:
             return HttpResponse({"Error; No refresh Token found"}, status=400)
