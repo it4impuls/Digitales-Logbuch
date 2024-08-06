@@ -100,7 +100,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # print(os.environ.get("DB_PASSWORD", 'root'))
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get("DB_ENGINE", 'django.db.backends.sqlite3'), 
+        'ENGINE': "django.db.backends."+os.environ.get("DB_ENGINE", 'sqlite3'), 
         'NAME': os.environ.get("DB_NAME", 'kursplan.sqlite3'),
         'USER': os.environ.get("DB_USER", 'root'),
         'PASSWORD': os.environ.get("DB_PASSWORD", 'root'),
