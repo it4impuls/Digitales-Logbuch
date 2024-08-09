@@ -44,4 +44,4 @@ python3 pip install -r requirements.txt
 Das Deployen wird von github actions übernommen.
 Es wird automatisch ausgeführt, wenn ein PR gemerged wird.
 
-## Github Actions
+
