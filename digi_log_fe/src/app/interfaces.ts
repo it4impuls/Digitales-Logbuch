@@ -1,3 +1,9 @@
+import { Translation } from "./services/translate.service";
+
+
+export type Translationkeys = keyof typeof Translation
+type translated = {[key in Translationkeys]:any}
+
 export interface Person {
   id: number;
   first_name: string;
@@ -16,14 +22,13 @@ export enum Level{
   I='I',II= 'II',III= 'III'
 }
 
-export interface Course {
+export interface Course extends translated {
   id: number;
   host: Person;
   attendees: Attendee[];
   qualification: string;
   title: string;
   level: Level;
-  requirements: string;
   description_short: string;
   content_list: string;
   methods: string;
@@ -110,7 +115,6 @@ export class Course implements Course {
     public qualification: string = '',
     public title: string = '',
     public level: Level = Level.I,
-    public requirements: string = '',
     public description_short: string = '',
     public content_list: string = '',
     public methods: string = '',
@@ -127,7 +131,6 @@ export class Course implements Course {
       obj.qualification,
       obj.title,
       obj.level,
-      obj.requirements,
       obj.description_short,
       obj.content_list,
       obj.methods,
@@ -145,7 +148,6 @@ export class Course implements Course {
       obj.qualification,
       obj.title,
       obj.level,
-      obj.requirements,
       obj.description_short,
       obj.content_list,
       obj.methods,
@@ -163,7 +165,6 @@ export class PostCourse implements PostCourse {
     public qualification: string = '',
     public title: string = '',
     public level: Level = Level.I,
-    public requirements: string = '',
     public description_short: string = '',
     public content_list: string = '',
     public methods: string = '',
@@ -177,7 +178,6 @@ export class PostCourse implements PostCourse {
       obj.qualification,
       obj.title,
       obj.level,
-      obj.requirements,
       obj.description_short,
       obj.content_list,
       obj.methods,
@@ -186,4 +186,6 @@ export class PostCourse implements PostCourse {
       obj.duration
     );
   }
+  
 }
+

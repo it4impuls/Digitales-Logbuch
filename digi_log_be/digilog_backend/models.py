@@ -18,7 +18,6 @@ class Course(models.Model):
     qualification = models.CharField(max_length=100, blank=True)
     title = models.CharField(max_length=100)
     level = models.CharField(choices=Level, max_length=3, default="I")
-    requirements = models.CharField(max_length=500, blank=True)
     description_short = models.CharField(max_length=500, blank=True)
     content_list = models.TextField()
     methods = models.CharField(max_length=500, blank=True)

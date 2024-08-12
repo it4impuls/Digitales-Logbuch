@@ -1,6 +1,45 @@
 <Form (ngSubmit)="onSubmit()" [formGroup]="courseForm" class="form">
   <div class="detail list">
-    <mat-form-field
+    @for (item of getFormFields(); track $index) {
+      @if (item[0]=="id") {}
+      @else if (item[0]=="host") {}
+      @else if (item[0]=="attendees") {}
+      
+      @else {
+        <mat-form-field
+        [ngClass]="!edit ? 'readonly' : 'rw'"
+        [hideRequiredMarker]="!edit"
+        class="input">
+          <mat-label [ngClass]="!edit ? 'readonly' : 'rw'"
+            >{{ _(item[0])}}</mat-label
+          >
+          @if (item[0]=="level") {
+            <select
+              matNativeControl
+              required
+              [readonly]="!edit"
+              formControlName="level"
+            >
+              <option value="I">I Anfänger</option>
+              <option value="II">II Fortgeschritten</option>
+              <option value="III">III Profi</option>
+            </select>
+          } @else {
+            <input
+            matInput
+            [formControlName]="item[0]"
+            placeholder="Lorem Ipsum"
+            type="text"
+            [readonly]="!edit"
+          />
+          }
+          
+        </mat-form-field>
+      }
+    }
+
+
+    <!-- <mat-form-field
       [ngClass]="!edit ? 'readonly' : 'rw'"
       [hideRequiredMarker]="!edit"
       class="input"
@@ -80,7 +119,7 @@
         cdkTextareaAutosize
         [readonly]="!edit"
       >
-test</textarea
+      test</textarea
       >
     </mat-form-field>
     <mat-form-field
@@ -144,37 +183,37 @@ test</textarea
         type="text"
         [readonly]="!edit"
       />
-    </mat-form-field>
+    </mat-form-field> -->
     @if (edit) {
     <button #button mat-raised-button type="submit">Speichern</button>
     }
   </div>
-  @if(edit || auth.loggedInAs == 'admin'){
-  <div class="attendees list">
-    <div class="listdescription">Anmeldungen:</div>
-    <section class="attending" [formGroup]="courseForm.controls.attendees">
-      @for (attendee of course.attendees; track attendee) {
-      <mat-checkbox
-        [checked]="attendee.attends"
-        (change)="onCheck($event, attendee)"
-        [formControlName]="attendee.id"
+  @if(edit && courseForm.value.id && courseForm.value.id > 0) {
+    <div class="attendees list">
+      <div class="listdescription">Anmeldungen:</div>
+      <section class="attending" [formGroup]="courseForm.controls.attendees">
+        @for (attendee of course.attendees; track attendee) {
+        <mat-checkbox
+          [checked]="attendee.attends"
+          (change)="onCheck($event, attendee)"
+          [formControlName]="attendee.id"
+        >
+          {{ attendee.attendee.last_name }}, {{ attendee.attendee.first_name }}
+        </mat-checkbox>
+        }
+      </section>
+      <button
+        #button
+        class="button"
+        mat-raised-button
+        type="button"
+        color="warn"
+        (click)="remCourse()"
       >
-        {{ attendee.attendee.last_name }}, {{ attendee.attendee.first_name }}
-      </mat-checkbox>
-      }
-    </section>
-
-    <button
-      #button
-      class="button"
-      mat-raised-button
-      type="button"
-      color="warn"
-      (click)="remCourse()"
-    >
-      Kurs entfernen
-    </button>
-  </div>
+        Kurs entfernen
+      </button>
+      
+    </div>
   } @if(userInList) {
   <button
     #button
