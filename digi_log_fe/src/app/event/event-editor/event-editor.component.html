@@ -4,7 +4,6 @@
       @if (item[0]=="id") {}
       @else if (item[0]=="host") {}
       @else if (item[0]=="attendees") {}
-      
       @else {
         <mat-form-field
         [ngClass]="!edit ? 'readonly' : 'rw'"
@@ -24,6 +23,14 @@
               <option value="II">II Fortgeschritten</option>
               <option value="III">III Profi</option>
             </select>
+          } @else if (item[0]=="content_list") {
+            <textarea
+            matInput
+            formControlName="content_list"
+            placeholder="Lorem Ipsum"
+            cdkTextareaAutosize
+            [readonly]="!edit"
+          > </textarea>
           } @else {
             <input
             matInput

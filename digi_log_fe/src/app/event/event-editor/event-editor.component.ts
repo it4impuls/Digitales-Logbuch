@@ -53,7 +53,7 @@ export class EventEditorComponent implements OnInit {
     methods: '',
     material: '',
     dates: '',
-    duration: '',
+    duration: ['', [Validators.required]],
   });
   uname = '';
   attendees: string[] = [];
@@ -108,23 +108,23 @@ export class EventEditorComponent implements OnInit {
           attendee.attends,
         ])
       );
-      
+
       // .forEach((key,value) => {
       //   console.log(value.err);
       // });;
-      
+
       let v = this.courseForm.controls;
       v.id.setValue(this.course.id as number);
-      v.attendees.setValue(attendees_list as { [k: string]: boolean })
-      v.qualification.setValue(this.course.qualification)
-      v.level.setValue(this.course.level as Level)
-      v.title.setValue(this.course.title)
-      v.description_short.setValue(this.course.description_short)
-      v.content_list.setValue(this.course.content_list)
-      v.methods.setValue(this.course.methods)
-      v.material.setValue(this.course.material)
-      v.dates.setValue(this.course.dates)
-      v.duration.setValue(this.course.duration)
+      v.attendees.setValue(attendees_list as { [k: string]: boolean });
+      v.qualification.setValue(this.course.qualification);
+      v.level.setValue(this.course.level as Level);
+      v.title.setValue(this.course.title);
+      v.description_short.setValue(this.course.description_short);
+      v.content_list.setValue(this.course.content_list);
+      v.methods.setValue(this.course.methods);
+      v.material.setValue(this.course.material);
+      v.dates.setValue(this.course.dates);
+      v.duration.setValue(this.course.duration);
       console.log(this.courseForm.value);
       console.log(this.courseForm.invalid);
       console.log(Object.entries(this.courseForm.controls));
