@@ -16,12 +16,9 @@ export class LoginComponent {
     private formBuilder:FormBuilder, 
     private _location:Location,
     private auth: AuthService){
-
   }
   
   loginForm = this.formBuilder.group({username:"", password:""})
-  
-
   
   async login() {HttpService;
     let lForm = this.loginForm.controls

@@ -109,10 +109,6 @@ export class EventEditorComponent implements OnInit {
         ])
       );
 
-      // .forEach((key,value) => {
-      //   console.log(value.err);
-      // });;
-
       let v = this.courseForm.controls;
       v.id.setValue(this.course.id as number);
       v.attendees = this.formbuilder.group(attendees_list);
@@ -125,9 +121,6 @@ export class EventEditorComponent implements OnInit {
       v.material.setValue(this.course.material);
       v.dates.setValue(this.course.dates);
       v.duration.setValue(this.course.duration);
-      console.log(this.courseForm.value);
-      console.log(this.courseForm.invalid);
-      console.log(Object.entries(this.courseForm.controls));
     }
   }
 

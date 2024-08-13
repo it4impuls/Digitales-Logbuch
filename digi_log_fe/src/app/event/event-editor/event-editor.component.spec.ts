@@ -221,6 +221,5 @@ describe('EventEditorComponent', () => {
     }
     
   });
-
-  // Add more test cases for other methods and scenarios
+  
 });

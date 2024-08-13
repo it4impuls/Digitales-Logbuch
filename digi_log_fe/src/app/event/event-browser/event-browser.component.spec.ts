@@ -39,7 +39,6 @@ describe('EventBrowserComponent', () => {
     httpService = TestBed.inject(HttpService);
     router = TestBed.inject(Router);
     fixture.detectChanges();
-    
   });
 
   it('should create', () => {
@@ -80,5 +79,4 @@ describe('EventBrowserComponent', () => {
 
     expect(result).toBe(mockEvent.id);
   });
-
 });
