@@ -63,7 +63,6 @@ class CourseViewSet(AuthViewset):
     queryset = Course.objects.all().order_by("id")
     serializer_class = CourseSerializer
 
-    @staticmethod
     def create(request, *args, **kwargs):
         try:
             (request.data["host"], _) = CustomAuthentication().authenticate(request)
@@ -94,10 +93,6 @@ class CourseViewSet(AuthViewset):
 class AttendeeViewSet(AuthViewset):
     queryset = Attendee.objects.all()
     serializer_class = AttendeeSerializer
-
-    @staticmethod
-    def list(request, *args, **kwargs):
-        return super().list(request, *args, **kwargs)
 
     def create(self, request, *args, **kwargs):
         user, _ = CustomAuthentication().authenticate(request)
@@ -206,13 +201,12 @@ class myTokenRefreshView(TokenRefreshView):
 class myTokenVerifyView(TokenVerifyView):
     serializer_class = TokenVerifySerializer
 
-    @staticmethod
+
     def post(request: Request, *args, **kwargs) -> Response:
         return super().post(request, *args, **kwargs)
 
 class myTokenBlacklistView(TokenBlacklistView):
-    serializer_class = TokenBlacklistSerializer
-    @staticmethod
+    serializer_class = TokenBlacklistSerializer()
     def post(request: Request, *args, **kwargs) -> Response:
         return super().post(DummyRequest(request.COOKIES), *args, **kwargs)
 
