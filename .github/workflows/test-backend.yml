@@ -13,6 +13,7 @@ concurrency:
 
 jobs:
   test-backend:
+    permissions: write-all
     runs-on: ubuntu-latest
     defaults:
       run:
