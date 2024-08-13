@@ -210,7 +210,7 @@ class myTokenBlacklistView(TokenBlacklistView):
 @require_GET
 @permission_classes([IsAuthenticated])
 
-def getUser(self, request: HttpRequest):
+def getUser(request: HttpRequest):
     user, _ = CustomAuthentication().authenticate(request)
     if user:
         serializer = UserSerializer(instance=user)
