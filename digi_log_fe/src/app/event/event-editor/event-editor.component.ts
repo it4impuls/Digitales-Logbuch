@@ -125,9 +125,6 @@ export class EventEditorComponent implements OnInit {
       v.material.setValue(this.course.material);
       v.dates.setValue(this.course.dates);
       v.duration.setValue(this.course.duration);
-      console.log(this.courseForm.value);
-      console.log(this.courseForm.invalid);
-      console.log(Object.entries(this.courseForm.controls));
     }
   }
 
