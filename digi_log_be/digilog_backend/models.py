@@ -1,14 +1,12 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import User
-
-
 
 
 class Course(models.Model):
     def __str__(self):
         return f"{self.id}: {self.title}"
-    
+
     class Level(models.TextChoices):
         BEGINNER = "I", _("I Anfänger")
         INTERMEDIATE = "II", _("II Fortgeschritten")
@@ -23,12 +21,11 @@ class Course(models.Model):
     methods = models.CharField(max_length=500, blank=True)
     material = models.CharField(max_length=100, blank=True)
     dates = models.CharField(max_length=100, blank=True)
-    duration = models.CharField(max_length = 100, default="2:00:00")
+    duration = models.CharField(max_length=100, default="2:00:00")
+
 
 
 class Attendee(models.Model):
     attends = models.BooleanField()
     attendee = models.ForeignKey(User, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-
-
