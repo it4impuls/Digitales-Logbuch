@@ -63,7 +63,7 @@ class CourseViewSet(AuthViewset):
     queryset = Course.objects.all().order_by("id")
     serializer_class = CourseSerializer
 
-    def create(request, *args, **kwargs):
+    def create(self, request, *args, **kwargs):
         try:
             (request.data["host"], _) = CustomAuthentication().authenticate(request)
         except Exception as e:
@@ -115,7 +115,7 @@ class AttendeeViewSet(AuthViewset):
         return super().get_serializer_class()
 
 @csrf_exempt
-def login_user(request):
+def login_user(self, request):
 
     username = password = ""
 
@@ -201,18 +201,16 @@ class myTokenRefreshView(TokenRefreshView):
 class myTokenVerifyView(TokenVerifyView):
     serializer_class = TokenVerifySerializer
 
-
-    def post(request: Request, *args, **kwargs) -> Response:
-        return super().post(request, *args, **kwargs)
-
 class myTokenBlacklistView(TokenBlacklistView):
-    serializer_class = TokenBlacklistSerializer()
-    def post(request: Request, *args, **kwargs) -> Response:
+    serializer_class = TokenBlacklistSerializer
+
+    def post(self, request: Request, *args, **kwargs) -> Response:
         return super().post(DummyRequest(request.COOKIES), *args, **kwargs)
 
 @require_GET
 @permission_classes([IsAuthenticated])
-def getUser(request: HttpRequest):
+
+def getUser(self, request: HttpRequest):
     user, _ = CustomAuthentication().authenticate(request)
     if user:
         serializer = UserSerializer(instance=user)
