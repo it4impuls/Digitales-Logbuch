@@ -16,7 +16,6 @@ export class LoginComponent {
     private formBuilder:FormBuilder, 
     private _location:Location,
     private auth: AuthService){
-
   }
   
   loginForm = this.formBuilder.group({username:"", password:""})
