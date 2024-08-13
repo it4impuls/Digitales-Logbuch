@@ -14,14 +14,12 @@ class CourseAdmin(admin.ModelAdmin):
     search_fields = ['title', 'host__username']
     readonly_fields = ['get_attendees', 'get_attendees_attending']
 
-    @staticmethod
     @admin.display(description="Num attending")
-    def get_attendees_attending(obj):
+    def get_attendees_attending(self, obj):
         return obj.attendee_set.filter(attends=True).count()
 
-    @staticmethod
     @admin.display(description="total attendees")
-    def get_attendees(obj):
+    def get_attendees(self, obj):
         return obj.attendee_set.count()
 
 

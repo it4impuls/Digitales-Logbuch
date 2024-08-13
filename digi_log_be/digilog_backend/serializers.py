@@ -46,8 +46,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('username', 'password', 'email', 'first_name', 'last_name')
         extra_kwargs = {'first_name': {'required': True}, 'last_name': {'required': True}}
 
-    @staticmethod
-    def create(validated_data):
+    def create(self, validated_data):
         user = User.objects.create(
             username=validated_data['username'],
             email=validated_data['email'],
@@ -75,20 +74,16 @@ class AttendeeSerializer(serializers.ModelSerializer):
         model = Attendee
         fields = ["id", "attendee", "attends", "course"]
 
-    @staticmethod
-    def create(validated_data):
+    def create(self, validated_data):
         return super().create(validated_data)
 
-    @staticmethod
-    def update(instance, validated_data):
+    def update(self, instance, validated_data):
         return super().update(instance, validated_data)
 
-    @staticmethod
-    def is_valid(*, raise_exception=False):
+    def is_valid(self, *, raise_exception=False):
         return super().is_valid(raise_exception=raise_exception)
 
-    @staticmethod
-    def validate(attrs):
+    def validate(self, attrs):
         return super().validate(attrs)
 
 
