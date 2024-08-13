@@ -1,17 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Course, Level, PostCourse, Attendee } from '../../interfaces';
+import { Course, Level, PostCourse, Attendee, Person } from '../../interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { firstValueFrom } from 'rxjs';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { LogService } from '../../services/log.service';
+import {
+  TranslateService,
+  _,
+  Translation,
+} from '../../services/translate.service';
 
 
 export type ModelFormGroup<T> = FormGroup<{
   [K in keyof T]: FormControl<T[K]>;
 }>;
+
+type coursekeys = keyof Course;
+
 
 @Component({
   selector: 'app-event-editor',
@@ -26,28 +34,32 @@ export class EventEditorComponent implements OnInit {
     private formbuilder: FormBuilder,
     private httpService: HttpService,
     private log: LogService,
-    public auth: AuthService
+    public auth: AuthService,
+    public translate: TranslateService
   ) {}
+  // public coursekeys = Object.keys(Course);
   edit = false;
   userInList = false;
   course: Course = new Course();
-  // time:string = "10:00"
   courseForm = this.formbuilder.group({
-    id: 0,
-    attendees: this.formbuilder.group({} as { [k: string]: boolean | null }),
+    id: 0 as number,
+    attendees: this.formbuilder.group({} as { [k: number]: boolean }),
     title: ['', [Validators.required]],
     qualification: '',
     level: ['I' as Level, [Validators.required]],
-    requirements: '',
+    host: new Person(),
     description_short: '',
     content_list: ['', [Validators.required]],
     methods: '',
     material: '',
     dates: '',
-    duration: '',
+    duration: ['', [Validators.required]],
   });
   uname = '';
   attendees: string[] = [];
+
+  public _ = _;
+  public Translation = Translation;
 
   ngOnInit(): Promise<null> {
     return this.init();
@@ -72,12 +84,12 @@ export class EventEditorComponent implements OnInit {
       throw new Error('no id');
     }
 
-    return null
+    return null;
   }
 
   init_course() {
     if (this.course) {
-      this.log.log(this.course)
+      this.log.log(this.course);
       if (
         this.auth.loggedInAs === this.course.host.username ||
         this.auth.loggedInAs === 'admin'
@@ -90,33 +102,36 @@ export class EventEditorComponent implements OnInit {
       );
 
       this.userInList = this.attendees.includes(this.auth.loggedInAs ?? '');
-      let attendees_list = Object.fromEntries(
+      let attendees_list: {[k: number]: boolean} = Object.fromEntries(
         this.course.attendees.map((attendee) => [
           attendee.id as number,
           attendee.attends,
-        ]) 
+        ])
       );
-      this.courseForm = this.formbuilder.group({
-        id: this.course.id as number,
-        attendees: this.formbuilder.group(attendees_list),
-        qualification: this.course.qualification,
-        level: [this.course.level as Level, [Validators.required]],
-        title: [this.course.title, [Validators.required]],
-        requirements: this.course.requirements,
-        description_short: [
-          this.course.description_short,
-          [Validators.required],
-        ],
-        content_list: [this.course.content_list, [Validators.required]],
-        methods: this.course.methods,
-        material: this.course.material,
-        dates: [this.course.dates, [Validators.required]],
-        duration: [this.course.duration, [Validators.required]],
-      });
+
+      // .forEach((key,value) => {
+      //   console.log(value.err);
+      // });;
+
+      let v = this.courseForm.controls;
+      v.id.setValue(this.course.id as number);
+      v.attendees = this.formbuilder.group(attendees_list);
+      v.qualification.setValue(this.course.qualification);
+      v.level.setValue(this.course.level as Level);
+      v.title.setValue(this.course.title);
+      v.description_short.setValue(this.course.description_short);
+      v.content_list.setValue(this.course.content_list);
+      v.methods.setValue(this.course.methods);
+      v.material.setValue(this.course.material);
+      v.dates.setValue(this.course.dates);
+      v.duration.setValue(this.course.duration);
+      console.log(this.courseForm.value);
+      console.log(this.courseForm.invalid);
+      console.log(Object.entries(this.courseForm.controls));
     }
   }
 
-  null(){}
+  null() {}
 
   getCourse(): PostCourse {
     let _course = this.courseForm.getRawValue();
@@ -125,7 +140,6 @@ export class EventEditorComponent implements OnInit {
       qualification: _course.qualification as string,
       title: _course.title as string,
       level: _course.level as Level,
-      requirements: _course.requirements as string,
       description_short: _course.description_short as string,
       content_list: _course.content_list as string,
       methods: _course.methods as string,
@@ -147,7 +161,6 @@ export class EventEditorComponent implements OnInit {
       qualification: _course.qualification as string,
       title: _course.title as string,
       level: _course.level as Level,
-      requirements: _course.requirements as string,
       description_short: _course.description_short as string,
       content_list: _course.content_list as string,
       methods: _course.methods as string,
@@ -178,7 +191,9 @@ export class EventEditorComponent implements OnInit {
       this.httpService.courseSignup(this.getCourse().id)
     );
     if (l && Object.keys(l).length > 0) {
-      this.http.openSnackbar('Erfolgreich Auf Warteliste gesetzt; Veranstalter wird in kürze informiert');
+      this.http.openSnackbar(
+        'Erfolgreich Auf Warteliste gesetzt; Veranstalter wird in kürze informiert'
+      );
       this.course.attendees.push(l);
       this.init_course();
     }
@@ -211,20 +226,33 @@ export class EventEditorComponent implements OnInit {
     }
   }
 
-  async onCheck(event:MatCheckboxChange, attendee:Attendee) {
-    let a = await this.http.updateAttending(attendee.id, event.checked)
+  async onCheck(event: MatCheckboxChange, attendee: Attendee) {
+    let a = await this.http.updateAttending(attendee.id, event.checked);
   }
 
-  async remCourse(){
-    if( confirm("Wollen Sie wirklich diesen Kurs entfernen?")){
+  async remCourse() {
+    if (confirm('Wollen Sie wirklich diesen Kurs entfernen?')) {
       this.http.remCourse(this.course.id).subscribe({
         next: (response) => {
-          this.http.openSnackbar("Erfolgreich entfernt")
-          this.router.navigate(["/"])
+          this.http.openSnackbar('Erfolgreich entfernt');
+          this.router.navigate(['/']);
         },
-        error: (error) => {this.http.openSnackbar(error.message);}
-      })
+        error: (error) => {
+          this.http.openSnackbar(error.message);
+        },
+      });
     }
   }
 
+  getFormFields(): [coursekeys, FormControl | FormGroup][] {
+    let keys: coursekeys[] = Object.keys(
+      this.courseForm.controls
+    ) as coursekeys[];
+    let values = Object.values(this.courseForm.controls);
+    let z: [coursekeys, FormControl | FormGroup][] = keys.map((key, index) => [
+      key,
+      values[index],
+    ]);
+    return z;
+  }
 }

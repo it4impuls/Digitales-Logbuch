@@ -36,7 +36,6 @@ class Command(BaseCommand):
                     e["qualification"] = entry.get("Qualifizierungsbereich", "")[:Course.qualification.max_length-1]
                     e["title"] = entry.get("Titel des Kurses", "")[:Course.title.max_length-1]
                     e["level"]=entry.get('Level', "I").split(" ")[0][:Course.level.max_length-1]
-                    e["requirements"]= entry.get("Material/Unterlagen", "")[:Course.requirements.max_length-1]
                     e["description_short"] = entry.get("Kurzbeschreibung/Untertitel des Moduls")[:Course.description_short.max_length-1]
                     e["content_list"] = entry.get("Inhalte des Kurses", "")
                     e["methods"]=entry.get("methods", "")[:Course.methods.max_length-1]
@@ -49,7 +48,6 @@ class Command(BaseCommand):
                     e["qualification"] = entry.get("Qualifizierungsbereich", "")
                     e["title"] = entry.get("Titel des Kurses", "")
                     e["level"]=entry.get('Level', "I").split(" ")[0]
-                    e["requirements"]= entry.get("Material/Unterlagen", "")
                     e["description_short"] = entry.get("Kurzbeschreibung/Untertitel des Moduls")
                     e["content_list"] = entry.get("Inhalte des Kurses", "")
                     e["methods"]=entry.get("methods", "")

@@ -119,7 +119,6 @@ describe('EventEditorComponent', () => {
     updatedCourse.description_short = "Updated Event";
     updatedCourse.dates = "test dates";
     updatedCourse.content_list = "content list";
-    updatedCourse.requirements = "Updated Event requirements";
 
     jest.spyOn(httpService, 'updateCourse').mockResolvedValue(updatedCourse);
     jest.spyOn(router, 'navigate');
@@ -130,7 +129,6 @@ describe('EventEditorComponent', () => {
       title: updatedCourse.title,
       level: updatedCourse.level,
       duration: updatedCourse.duration,
-      requirements: updatedCourse.requirements,
       description_short: updatedCourse.description_short,
       dates: updatedCourse.dates,
       content_list: updatedCourse.content_list,
