@@ -221,4 +221,5 @@ describe('EventEditorComponent', () => {
     }
     
   });
+  
 });

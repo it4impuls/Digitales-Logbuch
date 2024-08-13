@@ -15,10 +15,6 @@ env:
 
 jobs:
   test-frontend:
-    permissions: 
-      contents: write
-      pull-requests: write
-      repository-projects: write
     runs-on: ubuntu-latest
     defaults:
       run:
