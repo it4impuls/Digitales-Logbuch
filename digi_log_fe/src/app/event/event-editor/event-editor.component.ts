@@ -43,7 +43,7 @@ export class EventEditorComponent implements OnInit {
   course: Course = new Course();
   courseForm = this.formbuilder.group({
     id: 0 as number,
-    attendees: this.formbuilder.group({} as { [k: string]: boolean }),
+    attendees: this.formbuilder.group({} as { [k: number]: boolean }),
     title: ['', [Validators.required]],
     qualification: '',
     level: ['I' as Level, [Validators.required]],
@@ -102,7 +102,7 @@ export class EventEditorComponent implements OnInit {
       );
 
       this.userInList = this.attendees.includes(this.auth.loggedInAs ?? '');
-      let attendees_list = Object.fromEntries(
+      let attendees_list: {[k: number]: boolean} = Object.fromEntries(
         this.course.attendees.map((attendee) => [
           attendee.id as number,
           attendee.attends,
@@ -115,7 +115,7 @@ export class EventEditorComponent implements OnInit {
 
       let v = this.courseForm.controls;
       v.id.setValue(this.course.id as number);
-      v.attendees.setValue(attendees_list as { [k: string]: boolean });
+      v.attendees = this.formbuilder.group(attendees_list);
       v.qualification.setValue(this.course.qualification);
       v.level.setValue(this.course.level as Level);
       v.title.setValue(this.course.title);
