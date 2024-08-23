@@ -1,16 +1,16 @@
 import json
-
+from rest_framework.settings import api_settings
 from django.contrib.auth import authenticate, login
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET
 from rest_framework import viewsets
-from rest_framework.decorators import permission_classes
+from rest_framework.decorators import permission_classes, authentication_classes, api_view
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework_simplejwt.exceptions import AuthenticationFailed
+from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.serializers import TokenBlacklistSerializer, TokenVerifySerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import (
@@ -19,8 +19,6 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
-
-from .authenticator import CustomAuthentication
 from .models import Attendee, Course, User
 from .serializers import (
     AttendeeSerializer,
@@ -33,15 +31,13 @@ from .serializers import (
 )
 
 
-
-
 # from django.views.decorators.vary import
 class DummyRequest:
     def __init__(self, data):
         self.data = data
 
 class AuthViewset(viewsets.ModelViewSet):
-    authentication_classes = [CustomAuthentication]
+    authentication_classes = api_settings.DEFAULT_AUTHENTICATION_CLASSES
     permission_classes = [IsAuthenticated]
 
     def get_permissions(self):
@@ -63,13 +59,10 @@ class CourseViewSet(AuthViewset):
     queryset = Course.objects.all().order_by("id")
     serializer_class = CourseSerializer
 
-    def create(self, request, *args, **kwargs):
-        try:
-            (request.data["host"], _) = CustomAuthentication().authenticate(request)
-        except Exception as e:
+    def create(self, request:HttpRequest, *args, **kwargs):
+        if request.user.is_anonymous:
             raise AuthenticationFailed()
-        if not request.data["host"]:
-            raise AuthenticationFailed()
+        request.data["host"] = request.user
         return super().create(request, *args, **kwargs)
 
     def get_serializer_class(self):
@@ -78,15 +71,9 @@ class CourseViewSet(AuthViewset):
         return super().get_serializer_class()
 
     def update(self, request, *args, **kwargs):
-        try:
-            request.data["host"], _ = CustomAuthentication().authenticate(request)
-        except Exception as e:
-            raise AuthenticationFailed()
-        if not request.data["host"]:
-            raise AuthenticationFailed()
-
-        if self.get_object().host != request.data["host"]:
-            raise AuthenticationFailed()
+        if self.get_object().host != request.user:
+            raise AuthenticationFailed("Only the author can update this course")
+        request.data["host"] = request.user
 
         return super().update(request, *args, **kwargs)
 
@@ -95,8 +82,8 @@ class AttendeeViewSet(AuthViewset):
     serializer_class = AttendeeSerializer
 
     def create(self, request, *args, **kwargs):
-        user, _ = CustomAuthentication().authenticate(request)
-        if not user:
+        user = request.user
+        if user.is_anonymous:
             raise AuthenticationFailed()
 
         req = DummyRequest(
@@ -115,11 +102,11 @@ class AttendeeViewSet(AuthViewset):
         return super().get_serializer_class()
 
 @csrf_exempt
-def login_user(self, request):
-
+def login_user(request):
     username = password = ""
 
     if request.method != "POST":
+        request.data = request.GET.copy()
         return render(request, 'digi_log/login.html')
 
     body = json.loads(request.body)
@@ -137,6 +124,7 @@ def login_user(self, request):
 
 class myTokenObtainPairView(TokenObtainPairView):
     serializer_class = myTokenObtainPairSerializer
+
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -166,34 +154,30 @@ class myTokenObtainPairView(TokenObtainPairView):
 
 
 class myTokenRefreshView(TokenRefreshView):
+    authentication_classes = api_settings.DEFAULT_AUTHENTICATION_CLASSES
     serializer_class = myTokenRefreshSerializer
     def get(self, request, *args, **kwargs):
-        refresh_token = request.COOKIES.get("refresh", None)
-        if refresh_token is None:
-            return HttpResponse({"Error; No refresh Token found"}, status=400)
-        serializer = self.get_serializer(data={"refresh": refresh_token})
-        # you must call .is_valid() before accessing validated_data
-        serializer.is_valid(raise_exception=True)
-        # get access and refresh tokens to do what you like with
-        access = serializer.validated_data.get("access", None)
-        refresh = serializer.validated_data.get("refresh", None)
-        uname = serializer.validated_data.get("uname", None)
-
-        # build your response and set cookie
-        if access is None:
-            return HttpResponse({"Error": "Something went wrong"}, status=400)
-        response = JsonResponse({"access": access, "refresh": refresh, "uname": uname}, status=200)
-        rtoken = RefreshToken(refresh)
-        response.set_cookie("access", access, httponly=True, samesite="strict")
+        try: 
+            response = super().post(DummyRequest(request.COOKIES))
+        except AuthenticationFailed as e:
+            response = Response({"detail": str(e.args[0])}, status=401)
+            response.delete_cookie("access")
+            response.delete_cookie("refresh")
+            response.delete_cookie("uname")
+            return response
+        except Exception as e:
+            raise e
+        rToken = RefreshToken(response.data["refresh"])
+        response.set_cookie("access", response.data["access"], httponly=True, samesite="strict")
         response.set_cookie(
             "refresh",
-            refresh,
+            response.data["refresh"],
             httponly=True,
             samesite="strict",
-            expires=rtoken.lifetime + rtoken.current_time,
+            expires=rToken.lifetime + rToken.current_time,
         )
         response.set_cookie(
-            "uname", uname, samesite="lax", expires=rtoken.lifetime + rtoken.current_time
+            "uname", response.data["uname"], samesite="lax", expires=rToken.lifetime + rToken.current_time
         )
         return response
 
@@ -205,14 +189,18 @@ class myTokenBlacklistView(TokenBlacklistView):
     serializer_class = TokenBlacklistSerializer
 
     def post(self, request: Request, *args, **kwargs) -> Response:
-        return super().post(DummyRequest(request.COOKIES), *args, **kwargs)
+        response =  super().post(DummyRequest(request.COOKIES), *args, **kwargs)
+        response.delete_cookie("access")
+        response.delete_cookie("refresh")
+        response.delete_cookie("uname")
+        return response
 
-@require_GET
+@api_view(['GET'])
 @permission_classes([IsAuthenticated])
-
+@authentication_classes(api_settings.DEFAULT_AUTHENTICATION_CLASSES)
 def getUser(request: HttpRequest):
-    user, _ = CustomAuthentication().authenticate(request)
-    if user:
-        serializer = UserSerializer(instance=user)
-        return JsonResponse(serializer.data)
-    return user
+    user = request.user
+    if user.is_anonymous:
+        raise AuthenticationFailed()
+    serializer = UserSerializer(instance=user)
+    return JsonResponse(serializer.data)
