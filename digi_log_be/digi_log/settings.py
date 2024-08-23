@@ -157,8 +157,8 @@ SIMPLE_JWT = {
     # This can be 'Lax', 'Strict', or None to disable the flag.
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=20),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=14),
-
     "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
 }
 
 # AUTHENTICATION_BACKENDS = ["django_auth_ldap.backend.LDAPBackend"]
