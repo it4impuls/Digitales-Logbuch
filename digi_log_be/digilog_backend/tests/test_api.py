@@ -1,5 +1,6 @@
 
 
+from django.http import SimpleCookie
 from django.test import TestCase
 from digilog_backend.models import Course, User
 from rest_framework.test import APIRequestFactory, APIClient
@@ -49,11 +50,8 @@ class AuthAPITest(TestCase):
         self.assertEqual(refreshresponse.status_code, 200)
         self.assertContains(refreshresponse, "access")
 
-    def test_invalid_refresh(self):
-        tokenresponse = self.client.post('/api/token/refresh/', headers={'refresh': '1234'})
-        self.assertEqual(tokenresponse.status_code, 400)
 
-
+    def test_refresh_cycling(self):
         tokenresponse = self.client.post(
             '/api/token/',
             json.dumps({"username": self.host["username"], "password": self.host["password"]}),
@@ -61,21 +59,52 @@ class AuthAPITest(TestCase):
         self.assertEqual(tokenresponse.status_code, 200)
         self.assertContains(tokenresponse, "access")
 
+        first_refreshresponse = self.client.get('/api/token/refresh/')
+        self.assertEqual(first_refreshresponse.status_code, 200)
+        self.assertContains(first_refreshresponse, "access")
+        self.assertNotEquals(first_refreshresponse.cookies.get('refresh').value, tokenresponse.cookies.get('refresh').value)
+
+        second_refreshresponse = self.client.get('/api/token/refresh/')
+        self.assertEqual(second_refreshresponse.status_code, 200)
+        self.assertContains(second_refreshresponse, "access")
+        self.assertNotEquals(
+    second_refreshresponse.cookies.get('refresh').value, first_refreshresponse.cookies.get('refresh').value
+)
+
+    def test_invalid_refresh(self):
+        # empty refresh
+        empty_tokenresponse = self.client.post('/api/token/refresh/', headers={'refresh': '1234'})
+        self.assertEqual(empty_tokenresponse.status_code, 400)
+
+
+        login_response = self.client.post(
+            '/api/token/',
+            json.dumps({"username": self.host["username"], "password": self.host["password"]}),
+            content_type='application/json')
+        self.assertEqual(login_response.status_code, 200)
+        self.assertContains(login_response, "access")
+
         refreshresponse = self.client.get('/api/token/refresh/')
         self.assertEqual(refreshresponse.status_code, 200)
 
-        authtestresponse = self.client.post('/api/authTest/', {"token": tokenresponse.json()['refresh']})
-        self.assertEqual(authtestresponse.status_code, 200,)
+        authtestresponse = self.client.post('/api/authTest/', {"token": login_response.json()['refresh']})
+        self.assertEqual(authtestresponse.status_code, 200)
 
         logoutresponse = self.client.post('/api/logout/')
 
         self.assertEqual(logoutresponse.status_code, 200)
 
+        
+
+        # Blacklisted refresh token (only if cycling refresh tokens)
+        self.client.cookies = refreshresponse.cookies   # outdated after logout
+        _authtestresponse = self.client.post('/api/authTest/')
+        self.assertEqual(_authtestresponse.status_code, 400)
+
         refreshresponse = self.client.get('/api/token/refresh/')
         self.assertEqual(refreshresponse.status_code, 401)
 
-        _authtestresponse = self.client.post('/api/authTest/')
-        self.assertEqual(_authtestresponse.status_code, 400)
+        
 
     def test_get_token_user(self):
         response = self.client.post('/api/token/', {"username":self.host["username"], "password":self.host["password"]}, content_type='application/json')

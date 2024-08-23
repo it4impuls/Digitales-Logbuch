@@ -126,30 +126,23 @@ class myTokenObtainPairView(TokenObtainPairView):
     serializer_class = myTokenObtainPairSerializer
 
     def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-
-        # get access and refresh tokens to do what you like with
-        access = serializer.validated_data.get("access", None)
-        refresh = serializer.validated_data.get("refresh", None)
-        uname = serializer.validated_data.get("uname", None)
-
+        response = super().post(request, *args, **kwargs)
+        
         # build your response and set cookie
-        if not access or not refresh:
-            return HttpResponse({"Error: Something went wrong"}, status=400)
-        rtoken = RefreshToken(refresh)
-        response = JsonResponse({"access": access, "refresh": refresh, "uname": uname}, status=200)
-        response.set_cookie("access", access, httponly=True, samesite="strict")
-        response.set_cookie(
-            "refresh",
-            refresh,
-            httponly=True,
-            samesite="strict",
-            expires=rtoken.lifetime + rtoken.current_time,
-        )
-        response.set_cookie(
-            "uname", uname, samesite="lax", expires=rtoken.lifetime + rtoken.current_time
-        )
+        if response.status_code == 200:
+            data = response.data
+            rtoken = RefreshToken(data["refresh"])
+            response.set_cookie("access", data["access"], httponly=True, samesite="strict")
+            response.set_cookie(
+                "refresh",
+                data["refresh"],
+                httponly=True,
+                samesite="strict",
+                expires=rtoken.lifetime + rtoken.current_time,
+            )
+            response.set_cookie(
+                "uname", data["uname"], samesite="lax", expires=rtoken.lifetime + rtoken.current_time
+            )
         return response
 
 
@@ -157,6 +150,7 @@ class myTokenRefreshView(TokenRefreshView):
     authentication_classes = api_settings.DEFAULT_AUTHENTICATION_CLASSES
     serializer_class = myTokenRefreshSerializer
     def get(self, request, *args, **kwargs):
+        # RefreshToken.verify(request.user)
         try: 
             response = super().post(DummyRequest(request.COOKIES))
         except AuthenticationFailed as e:
