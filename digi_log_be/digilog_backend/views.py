@@ -1,25 +1,21 @@
 from datetime import datetime
 import json
-from rest_framework.settings import api_settings
+
 from django.contrib.auth import authenticate, login
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_GET
-from rest_framework import permission_classes, authentication_classes, api_view, status
-from rest_framework.decorators import permission_classes
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.request import Request
-from rest_framework.response import Response
-from rest_framework_simplejwt.settings import api_settings
-# from rest_framework.authtoken.models import Token
-from rest_framework_simplejwt.exceptions import AuthenticationFailed, TokenError, InvalidToken
-from rest_framework import viewsets
+
+from rest_framework import status, viewsets
+from rest_framework.settings import api_settings
 from rest_framework.decorators import permission_classes, authentication_classes, api_view
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
+
+from rest_framework_simplejwt.settings import api_settings as jwt_settings
+from rest_framework_simplejwt.exceptions import AuthenticationFailed, TokenError, InvalidToken
 from rest_framework_simplejwt.serializers import TokenBlacklistSerializer, TokenVerifySerializer
 from rest_framework_simplejwt.tokens import RefreshToken, Token
 from rest_framework_simplejwt.views import (
@@ -44,13 +40,13 @@ def _setCookies(response:Request):
     if response.status_code is status.HTTP_200_OK:
         now = datetime.now()
         response.set_cookie("access", response.data["access"], httponly=True,
-                            samesite="strict", expires=api_settings.ACCESS_TOKEN_LIFETIME + now)
+                            samesite="strict", expires=jwt_settings.ACCESS_TOKEN_LIFETIME + now)
         response.set_cookie(
             "refresh",
             response.data["refresh"],
             httponly=True,
             samesite="strict",
-            expires=api_settings.REFRESH_TOKEN_LIFETIME + now,
+            expires=jwt_settings.REFRESH_TOKEN_LIFETIME + now,
         )
         response.set_cookie(
             "uname", response.data["uname"], samesite="lax"

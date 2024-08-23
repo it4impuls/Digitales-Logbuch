@@ -45,7 +45,6 @@ class AuthAPITest(TestCase):
         self.assertEqual(tokenresponse.status_code, 200)
         self.assertContains(tokenresponse, "access")
 
-        
         refreshresponse = self.client.get('/api/token/refresh/', headers={'refresh': tokenresponse.json()['refresh']})
         self.assertEqual(refreshresponse.status_code, 200)
         self.assertContains(refreshresponse, "access")
@@ -64,12 +63,22 @@ class AuthAPITest(TestCase):
         self.assertContains(first_refreshresponse, "access")
         self.assertNotEquals(first_refreshresponse.cookies.get('refresh').value, tokenresponse.cookies.get('refresh').value)
 
+        outdated_refresh = tokenresponse.cookies.get('refresh').value
+        outdated_response = self.client.post(
+            '/api/authTest/', {"token": outdated_refresh})
+        self.assertEqual(outdated_response.status_code, 400)
+
         second_refreshresponse = self.client.get('/api/token/refresh/')
         self.assertEqual(second_refreshresponse.status_code, 200)
         self.assertContains(second_refreshresponse, "access")
         self.assertNotEquals(
     second_refreshresponse.cookies.get('refresh').value, first_refreshresponse.cookies.get('refresh').value
-)
+        )
+
+        outdated_refresh = first_refreshresponse.cookies.get('refresh').value
+        outdated_response = self.client.post(
+            '/api/authTest/', {"token": outdated_refresh})
+        self.assertEqual(outdated_response.status_code, 400)
 
     def test_invalid_refresh(self):
         # empty refresh
@@ -82,22 +91,16 @@ class AuthAPITest(TestCase):
             json.dumps({"username": self.host["username"], "password": self.host["password"]}),
             content_type='application/json')
         self.assertEqual(login_response.status_code, 200)
-        self.assertContains(login_response, "access")
-
-        refreshresponse = self.client.get('/api/token/refresh/')
-        self.assertEqual(refreshresponse.status_code, 200)
+        self.assertContains(login_response, "refresh")
 
         authtestresponse = self.client.post('/api/authTest/', {"token": login_response.json()['refresh']})
         self.assertEqual(authtestresponse.status_code, 200)
 
         logoutresponse = self.client.post('/api/logout/')
-
         self.assertEqual(logoutresponse.status_code, 200)
 
-        
-
-        # Blacklisted refresh token (only if cycling refresh tokens)
-        self.client.cookies = refreshresponse.cookies   # outdated after logout
+        # Blacklisted refresh token after logout
+        self.client.cookies = login_response.cookies   # outdated after logout
         _authtestresponse = self.client.post('/api/authTest/')
         self.assertEqual(_authtestresponse.status_code, 400)
 
