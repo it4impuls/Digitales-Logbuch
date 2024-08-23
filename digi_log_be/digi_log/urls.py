@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from . import views
+from django.views.generic import RedirectView
+
 
 urlpatterns = [
     path("api/", include("digilog_backend.urls")),
     path('admin/', admin.site.urls, name="admin"),
-    
+    path("", RedirectView.as_view(url="/api/token"), name="index"),
     
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
