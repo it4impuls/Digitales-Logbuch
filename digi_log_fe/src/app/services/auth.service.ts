@@ -20,7 +20,11 @@ export class AuthService {
     this.http.refreshToken().subscribe({
       next: (response) => {},
       error: (err) => {
-        console.error(err);
+        // this.cookieService.clearAll();
+        this.cookieService.removeFromCookie(CookieType.username);
+        this.cookieService.removeFromCookie(CookieType.refreshToken);
+        this.cookieService.removeFromCookie(CookieType.accessToken);
+        // console.error(err);
         // this.cookieService.clearAll()
       },
     });
