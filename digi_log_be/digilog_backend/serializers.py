@@ -24,7 +24,7 @@ class myTokenObtainPairSerializer(TokenObtainPairSerializer):
 class myTokenRefreshSerializer(TokenRefreshSerializer):
     def validate(self, attrs: Dict[str, Any]) -> Dict[str, str]:
         try:
-            attrs["access"] = super().validate(attrs)["access"]
+            attrs.update(super().validate(attrs))
         except TokenError as e:
             raise exceptions.AuthenticationFailed(e)
         attrs["uname"] = User.objects.get(
