@@ -61,7 +61,7 @@ class AuthAPITest(TestCase):
         first_refreshresponse = self.client.get('/api/token/refresh/')
         self.assertEqual(first_refreshresponse.status_code, 200)
         self.assertContains(first_refreshresponse, "access")
-        self.assertNotEquals(first_refreshresponse.cookies.get('refresh').value, tokenresponse.cookies.get('refresh').value)
+        self.assertNotEqual(first_refreshresponse.cookies.get('refresh').value, tokenresponse.cookies.get('refresh').value)
 
         outdated_refresh = tokenresponse.cookies.get('refresh').value
         outdated_response = self.client.post(
@@ -71,7 +71,7 @@ class AuthAPITest(TestCase):
         second_refreshresponse = self.client.get('/api/token/refresh/')
         self.assertEqual(second_refreshresponse.status_code, 200)
         self.assertContains(second_refreshresponse, "access")
-        self.assertNotEquals(
+        self.assertNotEqual(
     second_refreshresponse.cookies.get('refresh').value, first_refreshresponse.cookies.get('refresh').value
         )
 

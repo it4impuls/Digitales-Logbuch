@@ -10,14 +10,8 @@ from .models import Attendee, Course, User
 
 class myTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
-        try:
-            data = super().validate(attrs)
-        except TokenError as e:
-            raise exceptions.AuthenticationFailed(e)
+        data = super().validate(attrs)
         assert self.user is not None
-        refresh = self.get_token(self.user)
-        data["refresh"] = str(refresh)  # comment out if you don't want this
-        data["access"] = str(refresh.access_token)
         data["uname"] = self.user.get_username()
 
         return data

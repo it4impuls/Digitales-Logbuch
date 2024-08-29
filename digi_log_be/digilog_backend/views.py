@@ -43,7 +43,7 @@ def _setCookies(response:Request):
                             samesite="strict", expires=jwt_settings.ACCESS_TOKEN_LIFETIME + now)
         response.set_cookie(
             "refresh",
-            response.data["refresh"],
+            response.data.get("refresh"),
             httponly=True,
             samesite="strict",
             expires=jwt_settings.REFRESH_TOKEN_LIFETIME + now,
