@@ -4,19 +4,14 @@ from rest_framework import exceptions, serializers
 from rest_framework.validators import UniqueTogetherValidator, UniqueValidator
 from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, TokenRefreshSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
 from .models import Attendee, Course, User
 
 
 class myTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
-        try:
-            data = super().validate(attrs)
-        except TokenError as e:
-            raise exceptions.AuthenticationFailed(e)
+        data = super().validate(attrs)
         assert self.user is not None
-        refresh = self.get_token(self.user)
-        data["refresh"] = str(refresh)  # comment out if you don't want this
-        data["access"] = str(refresh.access_token)
         data["uname"] = self.user.get_username()
 
         return data
@@ -27,9 +22,11 @@ class myTokenRefreshSerializer(TokenRefreshSerializer):
             attrs.update(super().validate(attrs))
         except TokenError as e:
             raise exceptions.AuthenticationFailed(e)
-        attrs["uname"] = User.objects.get(
-            id=self.token_class(attrs["refresh"]).get("user_id")
-        ).username
+        token = RefreshToken(attrs["refresh"])
+        user = User.objects.get(
+            id=token["user_id"]
+        ) 
+        attrs["uname"] = user.username
         return attrs
 
 class UserSerializer(serializers.ModelSerializer):
